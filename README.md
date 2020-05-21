@@ -1,4 +1,7 @@
 # project-1
+### Project Status
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/jiberjiber.github.io/project-1.svg)](http://jiberjiber.github.io/project-1/) [![GitHub last commit](https://img.shields.io/github/last-commit/jiberjiber/project-1)
+](https://github.com/jiberjiber/project-1/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/jiberjiber/project-1)](https://github.com/jiberjiber/project-1/graphs/contributors)
 ## Members
 * Sabrina Hollett
 * Alex Saint Victor
