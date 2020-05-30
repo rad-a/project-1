@@ -44,8 +44,7 @@ When a play date is scheduled, the user can choose to add it to a calendar and s
 8. Must be interactive
 </code></pre>
 <h2 id="application-preview">Application Preview</h2>
-<pre><code>In Progress
-</code></pre>
+<p>Just like people, dogs have many personalities and enjoy different types of play. Some dogs enjoy dog parks to make friends but many dogs don’t. Other concerns a dog owner might have is gentler play style for older dogs. Alternatively, sometimes a dog just needs to pick on someone his own size. For this reason we are building Dog Date. A way to set up a profile for you and your furry friend to find the perfect playmate. Users can add photos and info on their animals, as well as search location services to see other users nearby. The user may also search and narrow results by breed size, age, spay/neutered, and even personality. Once the user has found a friend for their dog, the users can message each other to schedule a play date and optionally add it to an internal calendar.</p>
 <h2 id="application-walkthrough">Application Walkthrough</h2>
 <pre><code>In Progress
 </code></pre>
