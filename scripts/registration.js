@@ -52,8 +52,6 @@ if(localStorage.getItem('user')){
 	registerContainer.hide();
 }
 
-
-
 registerForm.on('submit',storeUser);
 
 populateBreeds();
