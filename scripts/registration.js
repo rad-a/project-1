@@ -21,8 +21,22 @@ function populateBreeds() {
 	});
 }
 
+function storeUser(e){
+	e.preventDefault();
+	
+	user.push(userName.val());
+	user.push(dogName.val());
+	user.push(dogAge.val());
+	user.push(dogBreed.val());
+	user.push(dogGender.val());
+	
+	localStorage.setItem('user',JSON.stringify(user));
+}
+
 // Begin Variables
 
+const registerContainer = $('#registerContainer');
+const registerForm = $('#registerForm');
 const userName = $('#userName');
 const dogName = $('#dogName');
 const dogAge = $('#dogAge');
@@ -30,6 +44,16 @@ const dogBreed = $('#dogBreed');
 const dogGender = $('#dogGender');
 const registerButton = $('#registerSubmit');
 
+const user = [];
+
 // Begin Calls
+
+if(localStorage.getItem('user')){
+	registerContainer.hide();
+}
+
+
+
+registerForm.on('submit',storeUser);
 
 populateBreeds();

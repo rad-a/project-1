@@ -3,9 +3,6 @@
 <head>
 <meta charset="utf-8">
 <title>Project 1</title>
-	<!-- Local Style -->
-	
-	
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>	
 	
@@ -16,11 +13,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js"></script>
 		
-	<!-- Local Scripts -->
-	<script src="scripts/registration.js" type="text/javascript"></script>
-	
+	<!-- Local Style -->
 	<link href="css/registration.css" rel="stylesheet">
-	
 </head>
 
 <body>
@@ -34,7 +28,7 @@
 			
 			<img src="images/login-corgi-small.png" class="uk-align-center uk-margin-remove-bottom uk-animation-slide-top" alt="Your browser doesn't support images and that makes puppy sad." uk-margin>
 
-			<form class="uk-width-1-5 uk-align-center uk-animation-slide-bottom" uk-margin>
+			<form autocomplete="off" method="post" id="registerForm" class="uk-width-1-5 uk-align-center uk-animation-slide-bottom" uk-margin>
 				<input required id="userName" class="uk-input uk-form-large" type="text" placeholder="Your Name">
 				<input required id="dogName" class="uk-input uk-form-large" type="text" placeholder="Your Dog's Name">
 				<input required id="dogAge" class="uk-input uk-form-large" type="text" placeholder="Your Dog's Age">
@@ -51,5 +45,8 @@
 			</form>
 		</div>
 	</div>
+	
+	<!-- Local Scripts -->
+	<script src="scripts/registration.js" type="text/javascript"></script>
 </body>
 </html>
