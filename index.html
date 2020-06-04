@@ -3,23 +3,34 @@
 <head>
 <meta charset="utf-8">
 <title>Project 1</title>
-	<link href="css/registration.css" rel="stylesheet">
+	<!-- Local Style -->
+	
+	
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>	
+	
 	<!-- UIkit CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/css/uikit.css" />
 
 	<!-- UIkit JS -->
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js"></script>
+		
+	<!-- Local Scripts -->
+	<script src="scripts/registration.js" type="text/javascript"></script>
 	
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<link href="css/registration.css" rel="stylesheet">
 	
 </head>
 
 <body>
-	<img src="images/zilker.jpg" style="height:100%;">
+	<img src="images/zilker.jpg" class="bg" style="height:100%;">
 	<div id="registerContainer" class="uk-container">
 		<div class="uk-position-center uk-text-center uk-animation-fade uk-overlay" uk-margin>
+			
+			<h1 class="uk-heading-line uk-text-light uk-text-bolder">Welcome to whatever this is!</h1>
+			
+			<h3 class="uk-text-bold">Please fill out this form to use our webpage</h3>
 			
 			<img src="images/login-corgi-small.png" class="uk-align-center uk-margin-remove-bottom uk-animation-slide-top" alt="Your browser doesn't support images and that makes puppy sad." uk-margin>
 
@@ -40,24 +51,5 @@
 			</form>
 		</div>
 	</div>
-	<script>
-		$.ajax({
-			url: "https://api.thedogapi.com/v1/breeds?api_key=e5a7d34e-abed-4bdf-80e2-2f1fd529fa6d",
-			method: "GET"
-		}).then(function(response){
-			console.log(response);
-			
-			for(var i = 0; i < response.length; i++){
-				var option = $('<option>');
-				option.attr('value',response[i].name);
-				option.text(response[i].name);
-				
-				$('#dogBreed').append(option);
-			}
-			
-			$('#dogBreed').val('Cardigan Welsh Corgi');
-		});
-	
-	</script>
 </body>
 </html>
