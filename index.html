@@ -6,6 +6,45 @@
 </head>
 
 <body>
-	<h1>Project 1</h1>
+	<!--<img src="images/zilker.jpg" style="width:100%; overflow:auto;">-->
+	<div id="registerContainer" class="uk-container">
+		<div class="uk-position-center uk-text-center uk-animation-fade uk-overlay" uk-margin>
+			<img src="images/login-corgi-small.png" class="uk-align-center uk-margin-remove-bottom uk-animation-slide-top" alt="Your browser doesn't support images and that makes puppy sad." uk-margin>
+			<form class="uk-width-1-5 uk-align-center uk-animation-slide-bottom" uk-margin>
+				<input required id="userName" class="uk-input uk-form-large" type="text" placeholder="Your Name">
+				<input required id="dogName" class="uk-input uk-form-large" type="text" placeholder="Your Dog's Name">
+				<input required id="dogAge" class="uk-input uk-form-large" type="text" placeholder="Your Dog's Age">
+				<select id="dogBreed" required class="uk-select uk-form-large" type="text">
+					
+				</select>
+				<select id="dogGender" required class="uk-select uk-form-large" type="text">
+					<option value="">Your Dog's Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="other">Other</option>
+				</select>
+				<button id="registerSubmit" class="uk-button uk-button-primary uk-width-1-1">Register</button>
+			</form>
+		</div>
+	</div>
+	<script>
+		$.ajax({
+			url: "https://api.thedogapi.com/v1/breeds?api_key=e5a7d34e-abed-4bdf-80e2-2f1fd529fa6d",
+			method: "GET"
+		}).then(function(response){
+			console.log(response);
+			
+			for(var i = 0; i < response.length; i++){
+				var option = $('<option>');
+				option.attr('value',response[i].name);
+				option.text(response[i].name);
+				
+				$('#dogBreed').append(option);
+			}
+			
+			$('#dogBreed').val('Cardigan Welsh Corgi');
+		});
+	
+	</script>
 </body>
 </html>
