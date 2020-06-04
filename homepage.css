@@ -1,0 +1,104 @@
+/* .uk-column-1-4 {
+    background-color: red;
+}
+.uk-column-3-4 {
+    background-color: green;
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  height: 100%;
+}
+
+.uk-navbar-nav li > label {
+  color: #999;
+  text-transform: uppercase;
+  transition: 0.1s ease-in-out;
+  transition-property: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  padding: 0 15px;
+  font-size: 0.875rem;
+}
+
+#main {
+  margin: 0rem;
+  padding: 1rem;
+  background: #f8a501;
+}
+
+.uk-container {
+  margin: 0;
+  padding: 0;
+}
+
+.uk-grid {
+  /* padding-left: 0;
+  margin-left: 0; */
+}
+
+#user-area {
+  background-color: aliceblue;
+  /* padding-left: 5rem; */
+  border-radius: 0 .5rem .5rem 0;
+}
+
+#user {
+    padding-top: 5rem;
+}
+#main-area {
+  /* background-color: bisque; */
+}
+
+.info-sections {
+  /* padding-right: 1rem;
+  padding-left: 1rem; */
+  margin-top: 1rem;
+  /* display: flex;
+  flex-direction: column; */
+  border-radius: .5rem;
+  padding: 2rem;
+  border: 1px solid #77aaff;
+  /* box-shadow:  -1px 1px #77aaff,
+       -2px 2px #77aaff,
+       -3px 1px #77aaff,
+       -2px 2px #77aaff,
+       -2px 3px #77aaff; */
+}
+
+.info-sections h3, current-weather {
+    /* justify-content: flex-start; */
+}
+
+ul {
+
+  padding-left: 0;
+}
+.user-info li {
+  list-style: none;
+}
+
+.forecast {
+  /* background-color: yellow;
+  border-radius: 0.5rem;
+  border: 1px solid #555555; */
+padding: 1rem;
+}
+
+/* footer {
+  padding: 1rem;
+  background-color: cadetblue;
+} */
