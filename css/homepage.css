@@ -17,6 +17,9 @@ body {
 }
 
 body {
+	background-image: url("../images/zilker.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
   font-family: sans-serif;
   height: 100%;
 }
@@ -37,7 +40,7 @@ body {
 #main {
   margin: 0rem;
   padding: 1rem;
-  background: #f8a501;
+  
 }
 
 .uk-container {
