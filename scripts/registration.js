@@ -24,7 +24,8 @@ function populateBreeds() {
 function storeUser(e){
 	e.preventDefault();
 	
-	user.push(userName.val());
+	user.push(userName.val().charAt(0).toUpperCase()); //Generate a pseudo user image using First Initial
+	user.push(userName.val()); 
 	user.push(dogName.val());
 	user.push(dogAge.val());
 	user.push(dogBreed.val());
@@ -41,11 +42,12 @@ function storeUser(e){
 function fillUserData(){
 	user = JSON.parse(localStorage.getItem('user'));
 	
-	userDataName.text(user[0])
-	userDataPetName.text(user[1]);
-	userDataPetAge.text(user[2]);
-	userDataPetBreed.text(user[3]);
-	userDataPetGender.text(user[4]);
+	userDataImage.text(user[0]);
+	userDataName.text(user[1]);
+	userDataPetName.text(user[2]);
+	userDataPetAge.text(user[3]);
+	userDataPetBreed.text(user[4]);
+	userDataPetGender.text(user[5]);
 }
 
 // Begin Variables
@@ -59,6 +61,7 @@ const dogAge = $('#dogAge');
 const dogBreed = $('#dogBreed');
 const dogGender = $('#dogGender');
 
+const userDataImage = $('#profileImage');
 const userDataName = $('#userNameDisplay');
 const userDataPetName = $('#pet-name');
 const userDataPetAge = $('#pet-age');
@@ -80,3 +83,4 @@ if(localStorage.getItem('user')){
 registerForm.on('submit',storeUser);
 
 populateBreeds();
+
