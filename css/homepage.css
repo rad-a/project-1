@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,8 +10,8 @@ body {
 }
 
 body {
-	background-image: url("../images/zilker.jpg");
-	background-repeat: no-repeat;
+  background-image: url("../images/zilker.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed; /*Rae added */
   font-family: "Karla", sans-serif;
@@ -24,11 +23,11 @@ body {
 }
 
 nav {
-  background-color: #40c9d7;
+  z-index: 980;
 }
 
 .navText {
-  color: #999;
+  color: #807f3c !important;
   text-transform: uppercase;
   transition: 0.1s ease-in-out;
   transition-property: all;
@@ -37,34 +36,37 @@ nav {
   align-items: center;
   min-height: 80px;
   padding: 0 15px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
+.navText a {
+  color: #807f3c !important;
+}
+
+.uk-navbar a:hover,
+.uk-navbar-nav li:hover {
+  background-color: #96abb0;
+  border-radius: 3px;
+}
 #main {
   margin: auto;
   padding: 50px 50px 50px 0px;
   flex: 1;
-
 }
 
 #main > div {
   /* height: 100%;  */
   /* padding: 30px 30px 30px 16px; */
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-/*delete if no longer in use
-#contentArea {
-width: 90%;
-}
-*/
 
 .headerText {
   font-family: "Roboto-Slab", serif;
 }
 
 #userArea {
-  background-color: #96abb0; 
+  background-color: #96abb0;
   padding-right: 25px;
   border-radius: 3px;
   padding-bottom: 5px;
@@ -78,21 +80,21 @@ width: 90%;
 }
 
 #user {
-    padding-top: 5rem;
-    display: flex;
-    flex-direction: column;
+  padding-top: 65px;
+  display: flex;
+  flex-direction: column;
 }
 
 #profileImage {
-align-self: center; 
-height: 130px;
-width: 130px;
-border-radius: 50%;
-background-color: #b36b39;
-font-size: 45px;
-color: #ffffff;
-text-align: center; 
-line-height: 130px;
+  align-self: center;
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  background-color: #b36b39;
+  font-size: 45px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 130px;
 }
 
 #searchInput {
@@ -105,7 +107,6 @@ line-height: 130px;
 .uk-button {
   border-radius: 3px;
   margin-top: 3px;
-
 }
 
 #radius {
@@ -113,53 +114,46 @@ line-height: 130px;
 }
 
 #mainArea {
-  /* background-color: bisque; */
   padding-left: 10px;
 }
 
 .infoSections {
-  /* padding-right: 1rem;
-  padding-left: 1rem; */
-  /* margin-top: 1rem; */
-  /* display: flex;
-  flex-direction: column; */
   border-radius: 3px;
-  padding: 2rem;
-  /* border: 1px solid #77aaff; */
-background-color: #d7e0e7;
-opacity: 0.96;
+  padding: 32px;
+  background-color: #d7e0e7;
+  opacity: 0.96;
 }
 
-.infoSections h3, currentWeather {
-  /* display: flex;
-  flex-direction: column;
-    justify-content: flex-start; */
-}
 .parkInfo {
   display: flex;
   margin-bottom: 20px;
 }
 
 .parkInfo div {
-  padding: 1rem;
+  padding: 16px;
 }
 
 .parkInfo #map {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
 }
 
-.parkInfo #parkDetails {
-  /* background-color: green; */
+.hide {
+  visibility: hidden;
 }
 
-.weather > div { 
-  padding: 2rem;
+.weatherEl {
+  padding: 0 16px;
 }
 
+#currentDate {
+  font-size: 18px;
+}
+
+#currentWeather {
+  margin-bottom: 10px;
+}
 ul {
-
   padding-left: 0;
 }
 .userInfo li {
@@ -167,13 +161,30 @@ ul {
 }
 
 .forecast {
-  /* background-color: yellow;
-  border-radius: 0.5rem;
-  border: 1px solid #555555; */
-padding: 1rem;
+
+  padding: 16px;
+  margin-top: 0px !important;
+
 }
 
-/* footer {
-  padding: 1rem;
-  background-color: cadetblue;
-} */
+
+@media only screen and (max-width: 959px) {
+  #main {
+   display: flex;
+   flex-direction: column;
+   padding: 20px;
+   color: red;
+   text-align: center;
+   margin: auto;
+  }
+
+  #userArea {
+    padding-bottom: 35px;
+    margin-bottom: 20px;
+  }
+
+  #mainArea {
+    padding: 0;
+  }
+}
+
