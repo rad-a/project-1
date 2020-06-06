@@ -13,7 +13,7 @@ body {
   background-image: url("../images/zilker.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed; /*Rae added */
+  background-attachment: fixed;
   font-family: "Karla", sans-serif;
   color: #46433e;
   display: flex;
@@ -48,6 +48,7 @@ nav {
   background-color: #96abb0;
   border-radius: 3px;
 }
+
 #main {
   margin: auto;
   padding: 50px 50px 50px 0px;
@@ -97,6 +98,10 @@ nav {
   line-height: 130px;
 }
 
+.userInfo li {
+  list-style: none;
+}
+
 #searchInput {
   background-color: #46433e;
   border-radius: 3px;
@@ -109,10 +114,6 @@ nav {
   margin-top: 3px;
 }
 
-#radius {
-  align-self: flex-start;
-}
-
 #mainArea {
   padding-left: 10px;
 }
@@ -122,6 +123,10 @@ nav {
   padding: 32px;
   background-color: #d7e0e7;
   opacity: 0.96;
+}
+
+#radius {
+  align-self: flex-start;
 }
 
 .parkInfo {
@@ -156,15 +161,11 @@ nav {
 ul {
   padding-left: 0;
 }
-.userInfo li {
-  list-style: none;
-}
 
 .forecast {
 
   padding: 16px;
   margin-top: 0px !important;
-
 }
 
 
@@ -173,7 +174,6 @@ ul {
    display: flex;
    flex-direction: column;
    padding: 20px;
-   color: red;
    text-align: center;
    margin: auto;
   }
