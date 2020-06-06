@@ -1,0 +1,179 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+	background-image: url("../images/zilker.jpg");
+	background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; /*Rae added */
+  font-family: "Karla", sans-serif;
+  color: #46433e;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 16px;
+}
+
+nav {
+  background-color: #40c9d7;
+}
+
+.navText {
+  color: #999;
+  text-transform: uppercase;
+  transition: 0.1s ease-in-out;
+  transition-property: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+#main {
+  margin: auto;
+  padding: 50px 50px 50px 0px;
+  flex: 1;
+
+}
+
+#main > div {
+  /* height: 100%;  */
+  /* padding: 30px 30px 30px 16px; */
+display: flex;
+flex-direction: column;
+}
+/*delete if no longer in use
+#contentArea {
+width: 90%;
+}
+*/
+
+.headerText {
+  font-family: "Roboto-Slab", serif;
+}
+
+#userArea {
+  background-color: #96abb0; 
+  padding-right: 25px;
+  border-radius: 3px;
+  padding-bottom: 5px;
+  opacity: 0.95;
+}
+
+#userArea > div {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+#user {
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#profileImage {
+align-self: center; 
+height: 130px;
+width: 130px;
+border-radius: 50%;
+background-color: #b36b39;
+font-size: 45px;
+color: #ffffff;
+text-align: center; 
+line-height: 130px;
+}
+
+#searchInput {
+  background-color: #46433e;
+  border-radius: 3px;
+  opacity: 0.8;
+  color: #d7e0e7;
+}
+
+.uk-button {
+  border-radius: 3px;
+  margin-top: 3px;
+
+}
+
+#radius {
+  align-self: flex-start;
+}
+
+#mainArea {
+  /* background-color: bisque; */
+  padding-left: 10px;
+}
+
+.infoSections {
+  /* padding-right: 1rem;
+  padding-left: 1rem; */
+  /* margin-top: 1rem; */
+  /* display: flex;
+  flex-direction: column; */
+  border-radius: 3px;
+  padding: 2rem;
+  /* border: 1px solid #77aaff; */
+background-color: #d7e0e7;
+opacity: 0.96;
+}
+
+.infoSections h3, currentWeather {
+  /* display: flex;
+  flex-direction: column;
+    justify-content: flex-start; */
+}
+.parkInfo {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.parkInfo div {
+  padding: 1rem;
+}
+
+.parkInfo #map {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.parkInfo #parkDetails {
+  /* background-color: green; */
+}
+
+.weather > div { 
+  padding: 2rem;
+}
+
+ul {
+
+  padding-left: 0;
+}
+.userInfo li {
+  list-style: none;
+}
+
+.forecast {
+  /* background-color: yellow;
+  border-radius: 0.5rem;
+  border: 1px solid #555555; */
+padding: 1rem;
+}
+
+/* footer {
+  padding: 1rem;
+  background-color: cadetblue;
+} */
