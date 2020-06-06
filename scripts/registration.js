@@ -24,7 +24,7 @@ function populateBreeds() {
 function storeUser(e){
 	e.preventDefault();
 	
-	user.push(userName.val().charAt(0).toUpperCase());
+	user.push(userName.val().charAt(0).toUpperCase()); //Generate a pseudo user image using First Initial
 	user.push(userName.val()); 
 	user.push(dogName.val());
 	user.push(dogAge.val());
