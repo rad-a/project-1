@@ -4,9 +4,14 @@
   padding: 0;
 }
 
+html {
+	background: rgba(255,255,255,0);
+}
+
 html,
 body {
   height: 100%;
+	
 }
 
 body {
