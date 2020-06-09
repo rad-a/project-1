@@ -73,6 +73,7 @@
             <input
               required
               id="userName"
+              earch
               class="uk-input uk-form-large"
               type="text"
               placeholder="Your Name"
@@ -125,10 +126,22 @@
         <div class="uk-navbar">
           <a class="uk-navbar-item uk-logo" href="#">Dog Date</a>
 
+
+          
+          <label for="toggle">&#9776;</label>
+          <input type="checkbox" id="toggle" />
+
+
+          <div class="uk-navbar-center-right">
+
+
+
           <div class="uk-navbar-dropbar">
             <ul class="uk-navbar-nav">
               <li class="navText">
-                <a href="#areaSearch"><label for="searchInput">Search</label></a>
+                <a href="#areaSearch"
+                  ><label for="searchInput">Search</label></a
+                >
               </li>
               <li class="navText">
                 <a href="#mainArea">Map</a>
@@ -162,7 +175,7 @@
             </ul>
           </div>
 
-          <div class="uk-panel uk-margin-medium-top">
+          <!-- <div class="uk-panel uk-margin-medium-top">
             <h4 class="uk-panel-title headerText">Search nearby parks</h4>
             <div class="uk-margin-small-top">
               <form class="uk-search uk-search-default" id="areaSearch">
@@ -187,13 +200,13 @@
                 />
               </form>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!--Main area: right panel-->
         <div class="uk-width-1-1@s uk-width-3-4@m uk-width-4-5@l" id="mainArea">
           <div
-            class="uk-section infoSections uk-child-width-1-1@s uk-child-width-1-2@m  uk-flex uk-text-center parkInfo"
+            class="uk-section infoSections uk-child-width-1-1@s uk-child-width-1-2@m uk-flex uk-text-center parkInfo"
           >
             <!-- Div element for Google map -->
             <div id="map">
@@ -217,6 +230,19 @@
               <h3 class="headerText">Park Details</h3>
               <!--Hide this <p> once a location is selected-->
               <p id="hide">Select a park from the map to learn more</p>
+              <p id="hide">Select a park from the map to learn more</p>
+
+              <p id="hide">Select a park from the map to learn more</p>
+
+              <p id="hide">Select a park from the map to learn more</p>
+
+              <p id="hide">Select a park from the map to learn more</p>
+
+              <p id="hide">Select a park from the map to learn more</p>
+
+              <p id="hide">Select a park from the map to learn more</p>
+
+              
               <h2 id="address"></h2>
               <h4 id="cityZip"></h4>
               <h6 id="type"></h6>
@@ -228,20 +254,22 @@
             </div>
           </div>
 
-          <div class="uk-section infoSections uk-flex-column uk-text-center weather" id="weather">
+          <div
+            class="uk-section infoSections uk-flex-column uk-text-center weather"
+            id="weather"
+          >
             <!--Insert current park name inside #location-->
             <h3 class="headerText weatherEl" id="location">
-              <br><span><img id="weather-icon" alt="" /></span><br>
+              <br /><span><img id="weather-icon" alt="" /></span><br />
               <span id="currentDate">09/28/2020</span>
             </h3>
 
             <!--Current weather conditions-->
             <div class="weatherEl" id="currentWeather">
-
-              <div id="temp">Temperature: </div>
-              <div id="humidity">Humidity: </div>
-              <div id="wind">Wind Speed: </div>
-              <div id="uv-index">UV Index: </div>
+              <div id="temp">Temperature:</div>
+              <div id="humidity">Humidity:</div>
+              <div id="wind">Wind Speed:</div>
+              <div id="uv-index">UV Index:</div>
             </div>
 
             <div
@@ -249,59 +277,69 @@
               uk-grid
             >
               <!--5-day weather forecast-->
-              <div class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l">
+              <div
+                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
+              >
                 <div class="forecast-date"></div>
                 <img class="forecast-icon" alt="" />
 
                 <div class="forecast-desc"></div>
-                <div class="forecast-temp">Temperature: </div>
-                <div class="forecast-hum">Humidity: </div>
-                <div class="forecast-wind">Wind Speed: </div>
-                <div class="forecast-uv">UV Index: </div>
+                <div class="forecast-temp">Temperature:</div>
+                <div class="forecast-hum">Humidity:</div>
+                <div class="forecast-wind">Wind Speed:</div>
+                <div class="forecast-uv">UV Index:</div>
               </div>
 
-              <div class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l">
+              <div
+                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
+              >
                 <div class="forecast-date"></div>
                 <img class="forecast-icon" alt="" />
 
                 <div class="forecast-desc"></div>
-                <div class="forecast-temp">Temperature: </div>
-                <div class="forecast-hum">Humidity: </div>
-                <div class="forecast-wind">Wind Speed: </div>
-                <div class="forecast-uv">UV Index: </div>
+                <div class="forecast-temp">Temperature:</div>
+                <div class="forecast-hum">Humidity:</div>
+                <div class="forecast-wind">Wind Speed:</div>
+                <div class="forecast-uv">UV Index:</div>
               </div>
 
-              <div class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l">
+              <div
+                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
+              >
                 <div class="forecast-date"></div>
                 <img class="forecast-icon" alt="" />
 
                 <div class="forecast-desc"></div>
-                <div class="forecast-temp">Temperature: </div>
-                <div class="forecast-hum">Humidity: </div>
-                <div class="forecast-wind">Wind Speed: </div>
-                <div class="forecast-uv">UV Index: </div>
+                <div class="forecast-temp">Temperature:</div>
+                <div class="forecast-hum">Humidity:</div>
+                <div class="forecast-wind">Wind Speed:</div>
+                <div class="forecast-uv">UV Index:</div>
               </div>
 
-              <div class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l">
+              <div
+                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
+              >
                 <div class="forecast-date"></div>
                 <img class="forecast-icon" alt="" />
 
                 <div class="forecast-desc"></div>
-                <div class="forecast-temp">Temperature: </div>
-                <div class="forecast-hum">Humidity: </div>
-                <div class="forecast-wind">Wind Speed: </div>
-                <div class="forecast-uv">UV Index: </div>
+                <div class="forecast-temp">Temperature:</div>
+                <div class="forecast-hum">Humidity:</div>
+                <div class="forecast-wind">Wind Speed:</div>
+                <div class="forecast-uv">UV Index:</div>
               </div>
 
-              <div class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l">
+              <div
+                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
+              >
                 <div class="forecast-date"></div>
                 <img class="forecast-icon" alt="" />
 
                 <div class="forecast-desc"></div>
-                <div class="forecast-temp">Temperature: </div>
-                <div class="forecast-hum">Humidity: </div>
-                <div class="forecast-wind">Wind Speed: </div>
-                <div class="forecast-uv">UV Index: </div>
+                <div class="forecast-temp">Temperature:</div>
+                <div class="forecast-hum">Humidity:</div>
+                <div class="forecast-wind">Wind Speed:</div>
+                <div class="forecast-uv">UV Index:</div>
               </div>
             </div>
           </div>
