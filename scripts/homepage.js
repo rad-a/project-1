@@ -6,7 +6,6 @@
 //Change title text per search
 //Add location name to "weather forecast" text
 //Render park details
-//Replace user image based on first letter
 
 $(document).ready(function () {
   //Search variables
