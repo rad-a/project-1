@@ -76,18 +76,45 @@ $(document).ready(function () {
       $("#wind").append(windSpeed + "mph");
       $("#uv-index").append(uvIndex);
     }
-
+    //dynamically generate divs for forecast data and append to html document
+    
+    
     function getForecastData() {
+      for (let i=0; i=4; i++){
+      //forecast-date
+      //forecast-icon
+      //forecast-desc
+      //temp, hum, wind, uv
       var forecastTemp = Math.floor((data.daily[i].temp.max - 273) * 1.8 + 32);
       var forecastHumidity = data.daily[i].humidity;
       var forecastWindSpeed = data.daily[i].wind_speed;
       var forecastUV = data.daily[i].uvi;
+      //creates parent div and adds class for responsive page layout
+      let parent_div= $('<div>').addClass('forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l')
+      //create divs for all weather data-types and add corresponding class
+      //let date_Div= $('<div>').addClass('forecast-date').html(htmlString);;
+      //let forecastIcon= $('<img>').attr('src', )
+      let description_div= $('<div>').addClass('forecast-desc')
+      let temp_div= $('<div>').addClass('forecast-temp').html(forecastTemp + "*F")
+      let hum_div= $('<div>').addClass('forecast-hum')
+      let wind_div= $('<div>').addClass('forecast-wind')
+      let uv_div= $('<div>').addClass('forecast-uv')
+      //Append all divs to html
+      $('.uk-grid-match').append(parent_div);
+     // parent_div.append(date_Div);
+     // parent_div.append(forecastIcon);
+      parent_div.append(description_div);
+      parent_div.append(temp_div);
+      parent_div.append(hum_div);
+      parent_div.append(wind_div);
+      parent_div.append(uv_div);
 
-      $(".forecast-temp").append(forecastTemp + "*F");
+
+     /* $(".forecast-temp").innerHTML(forecastTemp + "*F");
       $(".forecast-hum").append(forecastHumidity + "%");
       $(".forecast-wind").append(forecastWindSpeed + " mph");
-      $(".forecast-uv").append(forecastUV);
-    }
+      $(".forecast-uv").append(forecastUV);*/
+    }};
 
     function setPage() {
       $(hideText).attr("class", "hide");
