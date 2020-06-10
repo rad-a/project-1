@@ -50,6 +50,14 @@ function fillUserData(){
 	userDataPetGender.text(user[5]);
 }
 
+function resetUserData(e){
+	e.preventDefault();
+	localStorage.removeItem('user');
+	user = [];
+	mainContainer.hide('slow');
+	registerContainer.show('slow');
+}
+
 // Begin Variables
 
 const mainContainer = $('#mainContainer');
@@ -68,6 +76,8 @@ const userDataPetAge = $('#pet-age');
 const userDataPetBreed = $('#pet-breed');
 const userDataPetGender = $('#pet-gender');
 
+const resetDataBtn = $('#resetUserData');
+
 var user = [];
 
 // Begin Calls
@@ -81,6 +91,7 @@ if(localStorage.getItem('user')){
 }
 
 registerForm.on('submit',storeUser);
+resetDataBtn.on('click',resetUserData);
 
 populateBreeds();
 
