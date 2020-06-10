@@ -240,3 +240,7 @@ ul {
   
   }
    */
+
+.hover-danger:hover {
+	background-color: palevioletred;
+}
