@@ -166,6 +166,11 @@ nav {
   padding: 16px;
 }
 
+#map {
+height: 450px;
+width: 650px;
+}
+
 /* .parkInfo #map {
   display: flex;
   flex-direction: column;
@@ -196,6 +201,10 @@ ul {
 .forecast {
   padding: 16px;
   margin-top: 0px !important;
+}
+
+.hover-danger:hover {
+	background-color: palevioletred;
 }
 
 @media only screen and (max-width: 959px) {
@@ -290,6 +299,10 @@ ul {
     border-radius: 0;
   }
 
+  /* .mapArea, .parkInfo {
+    height: 600px;
+  } */
+
   .parkInfo {
     display: flex;
     flex-direction: column;
@@ -306,8 +319,10 @@ ul {
     align-content: center;
   }
 .weatherEl #weather-icon {
- width: 120px;
+ width: 50px;
  align-self: center;
+
+ height: auto;
 
 }
 
@@ -347,13 +362,14 @@ ul {
   /* (display) */
 
   .styleDisplay {
-
+height: 300px;
+width: 100%;
   }
 
 /* (photo details) */
 
 .stylePhoto {
-
+height: 250px;
 }
 
 /* (website URL) */
@@ -374,6 +390,3 @@ ul {
 .direct {}
 
 
-.hover-danger:hover {
-	background-color: palevioletred;
-}
