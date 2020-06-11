@@ -6,6 +6,7 @@
 //Change title text per search
 //Add location name to "weather forecast" text
 //Render park details
+//Replace user image based on first letter
 
 $(document).ready(function () {
   //Search variables
@@ -33,16 +34,13 @@ $(document).ready(function () {
 
   var weatherKey = "c1786506c24426ae384c4cedbae014b0";
   //variable to get longitude and latitude for location
-  //coor  lat: 30.2672
-  //      lon: -97.7431
-  //url: "https://api.openweathermap.org/data/2.5/forecast?q=austin&units=imperial&APPID=" + weatherKey,
-
-  //one call api for current weather and five day forecast data
+ 
+  //one call version of openweather api for current weather and five day forecast data
   $.ajax({
-    //use lat and long inputs from google api
+    //use lat and long inputs from geolocation
     //"https://api.openweathermap.org/data/2.5/onecall?lat=" + latiData + "&lon="+ longData + "&exclude=minutely,hourly&appid="+ weatherKey,
     url:
-      "https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&exclude=minutely,hourly&appid=" +
+      "https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&units=imperial&exclude=minutely,hourly&appid=" +
       weatherKey,
     method: "GET",
   }).then(function (data) {
@@ -50,7 +48,7 @@ $(document).ready(function () {
 
     attachIcon();
     getCurrentWeatherData();
-    // getForecastData ();
+    getForecastData ();
 
     //attaching weather icon and adding alt tag description
     function attachIcon() {
@@ -66,55 +64,90 @@ $(document).ready(function () {
     function getCurrentWeatherData() {
       //need to find way to get city name and date
       //convert from kelvin to fahrenheit. Remove decimals
-      var temperature = Math.floor((data.current.temp - 273) * 1.8 + 32);
-      var humidity = data.current.humidity;
-      var windSpeed = data.current.wind_speed;
+      var temperature = Math.floor(data.current.temp) + "°F";
+      var humidity = data.current.humidity + "%";
+      var windSpeed = data.current.wind_speed + "mph";
       var uvIndex = data.current.uvi;
 
-      $("#temp").append(temperature + "*F");
-      $("#humidity").append(humidity + "%");
-      $("#wind").append(windSpeed + "mph");
+      $("#temp").append(temperature);
+      $("#humidity").append(humidity);
+      $("#wind").append(windSpeed);
       $("#uv-index").append(uvIndex);
-    }
-    //dynamically generate divs for forecast data and append to html document
-    
-    
+    };
+
     function getForecastData() {
-      for (let i=0; i=4; i++){
-      //forecast-date
-      //forecast-icon
-      //forecast-desc
-      //temp, hum, wind, uv
-      var forecastTemp = Math.floor((data.daily[i].temp.max - 273) * 1.8 + 32);
-      var forecastHumidity = data.daily[i].humidity;
-      var forecastWindSpeed = data.daily[i].wind_speed;
-      var forecastUV = data.daily[i].uvi;
-      //creates parent div and adds class for responsive page layout
-      let parent_div= $('<div>').addClass('forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l')
-      //create divs for all weather data-types and add corresponding class
-      //let date_Div= $('<div>').addClass('forecast-date').html(htmlString);;
-      //let forecastIcon= $('<img>').attr('src', )
-      let description_div= $('<div>').addClass('forecast-desc')
-      let temp_div= $('<div>').addClass('forecast-temp').html(forecastTemp + "*F")
-      let hum_div= $('<div>').addClass('forecast-hum')
-      let wind_div= $('<div>').addClass('forecast-wind')
-      let uv_div= $('<div>').addClass('forecast-uv')
-      //Append all divs to html
-      $('.uk-grid-match').append(parent_div);
-     // parent_div.append(date_Div);
-     // parent_div.append(forecastIcon);
-      parent_div.append(description_div);
-      parent_div.append(temp_div);
-      parent_div.append(hum_div);
-      parent_div.append(wind_div);
-      parent_div.append(uv_div);
+      var i=0;
+      //div to which all data will be added before being appeneded to html
+      var parent_div = $("<div>", {class: "forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"});
+      //object to hold weather data
+      const forecastObject= [{
+        iconIMG: function (){
+          var iconData = data.daily[i].weather[0].icon;
+          var iconURLForecast = "https://api.openweathermap.org/img/w/" + iconData + ".png";
+          $("<img>", {src: iconURLForecast, alt: forecastDesc})
+        },
+        description: data.daily[i].weather[0].description,
+        temperature: "Temperature: " + Math.floor(data.daily[i].temp.day) + "°F",
+        humidity: "Humidity: " + data.daily[i].humidity + "%",
+        wind_speed: "Wind speed:" + data.daily[i].wind_speed + "mph",
+        uvIndex: "UV Index: " + data.daily[i].uvi
+      },
+      ];
+      //for each method, li and text and append
+      forecastObject.forEach(myFunction)
+       function myFunction() {
+        var listItem= $("<li></li>").append(value);
+        weatherListStart.append(listItem)
+        parent_div.append(value);
+        
+      };
+      //ul for generated li's to append to
+      var weatherListStart = $("<ul></ul", {class: "weatherList"});
+      weatherListStart.css("list-style-type", "none")
+      //finally append ul to parent div and parent div to html
+      parent_div.append(weatherListStart);
+      $("#forecast_container").append(parent_div);
+    }; 
+     /* //generate div with viewport responsive class. ul of weather data will be appended
+      var parent_div = $("<div>", {class: "forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"});
+      //variables for retrieving icon image
+      var iconData = data.daily[i].weather[0].icon;
+      var iconURLForecast = "https://api.openweathermap.org/img/w/" + iconData + ".png";
+      var forecastIconIMG = $("<img>", {src: iconURLForecast, alt: forecastDesc})
+      //create li for each forecast item and append weather data from api
+      var forecastDesc = $("<li></li>").text(data.daily[i].weather[0].description);
+      var forecastTemp = $("<li></li>").text("Temperature: " + Math.floor(data.daily[i].temp.day) + "°F");
+      var forecastHumidity = $("<li></li>").text("Humidity: " + data.daily[i].humidity + "%");
+      var forecastWindSpeed = $("<li></li>").text("Wind speed:" + data.daily[i].wind_speed + "mph");
+      var forecastUV = $("<li></li>").text("UV Index: " + data.daily[i].uvi);
+      //create ul, attach li's and append to parent_div
+      var weatherListStart = $("<ul></ul", {class: "weatherList"});
+      weatherListStart.css("list-style-type", "none")
+      //array
+      //var forecastDataArray = [forecastIconIMG, forecastDesc, forecastTemp, forecastHumidity, forecastWindSpeed, forecastUV]
+      
+      //finish loop by appending to html forecast_container div
+      $("#forecast_container").append(parent_div);
+      parent_div.append(weatherListStart);
+      weatherListStart.append(forecastIconIMG);
+      weatherListStart.append(forecastDesc);
+      weatherListStart.append(forecastTemp);
+      weatherListStart.append(forecastHumidity);
+      weatherListStart.append(forecastWindSpeed);
+      weatherListStart.append(forecastUV);
+    
+      $(".forecast-temp").append(forecastTemp);
+      $(".forecast-hum").append(forecastHumidity);
+      $(".forecast-wind").append(forecastWindSpeed);
+      $(".forecast-uv").append(forecastUV);
+    }
+    <div
+                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
+              >
+                <div class="forecast-date"></div>
+                <img class="forecast-icon" alt="" />
 
-
-     /* $(".forecast-temp").innerHTML(forecastTemp + "*F");
-      $(".forecast-hum").append(forecastHumidity + "%");
-      $(".forecast-wind").append(forecastWindSpeed + " mph");
-      $(".forecast-uv").append(forecastUV);*/
-    }};
+                <div class="forecast-desc"></div>*/
 
     function setPage() {
       $(hideText).attr("class", "hide");
