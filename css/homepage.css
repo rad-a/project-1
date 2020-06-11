@@ -11,6 +11,9 @@ html {
 html,
 body {
   height: 100%;
+  width: 100%;
+  background-color: transparent!important;
+
 }
 
 body {
@@ -370,3 +373,7 @@ ul {
 /* (direction link) */
 .direct {}
 
+
+.hover-danger:hover {
+	background-color: palevioletred;
+}
