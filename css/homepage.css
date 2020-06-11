@@ -5,7 +5,7 @@
 }
 
 html {
-	background: rgba(255,255,255,0);
+  background: rgba(255, 255, 255, 0);
 }
 
 html,
@@ -31,10 +31,22 @@ body {
 
 nav {
   z-index: 980;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.uk-logo {
+  text-transform: uppercase;
+}
+
+.navLinks {
+  background: #f8f8f8;
 }
 
 .navText {
   color: #807f3c !important;
+  font-weight: 400;
   text-transform: uppercase;
   transition: 0.1s ease-in-out;
   transition-property: all;
@@ -46,9 +58,10 @@ nav {
   font-size: 15px;
 }
 
-.uk-navbar > label {
-  margin: 40px;
+.label {
+  margin: 20px;
   display: none;
+  width: 26px;
 }
 
 #toggle {
@@ -140,7 +153,11 @@ nav {
   opacity: 0.96;
 }
 
-.parkInfo {
+.mapArea {
+  justify-content: center;
+}
+
+.parkInfo, .mapArea {
   display: flex;
   margin-bottom: 20px;
 }
@@ -149,18 +166,18 @@ nav {
   padding: 16px;
 }
 
-.parkInfo #map {
+/* .parkInfo #map {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .hide {
   visibility: hidden;
 }
 
-.weatherEl {
+/* .weatherEl {
   padding: 0 16px;
-}
+} */
 
 #currentDate {
   font-size: 18px;
@@ -182,6 +199,69 @@ ul {
 }
 
 @media only screen and (max-width: 959px) {
+  /* .menu {
+  width: 100%;
+  height: 70px;
+  display: flex;  
+  justify-content: space-between;
+  text-align: center;
+    } */
+
+  /*   
+.uk-navbar-dropbar {
+  display: flex;
+  align-content: space-between;
+} */
+  .uk-logo {
+    height: 70px;
+    font-size: 1.1rem;
+  }
+
+  .navLinks li {
+    height: 20px;
+    display: block;
+    /* position: absolute; */
+    z-index: 100000;
+  }
+
+  .label {
+    display: block;
+    cursor: pointer;
+    margin: 28px;
+    transition: 0.4s;
+    position: absolute;
+    z-index: 100000;
+ 
+    top: 0px;
+    right: 0px;
+  }
+
+  /* .uk-navbar-dropbar {
+    background-color: #f8f8f8;
+  } */
+
+  .navLinks {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: none;
+    right: -100%;
+    top: 0;
+    padding: 70px 0 0;
+    line-height: normal;
+    /* transition: 0.7s; */
+  }
+
+  .navLinks a {
+    display: block;
+    padding: 10px;
+    margin: 0;
+  }
+
+  #toggle:checked + .navLinks {
+    display: block;
+  }
+
   #main {
     /* display: flex;
     flex-direction: column; */
@@ -194,7 +274,7 @@ ul {
     padding-bottom: 35px;
     margin-bottom: 20px;
     flex: 1;
-    border-radius: 3px 3px 0 0!important; 
+    border-radius: 3px 3px 0 0 !important;
   }
 
   #mainArea {
@@ -204,6 +284,7 @@ ul {
   #userArea,
   #mainArea,
   .parkInfo,
+  .mapArea,
   #weather {
     margin-bottom: 0px;
     border-radius: 0;
@@ -215,15 +296,24 @@ ul {
     opacity: 0.95;
   }
 
-  #parkDetails { 
+  #parkDetails {
     border-top: 1px solid #96abb0;
-  
   }
+
+  .weatherEl {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+.weatherEl #weather-icon {
+ width: 120px;
+ align-self: center;
+
+}
 
   #weather {
     background-color: #9dacaf;
-    border-radius: 0 0 3px 3px!important; 
-
+    border-radius: 0 0 3px 3px !important;
   }
 
 
@@ -240,6 +330,49 @@ ul {
   
   }
    */
+
+
+
+/*    
+.mapArea #map {
+  height: 400px;
+  width: auto;
+  } */
+
+
+
+
+  /* Elements added by JS */ 
+
+  /* (display) */
+
+  .styleDisplay {
+
+  }
+
+/* (photo details) */
+
+.stylePhoto {
+
+}
+
+/* (website URL) */
+
+.styleLink {
+
+}
+
+/* (hours of operations) */
+
+.address {}
+
+/* (address) */
+
+.showStyle {}
+
+/* (direction link) */
+.direct {}
+
 
 .hover-danger:hover {
 	background-color: palevioletred;
