@@ -153,6 +153,13 @@ nav {
   opacity: 0.96;
 }
 
+.parkInfo {
+  background-color: #a1a180;
+}
+#weather {
+  background-color: #9dacaf;
+}
+
 .mapArea {
   justify-content: center;
 }
@@ -164,6 +171,11 @@ nav {
 
 .parkInfo div {
   padding: 16px;
+}
+
+#map {
+height: 450px;
+width: 700px;
 }
 
 /* .parkInfo #map {
@@ -178,6 +190,16 @@ nav {
 /* .weatherEl {
   padding: 0 16px;
 } */
+
+#weather-icon {
+  width: 100px;
+  height: auto;
+}
+
+#temp {
+  margin: 0;
+  font-size: 35px;
+}
 
 #currentDate {
   font-size: 18px;
@@ -198,6 +220,14 @@ ul {
   margin-top: 0px !important;
 }
 
+.hover-danger:hover {
+	background-color: palevioletred;
+}
+
+#radiusOptions {
+  margin-bottom: 3px;
+}
+
 @media only screen and (max-width: 959px) {
   /* .menu {
   width: 100%;
@@ -212,6 +242,11 @@ ul {
   display: flex;
   align-content: space-between;
 } */
+
+.infoSections {
+  padding: 20px;
+}
+
   .uk-logo {
     height: 70px;
     font-size: 1.1rem;
@@ -236,10 +271,6 @@ ul {
     right: 0px;
   }
 
-  /* .uk-navbar-dropbar {
-    background-color: #f8f8f8;
-  } */
-
   .navLinks {
     text-align: center;
     width: 100%;
@@ -263,16 +294,14 @@ ul {
   }
 
   #main {
-    /* display: flex;
-    flex-direction: column; */
-    /* padding: 20px; */
+
     width: 95%;
     text-align: center;
   }
 
   #userArea {
     padding-bottom: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     flex: 1;
     border-radius: 3px 3px 0 0 !important;
   }
@@ -281,19 +310,20 @@ ul {
     padding: 0;
   }
 
-  #userArea,
-  #mainArea,
-  .parkInfo,
-  .mapArea,
-  #weather {
+ .section {
     margin-bottom: 0px;
     border-radius: 0;
   }
+
+  /* .mapArea, .parkInfo {
+    height: 600px;
+  } */
 
   .parkInfo {
     display: flex;
     flex-direction: column;
     opacity: 0.95;
+    background-color: #a1a180;
   }
 
   #parkDetails {
@@ -305,9 +335,15 @@ ul {
     flex-direction: column;
     align-content: center;
   }
+
+  .icon-temp {
+    padding: 0 60px;
+  }
+
 .weatherEl #weather-icon {
- width: 120px;
+ width: 70px;
  align-self: center;
+ height: auto;
 
 }
 
@@ -316,50 +352,35 @@ ul {
     border-radius: 0 0 3px 3px !important;
   }
 
+  #map {
+    height: 500px;
+    width: 100%;
+  }
+
 
 }
-/* 
-
-@media only screen and (min-width: 960px) and (max-width: 1250px) {
-  
-    #main {
-  width: 95%;
-  
-  }
-  
-  
-  }
-   */
-
-
-
-/*    
-.mapArea #map {
-  height: 400px;
-  width: auto;
-  } */
-
-
-
-
-  /* Elements added by JS */ 
-
-  /* (display) */
 
   .styleDisplay {
-
+height: 300px;
+width: 100%;
   }
 
 /* (photo details) */
 
 .stylePhoto {
-
+height: 250px;
 }
 
 /* (website URL) */
 
 .styleLink {
+  text-decoration: none;
+  color: #3e575e!important;
+}
 
+.styleLink:hover {
+  text-decoration: none;
+  color: #b36b39!important;
 }
 
 /* (hours of operations) */
@@ -374,6 +395,3 @@ ul {
 .direct {}
 
 
-.hover-danger:hover {
-	background-color: palevioletred;
-}
