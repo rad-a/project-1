@@ -592,4 +592,8 @@ let submitB= document.getElementById('submit');
   }
 
 
+<<<<<<< HEAD
 //OFF LINE
+=======
+//OFF LINE
+>>>>>>> master
