@@ -444,11 +444,8 @@ currentInfoWindow= markerInfoWindow;
 }
 function display(result){
 let display= document.getElementById('display');
-
 let styleDisplay= display.classList.add('styleDisplay')
 display.innerHTML= '<strong>There are '+result.length+ ' dog parks within ...</strong>'
-
-display.innerHTML= '<strong>There are '+result.length+ ' dog parks within </strong>'
 
 }
 
@@ -470,12 +467,12 @@ function createTag(result){
       someImg.src='https://image.flaticon.com/362/png/512/3048/3048388.png?size=1200x630f';
     }
     let button= document.createElement('button');
-    button.innerHTML='<strong>'+tag.name+'</strong>';
+    button.innerHTML='<h3>'+tag.name+'</h3><br> <p><strong>Rating: '+ tag.rating+'</strong></p>';
     button.id='buttons';
     let showTag= document.getElementById('searchresult');
     showTag.appendChild(frame)
-    frame.appendChild(someImg)
     frame.appendChild(button);
+    button.appendChild(someImg);
     // console.log(tag)
 
     // return tag
@@ -595,4 +592,4 @@ let submitB= document.getElementById('submit');
   }
 
 
-//OFF LINE
+//Live
