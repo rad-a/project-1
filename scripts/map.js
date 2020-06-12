@@ -444,20 +444,11 @@ currentInfoWindow= markerInfoWindow;
 }
 function display(result){
 let display= document.getElementById('display');
-<<<<<<< HEAD
-<<<<<<< HEAD
-let styleDisplay= display.classList.add('styleDisplay')
-display.innerHTML= '<strong>There are '+result.length+ ' dog parks within ...</strong>'
-=======
-display.innerHTML= '<strong>There are '+result.length+ ' dog parks within </strong>'
->>>>>>> f4ca038b6de4cc91447dc66d765d39bdfe2a9e58
-=======
 
 let styleDisplay= display.classList.add('styleDisplay')
 display.innerHTML= '<strong>There are '+result.length+ ' dog parks within ...</strong>'
 
 display.innerHTML= '<strong>There are '+result.length+ ' dog parks within </strong>'
->>>>>>> master
 
 }
 
@@ -604,8 +595,4 @@ let submitB= document.getElementById('submit');
   }
 
 
-<<<<<<< HEAD
 //OFF LINE
-=======
-//OFF LINE
->>>>>>> master
