@@ -10,45 +10,74 @@
 
 $(document).ready(function () {
   //Search variables
-  const areaSearch = $("#areaSearch");
-  const searchInput = $("#searchInput");
-  const search = $("#searchBtn");
-  const userImg = $("#profileImage");
-  const reset = $("#reset");
+  var areaSearch = $("#areaSearch");
+  var searchInput = $("#searchInput");
+  var search = $("#searchBtn");
+  var userImg = $("#profileImage");
+  var reset = $("#reset");
 
   //Map and location variables
-  //   const map = $("#map");
-  //   const radiusToggle = $("#radius");
+  //   var map = $("#map");
+  //   var radiusToggle = $("#radius");
   let hideText = $("#hide");
 
-  //   const address = $("#address");
-  //   const cityZip = $("#cityZip");
-  //   const locationType = $("#type");
-  //   const openHours = $("#hours");
-  //   const desc = $("desc");
-  //   const site = $("#website");
-  //   const locationImg = $("locationImg");
+  //   var address = $("#address");
+  //   var cityZip = $("#cityZip");
+  //   var locationType = $("#type");
+  //   var openHours = $("#hours");
+  //   var desc = $("desc");
+  //   var site = $("#website");
+  //   var locationImg = $("locationImg");
 
-  
+
   //BEGIN FUNCTIONS
-
+  
   var weatherKey = "c1786506c24426ae384c4cedbae014b0";
-  //variable to get longitude and latitude for location
- 
+  var latiData;
+  var longData;
+  //weather data variables defined
+  
+  
   //one call version of openweather api for current weather and five day forecast data
-  $.ajax({
+
+$.ajax({
     //use lat and long inputs from geolocation
-    //"https://api.openweathermap.org/data/2.5/onecall?lat=" + latiData + "&lon="+ longData + "&exclude=minutely,hourly&appid="+ weatherKey,
-    url:
-      "https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&units=imperial&exclude=minutely,hourly&appid=" +
-      weatherKey,
+    url:"https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&units=imperial&exclude=minutely,hourly&appid=" +
+    weatherKey,
+     
     method: "GET",
   }).then(function (data) {
     console.log(data);
-
+    
+    getLocation();
     attachIcon();
     getCurrentWeatherData();
     getForecastData ();
+  
+
+    function getLocation () {
+      if (navigator.geolocation){
+        // console.log('gps')
+        navigator.geolocation.getCurrentPosition(function (position) {
+        coord= {
+            lat: position.coords.latitude,
+            lng:position.coords.longitude,
+            accuracy:position.coords.accuracy
+        };
+        let latiData = coord.lat;
+        let longData = coord.lng;
+        console.log(latiData)
+        console.log(longData)
+        })}
+        else {
+        let latiData = 30.2672
+        let longData = -97.7431
+        console.log(latiData);
+        console.log(longData);
+        };
+        
+      };
+   
 
     //attaching weather icon and adding alt tag description
     function attachIcon() {
@@ -74,42 +103,12 @@ $(document).ready(function () {
       $("#wind").append(windSpeed);
       $("#uv-index").append(uvIndex);
     };
-
+    
     function getForecastData() {
-      var i=0;
-      //div to which all data will be added before being appeneded to html
-      var parent_div = $("<div>", {class: "forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"});
-      //object to hold weather data
-      const forecastObject= [{
-        iconIMG: function (){
-          var iconData = data.daily[i].weather[0].icon;
-          var iconURLForecast = "https://api.openweathermap.org/img/w/" + iconData + ".png";
-          $("<img>", {src: iconURLForecast, alt: forecastDesc})
-        },
-        description: data.daily[i].weather[0].description,
-        temperature: "Temperature: " + Math.floor(data.daily[i].temp.day) + "°F",
-        humidity: "Humidity: " + data.daily[i].humidity + "%",
-        wind_speed: "Wind speed:" + data.daily[i].wind_speed + "mph",
-        uvIndex: "UV Index: " + data.daily[i].uvi
-      },
-      ];
-      //for each method, li and text and append
-      forecastObject.forEach(myFunction)
-       function myFunction() {
-        var listItem= $("<li></li>").append(value);
-        weatherListStart.append(listItem)
-        parent_div.append(value);
-        
-      };
-      //ul for generated li's to append to
-      var weatherListStart = $("<ul></ul", {class: "weatherList"});
-      weatherListStart.css("list-style-type", "none")
-      //finally append ul to parent div and parent div to html
-      parent_div.append(weatherListStart);
-      $("#forecast_container").append(parent_div);
-    }; 
-     /* //generate div with viewport responsive class. ul of weather data will be appended
-      var parent_div = $("<div>", {class: "forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"});
+      var forecastDataArray = [forecastIconIMG, forecastDesc, forecastTemp, forecastHumidity, forecastWindSpeed, forecastUV];
+      for (var i=0; i< forecastDataArray.length; i++) {
+      //generate div with viewport responsive class. ul of weather data will be appended
+      var parent_div = $("<div>", {class: "uk-grid-match uk-grid-column-small uk-grid-divider weatherEl"});
       //variables for retrieving icon image
       var iconData = data.daily[i].weather[0].icon;
       var iconURLForecast = "https://api.openweathermap.org/img/w/" + iconData + ".png";
@@ -121,13 +120,13 @@ $(document).ready(function () {
       var forecastWindSpeed = $("<li></li>").text("Wind speed:" + data.daily[i].wind_speed + "mph");
       var forecastUV = $("<li></li>").text("UV Index: " + data.daily[i].uvi);
       //create ul, attach li's and append to parent_div
-      var weatherListStart = $("<ul></ul", {class: "weatherList"});
+      var weatherListStart = $("<ul>", {class: "weatherList"});
       weatherListStart.css("list-style-type", "none")
       //array
-      //var forecastDataArray = [forecastIconIMG, forecastDesc, forecastTemp, forecastHumidity, forecastWindSpeed, forecastUV]
+      
       
       //finish loop by appending to html forecast_container div
-      $("#forecast_container").append(parent_div);
+      $("#weather").append(parent_div);
       parent_div.append(weatherListStart);
       weatherListStart.append(forecastIconIMG);
       weatherListStart.append(forecastDesc);
@@ -136,19 +135,13 @@ $(document).ready(function () {
       weatherListStart.append(forecastWindSpeed);
       weatherListStart.append(forecastUV);
     
-      $(".forecast-temp").append(forecastTemp);
+     /* $(".forecast-temp").append(forecastTemp);
       $(".forecast-hum").append(forecastHumidity);
       $(".forecast-wind").append(forecastWindSpeed);
-      $(".forecast-uv").append(forecastUV);
-    }
-    <div
-                class="forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"
-              >
-                <div class="forecast-date"></div>
-                <img class="forecast-icon" alt="" />
-
-                <div class="forecast-desc"></div>*/
-
+      $(".forecast-uv").append(forecastUV);*/
+    }};
+    
+    
     function setPage() {
       $(hideText).attr("class", "hide");
     }
