@@ -1,6 +1,6 @@
 //Live
 
-/* -----IDs, classes and srcs requiride for the UI team----
+/* -----IDcode s, classes and srcs requiride for the UI team----
 1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
 
 2)<p id="display" ></p> shows the count (14 parks near ..) of the search result
@@ -444,12 +444,11 @@ currentInfoWindow= markerInfoWindow;
 }
 function display(result){
 let display= document.getElementById('display');
-<<<<<<< HEAD
+
 let styleDisplay= display.classList.add('styleDisplay')
 display.innerHTML= '<strong>There are '+result.length+ ' dog parks within ...</strong>'
-=======
+
 display.innerHTML= '<strong>There are '+result.length+ ' dog parks within </strong>'
->>>>>>> f4ca038b6de4cc91447dc66d765d39bdfe2a9e58
 
 }
 
