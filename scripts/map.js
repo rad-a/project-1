@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 /* -----IDs, classes and srcs requiride for the UI team----
 1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
@@ -14,6 +15,14 @@
     4d) (for css only) class= address (the address result)
     4e) (for css only) class= showStyle (the open hours result)
     4f) (for css only) class= direct  (direction link)
+=======
+/* -----IDs, classes and srcs requiride for the UI team----
+1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
+
+2)<p id="display" ></p> shows the count of the search result
+3) <div id="map"></div> This div holds the map (to be use also in css for map size)
+4) <div id=parkInfo></div> this div hold the details information
+>>>>>>> master
 
 */
 
@@ -364,7 +373,11 @@ parkInfo.appendChild(createPhoto);
     notAva.textContent= 'No photos available';
     parkInfo.appendChild(notAva);
 }
+<<<<<<< HEAD
 if (place.rating){ 
+=======
+if (place.rating){
+>>>>>>> master
 let createRating= document.createElement('h4');
 let styleRating= createRating.classList.add('styleRating');
 createRating.textContent='Rating: '+place.rating+' Stars';
