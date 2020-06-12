@@ -387,7 +387,7 @@ parkInfo.appendChild(showOpen);
 }
 if(place.formatted_address){
 let createDir= document.createElement('a');
-let addressStyle= createDir.classList.add('direct');``
+let addressStyle= createDir.classList.add('styleLink');``
 createDir.href='https://www.google.com/maps/search/?api=1&query='+place.name;
 createDir.textContent='Get direction to '+place.name;
 parkInfo.appendChild(createDir);
@@ -416,7 +416,7 @@ currentInfoWindow= markerInfoWindow;
 }
 function display(result){
 let display= document.getElementById('display');
-display.innerHTML= '<strong>There are '+result.length+ ' dog parks within ...</strong>'
+display.innerHTML= '<strong>There are '+result.length+ ' dog parks within </strong>'
 
 }
 
