@@ -1,18 +1,26 @@
+//Live
 
 /* -----IDs, classes and srcs requiride for the UI team----
 1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
 
-2)<p id="display" ></p> shows the count of the search result
+2)<p id="display" ></p> shows the count (14 parks near ..) of the search result
+    2a) (for css only) class= styleDisplay 
 3) <div id="map"></div> This div holds the map (to be use also in css for map size)
+      3a) add css height (optional: add width)
 4) <div id=parkInfo></div> this div hold the details information
+    4a) (for css only) class=stylePhoto (the photo destails)
+    4b) (for css only) class= styleRating (the park rating)
+    4c) (for css only) class= styleLink (the website link)
+    4d) (for css only) class= address (the address result)
+    4e) (for css only) class= showStyle (the open hours result)
+    4f) (for css only) class= direct  (direction link)
 
 */
-
 
 //---------plan of action (stage 1)----
 // lets create a map with set origin austin
 //use HTML5 to find user geolocation
-//// bounds is a rectangle option from Map object
+//// bounds is a rectangle/frame option from Map object
 // add nearby search
 //add markers to nerarby search
 //---------plan of action (stage 1)----
@@ -27,14 +35,19 @@ let currentWindow;
 let service;
 let marker;
 let parkInfo;
-    //STEP 1
-//finding user current loc
-function createMap(){
-    
-   bounds= new google.maps.LatLngBounds();
-    //infow Window is a text box
-    infoWindow=new google.maps.InfoWindow;
+let icon2;
+let distance='8050';
+let switchH= false;
 
+    //STEP 1
+// runining my main function "createmap"
+//finding user current loc and passing it to "getNearbyPlaces"
+function createMap(){
+  //setting or creating new bounds(map frame/focus)
+   bounds= new google.maps.LatLngBounds();
+    //setting a creating a google map infow Window (is a text box)
+    infoWindow=new google.maps.InfoWindow;
+    //swetting info window to current in order to close current when a new one pops up after an event
     currentInfoWindow= infoWindow;
 
     //using HTML5 to find user current location and setting the result as Latitude and longitude
@@ -47,10 +60,13 @@ function createMap(){
             lng:position.coords.longitude,
             accuracy:position.coords.accuracy
         };
-        //calling a new google map result
+        //setting and calling a new google map result
         map= new google.maps.Map(document.getElementById('map'),{
             center: coord,
             zoom:12,
+            streetViewControl:false,
+            mapTypeControl:false,
+            gestureHandling: 'greedy',
 
         //json style from mapstyle.withgoogle.com
         styles: [
@@ -225,6 +241,14 @@ function createMap(){
             anchor: new google.maps.Point(0, 0)
         }
 
+        icon2={
+          url:"https://img.icons8.com/plasticine/100/000000/dog-bone.png",
+          scaledSize: new google.maps.Size(60,60),
+          origin: new google.maps.Point(0,0),
+          anchor: new google.maps.Point(0, 0)
+      }
+
+
         let user= new google.maps.Marker({
             position:coord,
             map:map,
@@ -241,7 +265,7 @@ function createMap(){
         map.setCenter(coord);
         
         getNearbyPlaces(coord)
-        
+        submit();       
         },function(error){
             if (error.code ==1){
             let errorM= document.getElementById('error');
@@ -283,7 +307,7 @@ function getNearbyPlaces(position){
         //position = coord our gps location
         location: position,
         //radius number is per meter 10000= 6 miles (approx)
-        radius: '10000',
+        radius: distance,
         keyword: 'dog park'
     };
 // setting the target location for (the places result) inside my current map location
@@ -301,6 +325,8 @@ function callBack(result, status){
     
     //showing how many rersults there are
     display(result);
+    createTag(result);
+   
     }
 }
 //step 4
@@ -313,7 +339,7 @@ function createMarkers(park){
         marker= new google.maps.Marker({
             position: place.geometry.location,
             map: map,
-            icon:"https://img.icons8.com/plasticine/100/000000/dog-bone.png",
+            icon:icon2,
             title: place.name
 
         });
@@ -321,7 +347,8 @@ function createMarkers(park){
     bounds.extend(place.geometry.location);
     //calling click event function
     clickEv(marker,place);
-    
+    sendEv(marker);
+  
     
     })
     //adjust map to show all visible markers
@@ -341,9 +368,9 @@ function clickEv(dot,place){
 service.getDetails(request, function(place,status){
 if (status == google.maps.places.PlacesServiceStatus.OK){
     // console.log(google.maps);
-    console.log(place.opening_hours);
+    // console.log(place.opening_hours);
 parkInfo= document.getElementById('parkInfo');
-parkInfo.innerHTML='<h1>'+place.name+'</h1>';
+parkInfo.innerHTML='<h3>'+place.name+'</h3>';
 
 if(place.photos){
 let createPhoto= document.createElement('img');
@@ -351,9 +378,10 @@ let stylePhoto= createPhoto.classList.add('stylePhoto');
 createPhoto.src= place.photos[0].getUrl();
 parkInfo.appendChild(createPhoto);
 }else{
-    let notAva= document.createElement('p');
-    notAva.textContent= 'No photos available';
-    parkInfo.appendChild(notAva);
+    let createPhoto=document.createElement('img');
+    let stylePhoto= createPhoto.classList.add('stylePhoto');
+    createPhoto.src='https://img.icons8.com/doodle/96/000000/national-park.png';
+    parkInfo.appendChild(createPhoto);
 }
 if (place.rating){
 let createRating= document.createElement('h4');
@@ -416,9 +444,156 @@ currentInfoWindow= markerInfoWindow;
 }
 function display(result){
 let display= document.getElementById('display');
+<<<<<<< HEAD
+let styleDisplay= display.classList.add('styleDisplay')
+display.innerHTML= '<strong>There are '+result.length+ ' dog parks within ...</strong>'
+=======
 display.innerHTML= '<strong>There are '+result.length+ ' dog parks within </strong>'
+>>>>>>> f4ca038b6de4cc91447dc66d765d39bdfe2a9e58
 
 }
 
 
 
+//--------------------------------------------------//
+//creating a list of result, separate from the map marker rresults
+function createTag(result){
+ 
+  result.forEach(function (tag){
+    // console.log('printing');
+   
+    let frame= document.createElement('div');
+    frame.id= 'frame';
+    let someImg= document.createElement('img');
+    if(tag.photos){
+    someImg.src=tag.photos[0].getUrl();
+    }else{
+      someImg.src='https://image.flaticon.com/362/png/512/3048/3048388.png?size=1200x630f';
+    }
+    let button= document.createElement('button');
+    button.innerHTML='<strong>'+tag.name+'</strong>';
+    button.id='buttons';
+    let showTag= document.getElementById('searchresult');
+    showTag.appendChild(frame)
+    frame.appendChild(someImg)
+    frame.appendChild(button);
+    // console.log(tag)
+
+    // return tag
+    listEv(tag,button)
+  
+  })
+  
+
+}
+
+function listEv(tag,button){
+  // console.log(tag.place_id);
+  google.maps.event.addDomListener(button,'click',function(){
+    
+    let request={
+        placeId: tag.place_id,
+        fields:['name','photos','formatted_address','rating','website','adr_address','opening_hours']
+    }
+    service.getDetails(request, function(tag,status){
+      if (status == google.maps.places.PlacesServiceStatus.OK){
+        parkInfo= document.getElementById('parkInfo');
+        parkInfo.innerHTML='<h3>'+tag.name+'</h3>';
+
+      }if(tag.photos){
+        let createPhoto= document.createElement('img');
+        let stylePhoto= createPhoto.classList.add('stylePhoto');
+        createPhoto.src= tag.photos[0].getUrl();
+        parkInfo.appendChild(createPhoto);
+        }else{
+          let createPhoto=document.createElement('img');
+          let stylePhoto= createPhoto.classList.add('stylePhoto');
+          createPhoto.src='https://img.icons8.com/doodle/96/000000/national-park.png';
+          parkInfo.appendChild(createPhoto);;
+        }
+        if (tag.rating){
+        let createRating= document.createElement('h4');
+        let styleRating= createRating.classList.add('styleRating');
+        createRating.textContent='Rating: '+tag.rating+' Stars';
+        parkInfo.appendChild(createRating);
+        }else{
+            let createRating= document.createElement('h4');
+        let styleRating= createRating.classList.add('styleRating');
+        createRating.textContent='Rating:N/A';
+        parkInfo.appendChild(createRating);
+        }
+        if (tag.website){
+        let createLink= document.createElement('a');
+        let styleLink= createLink.classList.add('styleLink');
+        createLink.href= tag.website;
+        createLink.textContent= 'See our Website for more information';
+        parkInfo.appendChild(createLink);
+        }
+        if(tag.formatted_address){
+        let createAddress= document.createElement('p');
+        let createStyle= createAddress.classList.add('address');
+        createAddress.innerHTML='<strong>Address: </strong>'+tag.formatted_address;
+        parkInfo.appendChild(createAddress);
+        }
+        if(tag.opening_hours){
+        let showOpen=document.createElement('p');
+        let showStyle= showOpen.classList.add('showStyle');
+        showOpen.innerHTML='<strong>Open Hours: </strong>'+tag.opening_hours.weekday_text;
+        parkInfo.appendChild(showOpen);
+        }
+        if(tag.formatted_address){
+        let createDir= document.createElement('a');
+        let addressStyle= createDir.classList.add('direct');``
+        createDir.href='https://www.google.com/maps/search/?api=1&query='+tag.name;
+        createDir.textContent='Get direction to '+tag.name;
+        parkInfo.appendChild(createDir);
+        }
+
+
+    })
+
+  })
+
+}
+
+// adding click event for distance form and clearing list result in html
+let send= document.getElementById('distance') ;
+let submitB= document.getElementById('submit');
+// console.log(remove);
+
+  function sendEv(marker){
+    send.addEventListener('change',function(ev){
+      ev.preventDefault();
+      let removeS=document.getElementById('searchresult');
+      let removechild= removeS.children;
+      let num= removechild.length
+
+   marker.setMap(null);
+  // remove.innerHTML=' ';
+  
+  distance= ev.target.value;
+  if(removechild[0]){
+    removechild[0].remove();
+    switchH=true;
+  }
+ 
+    })
+    
+  }
+
+  function submit(){
+    submitB.addEventListener('click',function(ev){
+      ev.preventDefault();
+      console.log(switchH);
+      if(switchH){
+        console.log(distance);
+        getNearbyPlaces(coord);
+        switchH=false
+      }
+      
+    })
+    
+  }
+
+
+//OFF LINE
