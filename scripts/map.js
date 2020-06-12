@@ -1,4 +1,4 @@
-//OFF LINE
+//Live
 
 /* -----IDs, classes and srcs requiride for the UI team----
 1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
