@@ -1,7 +1,7 @@
 
 # Dog date
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/jiberjiber.github.io/project-1.svg)](http://jiberjiber.github.io/project-1/) [![GitHub last commit](https://img.shields.io/github/last-commit/jiberjiber/project-1)
-](https://github.com/jiberjiber/project-1/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/jiberjiber/project-1)](https://github.com/jiberjiber/project-1/graphs/contributors)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/jiberjiber.github.io/dog-date.svg)](http://jiberjiber.github.io/dog-date/) [![GitHub last commit](https://img.shields.io/github/last-commit/jiberjiber/dog-date)
+](https://github.com/jiberjiber/dog-date/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/jiberjiber/dog-date)](https://github.com/jiberjiber/dog-date/graphs/contributors)
 
 
 
