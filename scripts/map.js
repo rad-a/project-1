@@ -1,4 +1,4 @@
-//Live
+//Live updated 0612 07:43
 
 /* -----IDcode s, classes and srcs requiride for the UI team----
 1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
@@ -457,9 +457,8 @@ function createTag(result){
  
   result.forEach(function (tag){
     // console.log('printing');
-   
     let frame= document.createElement('div');
-    frame.id= 'frame';
+    frame.id= 'frame'+result.indexOf(tag);
     let someImg= document.createElement('img');
     if(tag.photos){
     someImg.src=tag.photos[0].getUrl();
@@ -467,9 +466,9 @@ function createTag(result){
       someImg.src='https://image.flaticon.com/362/png/512/3048/3048388.png?size=1200x630f';
     }
     let button= document.createElement('button');
-    button.innerHTML='<h3>'+tag.name+'</h3><br> <p><strong>Rating: '+ tag.rating+'</strong></p>';
-    button.id='buttons';
-    let showTag= document.getElementById('searchresult');
+    button.innerHTML='<h6>'+tag.name+'</h6>';
+    button.id='buttons'+result.indexOf(tag);
+    let showTag= document.getElementById('searchResult');
     showTag.appendChild(frame)
     frame.appendChild(button);
     button.appendChild(someImg);
@@ -539,7 +538,7 @@ function listEv(tag,button){
         }
         if(tag.formatted_address){
         let createDir= document.createElement('a');
-        let addressStyle= createDir.classList.add('direct');``
+        let addressStyle= createDir.classList.add('styleLink');``
         createDir.href='https://www.google.com/maps/search/?api=1&query='+tag.name;
         createDir.textContent='Get direction to '+tag.name;
         parkInfo.appendChild(createDir);
@@ -560,7 +559,7 @@ let submitB= document.getElementById('submit');
   function sendEv(marker){
     send.addEventListener('change',function(ev){
       ev.preventDefault();
-      let removeS=document.getElementById('searchresult');
+      let removeS=document.getElementById('searchResult');
       let removechild= removeS.children;
       let num= removechild.length
 
