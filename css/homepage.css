@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   margin: 0;
   padding: 0;
 }
@@ -21,7 +21,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   font-family: "Karla", sans-serif;
-  color: #000000;
+  color: #3d3a35;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -33,6 +33,10 @@ nav {
   padding: 0 30px;
   display: flex;
   justify-content: space-between;
+}
+
+.headerText {
+  font-family: "Roboto Slab", sans-serif;
 }
 
 .uk-logo {
@@ -88,10 +92,6 @@ nav {
   flex-direction: column;
 }
 
-.headerText {
-  font-family: "Cabin", sans-serif;
-}
-
 #userArea {
   background-color: #96abb0;
   padding-right: 25px;
@@ -124,13 +124,21 @@ nav {
   line-height: 130px;
 }
 
+ul {
+  padding-left: 0;
+}
+
+.userInfo li {
+  list-style: none;
+}
+
 .uk-button {
   border-radius: 3px;
   margin-top: 3px;
 }
 
-#radius {
-  align-self: flex-start;
+.hover-danger:hover {
+  background-color: palevioletred;
 }
 
 #mainArea {
@@ -144,18 +152,6 @@ nav {
   opacity: 0.96;
 }
 
-.parkInfoArea {
-  background-color: #a1a180;
-}
-
-.parkInfoArea > div {
-  height: 600px;
-}
-
-#weather {
-  background-color: #9dacaf;
-}
-
 .mapArea {
   justify-content: center;
 }
@@ -166,8 +162,12 @@ nav {
   margin-bottom: 20px;
 }
 
-.parkSetails div {
-  padding: 16px;
+#radiusOptions {
+  margin-bottom: 3px;
+}
+
+#radiusOptions #submit {
+  margin-bottom: 3px;
 }
 
 #map {
@@ -175,13 +175,78 @@ nav {
   width: 700px;
 }
 
-/* .parkInfo #map {
-  display: flex;
-  flex-direction: column;
-} */
+.parkInfoArea {
+  background-color: #a1a180;
+}
 
-.hide {
-  visibility: hidden;
+.parkInfoArea > div {
+  height: 600px;
+}
+
+#parkInfo {
+  padding: 20px;
+}
+
+#searchResult,
+#parkInfo {
+  height: 90%;
+  border: 1px solid #969677;
+  overflow-y: auto;
+}
+
+#searchResult div {
+  padding: 2px;
+  height: 150px;
+  width: auto;
+}
+
+#searchResult div button {
+  height: 100%;
+  overflow: hidden;
+  background-color: #d7e0e7;
+  width: 100%;
+}
+
+#searchResult button p,
+#searchResult button h6 {
+  margin: 5px;
+}
+
+#searchResult h6 {
+  margin: 0 0 5px !important;
+  background-color: #46433e;
+  color: #d7e0e7;
+}
+
+#searchResult img {
+  height: auto;
+  width: auto;
+}
+
+.parkDetails div {
+  padding: 16px;
+}
+
+/* Park details image */
+
+.stylePhoto {
+  height: 250px;
+}
+
+/* Park details links */
+
+.styleLink {
+  text-decoration: none;
+  color: #3e575e !important;
+}
+
+.styleLink:hover {
+  text-decoration: none;
+  color: #b36b39 !important;
+}
+
+#weather {
+  background-color: #d7e0e7;
 }
 
 #weather-icon {
@@ -201,96 +266,49 @@ nav {
 #currentWeather {
   margin-bottom: 10px;
 }
-ul {
-  padding-left: 0;
-}
-.userInfo li {
-  list-style: none;
-}
 
 .forecast {
   padding: 16px;
-  margin-top: 0px !important;
+  margin: 3px !important;
+  border-radius: 3px;
+  color: #46433e;
+  background-color: #96abb0;
 }
 
-.hover-danger:hover {
-  background-color: palevioletred;
-}
-
-#radiusOptions {
-  margin-bottom: 3px;
-}
-
-#parkInfo {
-  padding: 20px;
-}
-
-#searchResult,
-#parkInfo {
-  height: 90%;
-  border: 1px solid #969677;
-  scrollbar-color: #46433e #969677;
-  scrollbar-width: thin;
-}
-
-#searchResult div {
-  padding: 2px;
-  height: 150px;
-  width: auto;
-}
-
-#searchResult div button {
-  height: 100%;
-  overflow: hidden;
-  background-color: #d7e0e7;
-  width: 100%;
-}
-/* CLEAN THIS UP ONCE CLASSES ARE ADDED TO BUTTONS IN JS */
-#searchResult button p,
-#searchResult button h6 {
-  margin: 5px;
-}
-
-#searchResult h6 {
-  margin: 0 0 5px !important;
-  background-color: #46433e;
-  color: #d7e0e7;
-}
-
-#searchResult img {
-  height: auto;
-  width: auto;
-}
+/* Styling for screens 959px and smaller */
 
 @media only screen and (max-width: 959px) {
-  /* .menu {
-  width: 100%;
-  height: 70px;
-  display: flex;  
-  justify-content: space-between;
-  text-align: center;
-    } */
-
-  /*   
-.uk-navbar-dropbar {
-  display: flex;
-  align-content: space-between;
-} */
-
-  .infoSections {
-    padding: 20px;
-  }
-
   .uk-logo {
     height: 70px;
     font-size: 1.1rem;
+    white-space: nowrap;
+  }
+
+  .navLinks {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: none;
+    right: -100%;
+    top: 0;
+    padding: 70px 0 0;
+    line-height: normal;
   }
 
   .navLinks li {
     height: 20px;
     display: block;
-    /* position: absolute; */
     z-index: 100000;
+  }
+
+  .navLinks a {
+    display: block;
+    padding: 10px;
+    margin: 0;
+  }
+
+  #toggle:checked + .navLinks {
+    display: block;
   }
 
   .label {
@@ -305,31 +323,14 @@ ul {
     right: 0px;
   }
 
-  .navLinks {
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    display: none;
-    right: -100%;
-    top: 0;
-    padding: 70px 0 0;
-    line-height: normal;
-    /* transition: 0.7s; */
-  }
-
-  .navLinks a {
-    display: block;
-    padding: 10px;
-    margin: 0;
-  }
-
-  #toggle:checked + .navLinks {
-    display: block;
-  }
-
   #main {
     width: 95%;
     text-align: center;
+  }
+
+  .section {
+    margin-bottom: 0px;
+    border-radius: 0;
   }
 
   #userArea {
@@ -342,15 +343,13 @@ ul {
   #mainArea {
     padding: 0;
   }
-
-  .section {
-    margin-bottom: 0px;
-    border-radius: 0;
+  .infoSections {
+    padding: 20px;
   }
 
-  /* .mapArea, .parkInfo {
-    height: 600px;
-  } */
+  .uk-grid-column-small {
+    margin-left: 0;
+  }
 
   .parkInfoArea {
     display: flex;
@@ -385,7 +384,6 @@ ul {
   }
 
   #weather {
-    background-color: #9dacaf;
     border-radius: 0 0 3px 3px !important;
   }
 
@@ -393,41 +391,4 @@ ul {
     height: 500px;
     width: 100%;
   }
-}
-
-.styleDisplay {
-  height: 300px;
-  width: 100%;
-}
-
-/* (photo details) */
-
-.stylePhoto {
-  height: 250px;
-}
-
-/* (website URL) */
-
-.styleLink {
-  text-decoration: none;
-  color: #3e575e !important;
-}
-
-.styleLink:hover {
-  text-decoration: none;
-  color: #b36b39 !important;
-}
-
-/* (hours of operations) */
-
-.address {
-}
-
-/* (address) */
-
-.showStyle {
-}
-
-/* (direction link) */
-.direct {
 }
