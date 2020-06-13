@@ -264,7 +264,13 @@
             class="uk-section infoSections uk-flex-column uk-text-center section"
             id="weather"
           >
-            <!--5-day Weather div-->
+            <div
+              id="forecast_div"
+              class="uk-grid-match uk-grid-column-small uk-grid-divider weatherEl"
+              uk-grid
+            >
+              <!--5-day weather forecast-->
+            </div>
           </div>
         </div>
       </div>
@@ -274,6 +280,7 @@
 
     <script src="scripts/registration.js" type="text/javascript"></script>
     <script src="scripts/map.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script src="scripts/homepage.js" type="text/javascript"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap"
