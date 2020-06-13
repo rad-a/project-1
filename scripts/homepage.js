@@ -91,25 +91,28 @@ $.ajax({
 
     //Retrieve Data for user location's current weather data
     function getCurrentWeatherData() {
-      //need to find way to get city name and date
-      //convert from kelvin to fahrenheit. Remove decimals
+      //use moment js for date
+      var currentDate= {now: moment().format("dddd, MMMM Do")};
       var temperature = Math.floor(data.current.temp) + "°F";
       var humidity = data.current.humidity + "%";
       var windSpeed = data.current.wind_speed + "mph";
       var uvIndex = data.current.uvi;
-
+      $("#currentDate").append(currentDate.now);
       $("#temp").append(temperature);
       $("#humidity").append(humidity);
       $("#wind").append(windSpeed);
       $("#uv-index").append(uvIndex);
     };
+  
     
     function getForecastData() {
       var forecastDataArray = [forecastIconIMG, forecastDesc, forecastTemp, forecastHumidity, forecastWindSpeed, forecastUV];
       for (var i=0; i< forecastDataArray.length; i++) {
-      //generate div with viewport responsive class. ul of weather data will be appended
-      var parent_div = $("<div>", {class: "uk-grid-match uk-grid-column-small uk-grid-divider weatherEl"});
-      //variables for retrieving icon image
+      //generate parent_div with viewport responsive class. 
+      //add 1 day to current date and add class to keep centered
+      var parent_div = $("<div>", {class: "forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"});
+      var forecastDates = $("<h4>").text(moment().add(i+1, 'days').format("dddd, MMMM Do"));
+      //variables for retrieving icon image 
       var iconData = data.daily[i].weather[0].icon;
       var iconURLForecast = "https://api.openweathermap.org/img/w/" + iconData + ".png";
       var forecastIconIMG = $("<img>", {src: iconURLForecast, alt: forecastDesc})
@@ -120,14 +123,12 @@ $.ajax({
       var forecastWindSpeed = $("<li></li>").text("Wind speed:" + data.daily[i].wind_speed + "mph");
       var forecastUV = $("<li></li>").text("UV Index: " + data.daily[i].uvi);
       //create ul, attach li's and append to parent_div
-      var weatherListStart = $("<ul>", {class: "weatherList"});
+      var weatherListStart = $("<ul>").append(forecastDates);
       weatherListStart.css("list-style-type", "none")
-      //array
-      
-      
       //finish loop by appending to html forecast_container div
       $("#weather").append(parent_div);
-      parent_div.append(weatherListStart);
+      parent_div.append(forecastDates);
+      forecastDates.append(weatherListStart);
       weatherListStart.append(forecastIconIMG);
       weatherListStart.append(forecastDesc);
       weatherListStart.append(forecastTemp);
@@ -140,7 +141,6 @@ $.ajax({
       $(".forecast-wind").append(forecastWindSpeed);
       $(".forecast-uv").append(forecastUV);*/
     }};
-    
     
     function setPage() {
       $(hideText).attr("class", "hide");
