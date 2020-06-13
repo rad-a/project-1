@@ -66,7 +66,7 @@ Just like people, dogs have many personalities and enjoy different types of play
 <details>
   <summary>Click to view!</summary>
 
-![Application walkthrough](images/revised-user-flow.jpg)
+![Application walkthrough](images/user-flow-diagram-bg.jpg)
 </details>
 
 ## Application Walkthrough
