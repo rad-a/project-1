@@ -6,51 +6,78 @@
 //Change title text per search
 //Add location name to "weather forecast" text
 //Render park details
+//Replace user image based on first letter
 
 $(document).ready(function () {
   //Search variables
-  const areaSearch = $("#areaSearch");
-  const searchInput = $("#searchInput");
-  const search = $("#searchBtn");
-  const userImg = $("#profileImage");
-  const reset = $("#reset");
+  var areaSearch = $("#areaSearch");
+  var searchInput = $("#searchInput");
+  var search = $("#searchBtn");
+  var userImg = $("#profileImage");
+  var reset = $("#reset");
 
   //Map and location variables
-  //   const map = $("#map");
-  //   const radiusToggle = $("#radius");
+  //   var map = $("#map");
+  //   var radiusToggle = $("#radius");
   let hideText = $("#hide");
 
-  //   const address = $("#address");
-  //   const cityZip = $("#cityZip");
-  //   const locationType = $("#type");
-  //   const openHours = $("#hours");
-  //   const desc = $("desc");
-  //   const site = $("#website");
-  //   const locationImg = $("locationImg");
+  //   var address = $("#address");
+  //   var cityZip = $("#cityZip");
+  //   var locationType = $("#type");
+  //   var openHours = $("#hours");
+  //   var desc = $("desc");
+  //   var site = $("#website");
+  //   var locationImg = $("locationImg");
 
-  
+
   //BEGIN FUNCTIONS
-
+  
   var weatherKey = "c1786506c24426ae384c4cedbae014b0";
-  //variable to get longitude and latitude for location
-  //coor  lat: 30.2672
-  //      lon: -97.7431
-  //url: "https://api.openweathermap.org/data/2.5/forecast?q=austin&units=imperial&APPID=" + weatherKey,
+  var latiData;
+  var longData;
+  //weather data variables defined
+  
+  
+  //one call version of openweather api for current weather and five day forecast data
 
-  //one call api for current weather and five day forecast data
-  $.ajax({
-    //use lat and long inputs from google api
-    //"https://api.openweathermap.org/data/2.5/onecall?lat=" + latiData + "&lon="+ longData + "&exclude=minutely,hourly&appid="+ weatherKey,
-    url:
-      "https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&exclude=minutely,hourly&appid=" +
-      weatherKey,
+$.ajax({
+    //use lat and long inputs from geolocation
+    url:"https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&units=imperial&exclude=minutely,hourly&appid=" +
+    weatherKey,
+     
     method: "GET",
   }).then(function (data) {
     console.log(data);
-
+    
+    getLocation();
     attachIcon();
     getCurrentWeatherData();
-    // getForecastData ();
+    getForecastData ();
+  
+
+    function getLocation () {
+      if (navigator.geolocation){
+        // console.log('gps')
+        navigator.geolocation.getCurrentPosition(function (position) {
+        coord= {
+            lat: position.coords.latitude,
+            lng:position.coords.longitude,
+            accuracy:position.coords.accuracy
+        };
+        let latiData = coord.lat;
+        let longData = coord.lng;
+        console.log(latiData)
+        console.log(longData)
+        })}
+        else {
+        let latiData = 30.2672
+        let longData = -97.7431
+        console.log(latiData);
+        console.log(longData);
+        };
+        
+      };
+   
 
     //attaching weather icon and adding alt tag description
     function attachIcon() {
@@ -64,31 +91,57 @@ $(document).ready(function () {
 
     //Retrieve Data for user location's current weather data
     function getCurrentWeatherData() {
-      //need to find way to get city name and date
-      //convert from kelvin to fahrenheit. Remove decimals
-      var temperature = Math.floor((data.current.temp - 273) * 1.8 + 32);
-      var humidity = data.current.humidity;
-      var windSpeed = data.current.wind_speed;
+      //use moment js for date
+      var currentDate= {now: moment().format("dddd, MMMM Do")};
+      var temperature = Math.floor(data.current.temp) + "°F";
+      var humidity = data.current.humidity + "%";
+      var windSpeed = data.current.wind_speed + "mph";
       var uvIndex = data.current.uvi;
-
-      $("#temp").append(temperature + "*F");
-      $("#humidity").append(humidity + "%");
-      $("#wind").append(windSpeed + "mph");
+      $("#currentDate").append(currentDate.now);
+      $("#temp").append(temperature);
+      $("#humidity").append(humidity);
+      $("#wind").append(windSpeed);
       $("#uv-index").append(uvIndex);
-    }
-
+    };
+  
+    
     function getForecastData() {
-      var forecastTemp = Math.floor((data.daily[i].temp.max - 273) * 1.8 + 32);
-      var forecastHumidity = data.daily[i].humidity;
-      var forecastWindSpeed = data.daily[i].wind_speed;
-      var forecastUV = data.daily[i].uvi;
-
-      $(".forecast-temp").append(forecastTemp + "*F");
-      $(".forecast-hum").append(forecastHumidity + "%");
-      $(".forecast-wind").append(forecastWindSpeed + " mph");
-      $(".forecast-uv").append(forecastUV);
-    }
-
+      var forecastDataArray = [forecastIconIMG, forecastDesc, forecastTemp, forecastHumidity, forecastWindSpeed, forecastUV];
+      for (var i=0; i< forecastDataArray.length; i++) {
+      //generate parent_div with viewport responsive class. 
+      //add 1 day to current date and add class to keep centered
+      var parent_div = $("<div>", {class: "forecast uk-width-1-2@s uk-width-1-3@m uk-width-1-5@l"});
+      var forecastDates = $("<h4>").text(moment().add(i+1, 'days').format("dddd, MMMM Do"));
+      //variables for retrieving icon image 
+      var iconData = data.daily[i].weather[0].icon;
+      var iconURLForecast = "https://api.openweathermap.org/img/w/" + iconData + ".png";
+      var forecastIconIMG = $("<img>", {src: iconURLForecast, alt: forecastDesc})
+      //create li for each forecast item and append weather data from api
+      var forecastDesc = $("<li></li>").text(data.daily[i].weather[0].description);
+      var forecastTemp = $("<li></li>").text("Temperature: " + Math.floor(data.daily[i].temp.day) + "°F");
+      var forecastHumidity = $("<li></li>").text("Humidity: " + data.daily[i].humidity + "%");
+      var forecastWindSpeed = $("<li></li>").text("Wind speed:" + data.daily[i].wind_speed + "mph");
+      var forecastUV = $("<li></li>").text("UV Index: " + data.daily[i].uvi);
+      //create ul, attach li's and append to parent_div
+      var weatherListStart = $("<ul>").append(forecastDates);
+      weatherListStart.css("list-style-type", "none")
+      //finish loop by appending to html forecast_container div
+      $("#weather").append(parent_div);
+      parent_div.append(forecastDates);
+      forecastDates.append(weatherListStart);
+      weatherListStart.append(forecastIconIMG);
+      weatherListStart.append(forecastDesc);
+      weatherListStart.append(forecastTemp);
+      weatherListStart.append(forecastHumidity);
+      weatherListStart.append(forecastWindSpeed);
+      weatherListStart.append(forecastUV);
+    
+     /* $(".forecast-temp").append(forecastTemp);
+      $(".forecast-hum").append(forecastHumidity);
+      $(".forecast-wind").append(forecastWindSpeed);
+      $(".forecast-uv").append(forecastUV);*/
+    }};
+    
     function setPage() {
       $(hideText).attr("class", "hide");
     }
