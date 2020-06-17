@@ -85,12 +85,12 @@ $(document).ready(function () {
         //generate parent_div with viewport responsive class.
         //add 1 day to current date and add class to keep centered
         var parent_div = $("<div>", {
-          class: "forecast ",
+          class: "forecast uk-width-1-1@s uk-width-1-4@m",
         });
-        var forecastDates = $("<h4>").text(
+        var forecastDates = $("<li>").text(
           moment()
             .add(i + 1, "days")
-            .format("dddd, MMMM Do")
+            .format("MMMM Do")
         );
         //variables for retrieving icon image
         var iconData = data.daily[i].weather[0].icon;
@@ -128,10 +128,6 @@ $(document).ready(function () {
         weatherListStart.append(forecastWindSpeed);
         weatherListStart.append(forecastUV);
 
-        /* $(".forecast-temp").append(forecastTemp);
-      $(".forecast-hum").append(forecastHumidity);
-      $(".forecast-wind").append(forecastWindSpeed);
-      $(".forecast-uv").append(forecastUV);*/
       }
     }
   });
