@@ -268,8 +268,8 @@ function createMap(){
         submit();       
         },function(error){
             if (error.code ==1){
-            let errorM= document.getElementById('error');
-            errorM.textContent=error.message+', Turn on your geolocation to use this app!!'
+            let errorM= document.getElementById('mapInner');
+            errorM.innerHTML=error.message+'.<br><h4>Refresh and accept geolocation to use this app!</h4>'
             
             }
         // console.log(error)

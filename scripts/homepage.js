@@ -85,7 +85,7 @@ $(document).ready(function () {
         //generate parent_div with viewport responsive class.
         //add 1 day to current date and add class to keep centered
         var parent_div = $("<div>", {
-          class: "forecast uk-width-1-1@s uk-width-1-2@m uk-width-1-4@l",
+          class: "forecast ",
         });
         var forecastDates = $("<h4>").text(
           moment()
