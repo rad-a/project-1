@@ -213,6 +213,11 @@ ul {
   margin-top: 0px !important;
 }
 
+#weather {
+  display:inline-flex;
+  flex-wrap: nowrap;
+  flex-direction:row;
+
 .hover-danger:hover {
   background-color: palevioletred;
 }
