@@ -175,56 +175,8 @@ ul {
   width: 700px;
 }
 
-<<<<<<< HEAD
-/* .parkInfo #map {
-  display: flex;
-  flex-direction: column;
-} */
-
-.hide {
-  visibility: hidden;
-}
-
-#weather-icon {
-  width: 100px;
-  height: auto;
-}
-
-#temp {
-  margin: 0;
-  font-size: 35px;
-}
-
-#currentDate {
-  font-size: 18px;
-}
-
-#currentWeather {
-  margin-bottom: 10px;
-}
-ul {
-  padding-left: 0;
-}
-.userInfo li {
-  list-style: none;
-}
-
-.forecast {
-  padding: 16px;
-  margin-top: 0px !important;
-}
-
-#weather {
-  display:inline-flex;
-  flex-wrap: nowrap;
-  flex-direction:row;
-
-.hover-danger:hover {
-  background-color: palevioletred;
-=======
 .parkInfoArea {
   background-color: #a1a180;
->>>>>>> c96ef9b1cb4a4eb4cfc990293a1b5f85d267caf9
 }
 
 .parkInfoArea > div {
