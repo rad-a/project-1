@@ -170,7 +170,7 @@
 
           <!--Current weather conditions-->
 
-          <h4 class="headerText weatherEl">
+          <h4 id="currentDate" class="headerText weatherEl">
             Current weather
           </h4>
 
@@ -183,7 +183,7 @@
               <div id="temp" class="uk-width-1-2 uk-text-justify"></div>
             </div>
 
-            <div id="currentDate"></div>
+            
             <div class="forecast-desc"></div>
 
             <div id="humidity">Humidity:</div>
@@ -263,13 +263,13 @@
           <div
             class="uk-section infoSections uk-flex uk-text-center section"
             id="weather"
-          >
+          ><!--5-day weather forecast-->
             <div
               id="forecast_div"
               class="uk-grid-column-small uk-flex-center weatherEl uk-grid uk-grid-stack"
               uk-grid
             >
-              <!--5-day weather forecast-->
+              
             </div>
           </div>
         </div>
@@ -285,7 +285,7 @@
     <script src="scripts/homepage.js" type="text/javascript"></script>
 
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdDGKlptg7pjd38E_q0AHjP8uREM5ng90&libraries=places&callback=createMap"
       async
       defer
     ></script>
