@@ -1,7 +1,7 @@
 //Live updated 0612 07:43
 
 /* -----IDcode s, classes and srcs requiride for the UI team----
-1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXMG7fbs3VQT5O8S1hJY_f8NDrVuS2kzE&libraries=places&callback=createMap" async defer></script>
+1) <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdDGKlptg7pjd38E_q0AHjP8uREM5ng90E&libraries=places&callback=createMap" async defer></script>
 
 2)<p id="display" ></p> shows the count (14 parks near ..) of the search result
     2a) (for css only) class= styleDisplay 
