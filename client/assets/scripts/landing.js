@@ -39,13 +39,22 @@ $("#userRegisterForm").on("submit", (event) => {
 			email: $("#email").val(),
 		},
 	})
-		.then(({ user, authToken }) => {
-			if (user && authToken.token) {
+		.then(data => {
+			console.log(data);
+			if(data.code == 400){
+				modifyResultContainer('warning',data);
+				return;
+			} else {
+				const { user, authToken } = data;
+				setCookie("auth_token", authToken.token, 7);
+				window.location = "/";
+			}
+			/*if (user && authToken.token) {
 				setCookie("auth_token", authToken.token, 7);
 				window.location = "/";
 			} else {
 				throw new Error("something went wrong");
-			}
+			}*/
 		})
 		.catch((err) => alert(err.responseText));
 });
