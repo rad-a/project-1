@@ -29,8 +29,6 @@ module.exports = (sequelize, DataTypes) => {
 	  // Create user object from request where matched in database
 	  const user = await User.findOne({ where: { username } });
 
-	  console.log('user.js LOG --------------------------' + user);
-
 	  if(user){
 		if(bcrypt.compareSync(password, user.password)) {
 			return user.authorize();
