@@ -1,0 +1,15 @@
+html
+	head
+		script(src="https://code.jquery.com/jquery-3.5.1.js")
+		link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/css/uikit.css")
+		script(src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js")
+		script(src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js")
+		link(rel="stylesheet", href="/assets/css/style.css")
+		title= 'Dog Date'
+	body
+		div(class="uk-text-center uk-hidden", id="resultContainer", uk-alert)
+			a(class="uk-alert-close", uk-alert-close)
+			p(id="resultMsg")
+		block content
+
+		block localScripts

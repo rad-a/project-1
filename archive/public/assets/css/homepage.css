@@ -8,7 +8,6 @@ html {
   background: rgba(255, 255, 255, 0);
 }
 
-html,
 body {
   height: 100%;
   width: 100%;
@@ -26,6 +25,11 @@ body {
   flex-direction: column;
   height: 100%;
   font-size: 16px;
+}
+
+.form-container {
+  width: 50vw;
+  align-content: space-around;
 }
 
 nav {

@@ -1,0 +1,23 @@
+{
+  "name": "dog-date",
+  "version": "1.0.0",
+  "description": "[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/jiberjiber.github.io/dog-date.svg)](http://jiberjiber.github.io/dog-date/) [![GitHub last commit](https://img.shields.io/github/last-commit/jiberjiber/dog-date) ](https://github.com/jiberjiber/dog-date/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/jiberjiber/dog-date)](https://github.com/jiberjiber/dog-date/graphs/contributors)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiberjiber/dog-date.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiberjiber/dog-date/issues"
+  },
+  "homepage": "https://github.com/jiberjiber/dog-date#readme",
+  "dependencies": {
+    "sequelize": "^6.3.3"
+  }
+}
