@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
 		// Try logging in the user, if valid create user object
 		let user = await User.authenticate(username, password);
 
-		console.log(user);
+		//console.log(user);
 		// Verify user object is valid
 		// user = await user.authorize();
 
@@ -67,9 +67,8 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.delete('/logout', async (req, res) => {
+router.post('/logout', async (req, res) => {
 	// See if user is present in request in cookies
-	console.log(req);
 	const { user, cookies: { auth_token: authToken } } = req;
 
 	// If both exist, call user's logout method with authToken then return No Content
