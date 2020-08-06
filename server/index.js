@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/user', userController);
+
 app.use(express.static(clientDir));
 
 app.set('views', path.join(__dirname, '/views'));
@@ -27,7 +27,12 @@ app.set('view engine','pug');
 
 // Express Cookie Middleware Setup
 app.use(cookieParser());
+
+// Custom Middleware Setup
 app.use(authMiddleware);
+
+// Custom Routing
+app.use('/user', userController);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
@@ -36,7 +41,6 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res){
-	console.log(req);
 	if(!req.user){
 		res.render('login');
 	} else{
