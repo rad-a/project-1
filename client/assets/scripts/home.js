@@ -1,9 +1,9 @@
 $('#logoutBtn').on('click', (e) => {
 	$.ajax('/user/logout', {
-		method: 'DELETE',
+		method: 'POST',
 		data: {}
-	}).then(user => {
-		$.cookie("auth_token", null, { path: '/' });
-		window.location.reload;
+	}).then(data => {
+		document.cookie = "auth_token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+		window.location.reload();
 	});
 });
