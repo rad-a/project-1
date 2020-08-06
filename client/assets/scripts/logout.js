@@ -4,6 +4,6 @@ $('#logoutBtn').on('click', (e) => {
 		data: {}
 	}).then(data => {
 		document.cookie = "auth_token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-		window.location.reload();
+		window.location = "/";
 	});
 });
