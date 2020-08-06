@@ -72,7 +72,7 @@ app.get('/register', function(req, res){
 	if(!req.user){
 		res.render('register');
 	} else {
-		res.render('error');
+		res.redirect('/home');
 	}
 	
 })
