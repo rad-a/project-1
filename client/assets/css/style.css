@@ -1,0 +1,419 @@
+* {
+	box-sizing: border-box !important;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background: rgba(255, 255, 255, 0);
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	background-color: transparent !important;
+}
+
+body {
+	background-image: url("../images/zilker.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: "Karla", sans-serif;
+	color: #3d3a35;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	font-size: 16px;
+}
+
+.form-container {
+	width: 50vw;
+	align-content: space-around;
+}
+
+nav {
+	z-index: 980;
+	padding: 0 30px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.headerText {
+	font-family: "Roboto Slab", sans-serif;
+}
+
+.uk-logo {
+	text-transform: uppercase;
+}
+
+.navLinks {
+	background: #f8f8f8;
+}
+
+.navText {
+	color: #807f3c !important;
+	font-weight: 400;
+	text-transform: uppercase;
+	transition: 0.1s ease-in-out;
+	transition-property: all;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 80px;
+	padding: 0 15px;
+	font-size: 15px;
+}
+
+.navText a {
+	color: #807f3c !important;
+}
+
+.uk-navbar a:hover,
+.uk-navbar-nav li:hover {
+	background-color: #96abb0;
+	border-radius: 3px;
+}
+
+.label {
+	margin: 20px;
+	display: none;
+	width: 26px;
+}
+
+#toggle {
+	display: none;
+}
+
+#main {
+	margin: auto;
+	padding: 50px 0px;
+	flex: 1;
+}
+
+#main > div {
+	display: flex;
+	flex-direction: column;
+}
+
+#userArea {
+	background-color: #96abb0;
+	padding-right: 25px;
+	border-radius: 3px;
+	padding-bottom: 5px;
+	opacity: 0.95;
+}
+
+#userArea > div {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+#user {
+	padding-top: 65px;
+	display: flex;
+	flex-direction: column;
+}
+
+#profileImage {
+	align-self: center;
+	height: 130px;
+	width: 130px;
+	border-radius: 50%;
+	background-color: #b36b39;
+	font-size: 45px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 130px;
+}
+
+ul {
+	padding-left: 0;
+}
+
+.userInfo li {
+	list-style: none;
+}
+
+.uk-button {
+	border-radius: 3px;
+	margin-top: 3px;
+}
+
+.hover-danger:hover {
+	background-color: palevioletred;
+}
+
+#mainArea {
+	padding-left: 10px;
+}
+
+.infoSections {
+	border-radius: 3px;
+	padding: 32px;
+	background-color: #d7e0e7;
+	opacity: 0.96;
+}
+
+.mapArea {
+	justify-content: center;
+}
+
+.parkInfoArea,
+.mapArea {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+#radiusOptions {
+	margin-bottom: 3px;
+}
+
+#radiusOptions #submit {
+	margin-bottom: 3px;
+}
+
+#map {
+	height: 450px;
+	width: 700px;
+}
+
+.parkInfoArea {
+	background-color: #a1a180;
+}
+
+.parkInfoArea > div {
+	height: 600px;
+}
+
+#parkInfo {
+	padding: 20px;
+}
+
+#searchResult,
+#parkInfo {
+	height: 90%;
+	border: 1px solid #969677;
+	overflow-y: auto;
+}
+
+#searchResult div {
+	padding: 2px;
+	height: 150px;
+	width: auto;
+}
+
+#searchResult div button {
+	height: 100%;
+	overflow: hidden;
+	background-color: #d7e0e7;
+	width: 100%;
+}
+
+#searchResult button p,
+#searchResult button h6 {
+	margin: 5px;
+}
+
+#searchResult h6 {
+	margin: 0 0 5px !important;
+	background-color: #46433e;
+	color: #d7e0e7;
+}
+
+#searchResult img {
+	height: auto;
+	width: auto;
+}
+
+.parkDetails div {
+	padding: 16px;
+}
+
+/* Park details image */
+
+.stylePhoto {
+	height: 250px;
+}
+
+/* Park details links */
+
+.styleLink {
+	text-decoration: none;
+	color: #3e575e !important;
+}
+
+.styleLink:hover {
+	text-decoration: none;
+	color: #b36b39 !important;
+}
+/* const forecastDiv = $("#forecast_div");
+forecast uk-width-1-2@s uk-width-1-3@l   */
+#weather {
+	background-color: #d7e0e7;
+}
+
+#weather-icon {
+	width: 100px;
+	height: auto;
+}
+
+#temp {
+	margin: 0;
+	font-size: 35px;
+}
+
+#currentDate {
+	font-size: 18px;
+}
+
+#currentWeather {
+	margin-bottom: 10px;
+}
+#forecast_div {
+	display: flex;
+	align-content: center;
+	width: 95%;
+	overflow-x: auto;
+}
+.forecast {
+	padding: 16px;
+	margin: 3px !important;
+	border-radius: 3px;
+	color: #46433e;
+	background-color: #96abb0;
+}
+.whiteText {
+	color: white;
+}
+.send-back{
+	z-index: -1;
+	position: relative;
+}
+
+/* Styling for screens 959px and smaller */
+
+@media only screen and (max-width: 959px) {
+	.uk-logo {
+		height: 70px;
+		font-size: 1.1rem;
+		white-space: nowrap;
+	}
+
+	.navLinks {
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		display: none;
+		right: -100%;
+		top: 0;
+		padding: 70px 0 0;
+		line-height: normal;
+	}
+
+	.navLinks li {
+		height: 20px;
+		display: block;
+		z-index: 100000;
+	}
+
+	.navLinks a {
+		display: block;
+		padding: 10px;
+		margin: 0;
+	}
+
+	#toggle:checked + .navLinks {
+		display: block;
+	}
+
+	.label {
+		display: block;
+		cursor: pointer;
+		margin: 28px;
+		transition: 0.4s;
+		position: absolute;
+		z-index: 100000;
+
+		top: 0px;
+		right: 0px;
+	}
+
+	#main {
+		width: 95%;
+		text-align: center;
+	}
+
+	.section {
+		margin-bottom: 0px;
+		border-radius: 0;
+	}
+
+	#userArea {
+		padding-bottom: 35px;
+		margin-bottom: 0;
+		flex: 1;
+		border-radius: 3px 3px 0 0 !important;
+	}
+
+	#mainArea {
+		padding: 0;
+	}
+
+	.infoSections {
+		padding: 20px;
+	}
+
+	.uk-grid-column-small {
+		margin-left: 0;
+	}
+
+	.parkInfoArea {
+		display: flex;
+		flex-direction: column;
+		opacity: 0.95;
+		background-color: #a1a180;
+		border-top: 1px solid #96abb0;
+	}
+
+	.parkInfoArea h3 {
+		font-weight: 600;
+	}
+
+	#parkDetails {
+		padding-top: 20px;
+	}
+	#parkList {
+		height: 350px;
+	}
+
+	#searchResult {
+		height: 80%;
+	}
+
+	.weatherEl {
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+	}
+
+	.icon-temp {
+		padding: 0 60px;
+	}
+
+	.weatherEl #weather-icon {
+		width: 70px;
+		align-self: center;
+		height: auto;
+	}
+
+	#weather {
+		border-radius: 0 0 3px 3px !important;
+	}
+
+	#map {
+		height: 500px;
+		width: 100%;
+	}
+}
