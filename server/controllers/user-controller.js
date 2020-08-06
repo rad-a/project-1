@@ -19,16 +19,41 @@ router.post('/register', async (req, res) => {
 		// Hash password
 		const hash = await bcrypt.hash(req.body.password, saltRounds);
 
+		let user;
+		let created;
+
 		// Create user object using hashed password
-		let user = await User.create(
+		User.findOrCreate({
+			where: {
+				username: req.body.username
+			},
+			defaults: {
+				username: req.body.username,
+				password: hash,
+				email: req.body.email
+			}
+		}).then(async result => {
+			user = result[0];
+			created = result[1];
+
+			if(created){
+				// Create data object from user and auth token
+				let data = await user.authorize();
+	
+				// Send back new user and auth token
+				return res.json(data);
+			} else if(!created) {
+				return res.json({
+					code: 400,
+					message: "User already exists, please log in"
+				});
+			}
+		});
+		
+		/*let user = await User.create(
 			Object.assign(req.body, { password: hash })
-		);
+		);*/
 
-		// Create data object from user and auth token
-		let data = await user.authorize();
-
-		// Send back new user and auth token
-		return res.json(data);
 	} catch(err){
 		console.log(err);
 		return res.status(400).send(err);
