@@ -49,18 +49,18 @@ app.get('/', function(req, res){
 	if(!req.user){
 		res.render('login');
 	} else{
-		let username = req.user.username;
-		res.render('home', { 
-			welcomeMessage: `Welcome back ${username}!`,
-			userLetter: `${username.charAt(0)}`
-		});
+		res.redirect('/home');
 	}
 });
 
 // Home page
 app.get('/home', function(req, res){
 	if(req.user){
-		res.redirect('/home');
+		let username = req.user.username;
+		res.render('home', { 
+			welcomeMessage: `Welcome back ${username}!`,
+			userLetter: `${username.charAt(0)}`
+		});
 	} else {
 		res.render('error');
 	}
