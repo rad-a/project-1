@@ -4,38 +4,36 @@ block content
 	// include includes/nav.pug
 	
 	div(class="uk-container uk-grid uk-grid-column-medium", id="main")
-		div(class="uk-width-1-1@s uk-width-1-4@m uk-width-1-5@l uk-flex uk-flex-column section", id="userArea")
+		div(class="uk-section-secondary uk-width-1-1@s uk-width-1-4@m uk-width-1-5@l uk-flex uk-flex-column infoSections uk-text-center", id="userArea")
 			div(class="uk-panel uk-panel-box", id="user")
 				div(id="profileImage")= userLetter
 				h3(class="uk-text-center")= welcomeMessage
 				button(id="logoutBtn", class="uk-button uk-button-danger") Logout
-				a(id="addPetsBtn", class="uk-button uk-button-primary", href="/pets/add") Add a Pet
+				a(id="addPetsBtn", class="uk-button uk-button-default", href="/pets/add") Add a Pet
 				block userPets
-			h4(id="currentDate", class="headerText weatherEl") Current Weather
-			div(class="weatherE1", id="currentWeather")
-				div(class="uk-flex uk-width-2-3@s uk-align-center icon-temp")
-					div(class="uk-width-1-2")
-						img(id="weather-icon", alt="")
-				div(id="temp", class="uk-width-1-2 uk-text-justify")
-			
-			div(class="forecast-desc")
-
-			div(id="humidity")
-			div(id="wind")
-			div(id="uv-index")
+			h1(id="currentDate", class="uk-heading") Current Weather
+			div(class="uk-text-center", id="currentWeather")
+				div(class="uk-text-center")
+					img(id="weather-icon", alt="")
+				div(id="temp")
+				div(id="humidity")
+				div(id="wind")
+				div(id="uv-index")
 
 		div(class="uk-width-1-1@s uk-width-3-4@m uk-width-4-5@l section", id="mainArea")
-			div(class="uk-section infoSections uk-flex section uk-margin")
-					div(class="uk-flex-center uk-grid weatherEl")
-						each val in pets
-							div(class="")
-								h2= val.petName
-								h4= val.petAge
-								h4= val.petBreed
-								h4= val.petGender
+			div(class="uk-section-secondary infoSections uk-margin")
+				h1(class="uk-align-center uk-heading-small") Your pets
+				div(class="uk-grid uk-child-width-expand@s uk-text-center")
+					each val in pets
+						div
+							div(class="uk-card uk-card-primary uk-card-body uk-height-1-1")
+								h2(class="uk-card-title")= val.petName + ', ' + val.petAge
+								p= val.petBreed
+								p= val.petGender
+							
 
 						
-			div(class="uk-section infoSections uk-flex mapArea section")
+			div(class="uk-section-secondary infoSections uk-flex mapArea section")
 				div(class="mapInner")
 					p Select a park from the map or the list below to view more details
 				
@@ -52,7 +50,7 @@ block content
 					
 					div(id="map", class="uk-width-1-1@s uk-width-3-4@m")
 			
-			div(class="uk-section infoSections uk-flex uk-text-center parkInfoArea section")
+			div(class="uk-section-secondary infoSections uk-flex uk-text-center parkInfoArea section")
 				div(id="parkList", class="uk-width-1-1@s uk-width-1-3@m")
 					h3(class="headerText") List of nearby parks
 					div(id="searchResult", class="uk-overflow-auto uk-height-1-1")
@@ -60,7 +58,8 @@ block content
 					h3(class="headerText") Park Details
 					div(id="parkInfo", class="uk-overflow-auto uk-height-1-1")
 
-			div(id="forecast_div", class="uk-grid-column-small uk-flex-center weatherEl uk-grid uk-grid-stack", uk-grid)
+			div(class="uk-section-secondary infoSections")
+				div(id="forecast_div", class="uk-grid-column-small uk-flex-center weatherEl uk-grid uk-grid-stack", uk-grid)
 
 
 block localScripts

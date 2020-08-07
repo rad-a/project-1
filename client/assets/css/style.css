@@ -97,9 +97,7 @@ nav {
 }
 
 #userArea {
-	background-color: #96abb0;
 	padding-right: 25px;
-	border-radius: 3px;
 	padding-bottom: 5px;
 	opacity: 0.95;
 }
@@ -150,10 +148,10 @@ ul {
 }
 
 .infoSections {
-	border-radius: 3px;
+	border-radius: 20px;
 	padding: 32px;
-	background-color: #d7e0e7;
 	opacity: 0.96;
+	box-shadow: 5px 5px 10px black;
 }
 
 .mapArea {
@@ -177,10 +175,6 @@ ul {
 #map {
 	height: 450px;
 	width: 700px;
-}
-
-.parkInfoArea {
-	background-color: #a1a180;
 }
 
 .parkInfoArea > div {
@@ -354,7 +348,6 @@ forecast uk-width-1-2@s uk-width-1-3@l   */
 		padding-bottom: 35px;
 		margin-bottom: 0;
 		flex: 1;
-		border-radius: 3px 3px 0 0 !important;
 	}
 
 	#mainArea {
