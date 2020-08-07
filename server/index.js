@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
-const { userController } = require('./controllers');
+const { userController, petController } = require('./controllers');
 const clientDir = path.join(__dirname, '../client');
 
 // Express App Setup
@@ -33,6 +33,7 @@ app.use(authMiddleware);
 
 // Custom Routing
 app.use('/user', userController);
+app.use('/pets', petController);
 
 // CORS Setup
 app.use(cors());
@@ -55,12 +56,22 @@ app.get('/', function(req, res){
 
 // Home page
 app.get('/home', function(req, res){
+
+	let username = req.user.username;
+
 	if(req.user){
-		let username = req.user.username;
-		res.render('home', { 
-			welcomeMessage: `Welcome back ${username}!`,
-			userLetter: `${username.charAt(0)}`
-		});
+		if(req.pets.length == 0){
+			res.render('petAdd',{
+				welcomeMessage: `Hi ${username}!`,
+				pageMsg: "Looks like you dont have any pets on your account yet, let's add some!"
+			});
+		} else {
+			res.render('home', { 
+				pets: req.pets,
+				welcomeMessage: `Welcome back ${username}!`,
+				userLetter: `${username.charAt(0)}`
+			});
+		}
 	} else {
 		res.render('error');
 	}
@@ -74,10 +85,9 @@ app.get('/register', function(req, res){
 	} else {
 		res.redirect('/home');
 	}
-	
-})
+});
 
-
+// Server Init
 db.sequelize.sync().then(() => {
 	app.listen(PORT, () => {
 		console.log(`Server running, listening on port ${PORT}`);
