@@ -21,7 +21,6 @@ router.get('/', async function(req, res){
 		return;
 	}
 
-	console.log(req.user);
 
 	// Set current user object
 	const thisUser = req.user;
@@ -32,7 +31,6 @@ router.get('/', async function(req, res){
 		}
 	});
 
-	console.log(petArr);
 
 	if(petArr.length == 0){
 		res.render('error', {
@@ -42,5 +40,34 @@ router.get('/', async function(req, res){
 	}
 });
 
+router.get('/add', async (req, res) => {
+	res.render('petAdd',{
+		welcomeMessage: `Welcome back ${req.user.username}!`,
+		pageMsg: 'You know the drill'
+	});
+});
+
+router.post('/add', async (req, res) => {
+
+	if(!req.user){
+		res.render('error', {
+			code: '400',
+			message: 'No user logged in'
+		});
+		return;
+	}
+
+	const thisUser = req.user;
+
+	const pet = await Pet.create({
+		petName: req.body.petName,
+		petAge: req.body.petAge,
+		petBreed: req.body.petBreed,
+		petGender: req.body.petGender,
+		UserId: req.user.id
+	});
+
+	res.send(pet);
+});
 
 module.exports = router;
