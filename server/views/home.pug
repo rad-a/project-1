@@ -1,17 +1,7 @@
 extends layouts/main.pug
 
 block content
-	nav(class="uk-navbar-container", uk-sticky="top: 0", uk-navbar)
-		a(class="uk-navbar-item uk-logo", href="/") Dog Date
-
-		label(class="label", for="toggle") &#9776;
-		input(type="checkbox" id="toggle")
-
-		ul(class="uk-navbar-nav navLinks")
-			li(class="navText")
-				a(href="#mainArea") Map
-			li(class="navText")
-				a(href="#weather") Weather
+	// include includes/nav.pug
 	
 	div(class="uk-container uk-grid uk-grid-column-medium", id="main")
 		div(class="uk-width-1-1@s uk-width-1-4@m uk-width-1-5@l uk-flex uk-flex-column section", id="userArea")
@@ -19,6 +9,7 @@ block content
 				div(id="profileImage")= userLetter
 				h3(class="uk-text-center")= welcomeMessage
 				button(id="logoutBtn", class="uk-button uk-button-danger") Logout
+				a(id="addPetsBtn", class="uk-button uk-button-primary", href="/pets/add") Add a Pet
 				block userPets
 			h4(id="currentDate", class="headerText weatherEl") Current Weather
 			div(class="weatherE1", id="currentWeather")
@@ -34,10 +25,16 @@ block content
 			div(id="uv-index")
 
 		div(class="uk-width-1-1@s uk-width-3-4@m uk-width-4-5@l section", id="mainArea")
-			div(class="uk-section uk-flex section")
-				ul
-					each val in pets
-						li= val
+			div(class="uk-section infoSections uk-flex section uk-margin")
+					div(class="uk-flex-center uk-grid weatherEl")
+						each val in pets
+							div(class="")
+								h2= val.petName
+								h4= val.petAge
+								h4= val.petBreed
+								h4= val.petGender
+
+						
 			div(class="uk-section infoSections uk-flex mapArea section")
 				div(class="mapInner")
 					p Select a park from the map or the list below to view more details
