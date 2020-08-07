@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
 	  User.hasMany(models.AuthToken);
-	  User.hasMany(models.Pet);
+    User.hasMany(models.Pet);
+    User.hasMany(models.Event)
     }
   };
   User.init({
