@@ -70,4 +70,25 @@ router.post('/add', async (req, res) => {
 	res.send(pet);
 });
 
+router.delete('/', async (req, res) => {
+
+	if(!req.user){
+		res.render('error', {
+			code: '400',
+			message: 'No user logged in'
+		});
+		return;
+	}
+
+	console.log(req.body);
+
+	const result = await Pet.destroy({
+		where: {
+			id: req.body.id
+		}
+	});
+
+	res.json(result);
+});
+
 module.exports = router;
