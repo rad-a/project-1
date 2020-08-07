@@ -1,3 +1,4 @@
+const moment = require("moment");
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -9,10 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date: {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
           validate: {
               isDate: true,
-              isAfter: sequelize.NOW,
+              isAfter: Sequelize.NOW,
               allowNull: false
           }
       },
@@ -29,11 +30,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()')
       }
     });
   },
