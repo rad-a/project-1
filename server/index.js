@@ -56,14 +56,22 @@ app.get('/', function(req, res){
 
 // Home page
 app.get('/home', function(req, res){
-	console.log(req);
+	// console.log(req);
+	let username = req.user.username;
+
 	if(req.user){
-		let username = req.user.username;
-		res.render('home', { 
-			pets: req.pets,
-			welcomeMessage: `Welcome back ${username}!`,
-			userLetter: `${username.charAt(0)}`
-		});
+		if(req.pets.length == 0){
+			res.render('petAdd',{
+				welcomeMessage: `Hi ${username}!`,
+				pageMsg: "Looks like you dont have any pets on your account yet, let's add some!"
+			});
+		} else {
+			res.render('home', { 
+				pets: req.pets,
+				welcomeMessage: `Welcome back ${username}!`,
+				userLetter: `${username.charAt(0)}`
+			});
+		}
 	} else {
 		res.render('error');
 	}
