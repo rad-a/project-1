@@ -13,7 +13,7 @@ module.exports = {
           type: Sequelize.DATEONLY,
           validate: {
               isDate: true,
-              isAfter: Sequelize.NOW,
+              isAfter: moment(),
               allowNull: false
           }
       },
