@@ -9,13 +9,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date: {
-        type: Sequelize.STRING
+          type: Sequelize.DATE,
+          validate: {
+              isDate: true,
+              isAfter: sequelize.NOW,
+              allowNull: false
+          }
       },
       title: {
-        type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        len: [1,100]
+      }
       },
       details: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true
       },
       createdAt: {
         allowNull: false,

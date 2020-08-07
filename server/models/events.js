@@ -20,10 +20,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Events.init({
-    date: DataTypes.STRING,
-    title: DataTypes.STRING,
-    details: DataTypes.STRING
-  }, {
+    Date: { 
+      type: Sequelize.DATE,
+      validate: {
+          isDate: true,
+          isAfter: sequelize.NOW,
+          allowNull: false
+      }
+    },
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        len: [1,100]
+      }
+    },
+    details: {
+      type: Sequelize.STRING,
+      allowNull: true
+    }
+  },
+   {
     sequelize,
     modelName: 'Events',
   });
