@@ -15,22 +15,11 @@ $("#userLoginForm").on("submit", (event) => {
 	})
 		.then((data) => {
 			console.log(data);
-			setCookie("auth_token", data.authToken.token, 7);
-			if (!data.user) throw new Error("invalid username or password");
-			//window.location.reload();
-
-			switch (data.code) {
-				case 400 || 206:
-					modifyResultContainer("danger", data);
-					break;
-
-				case 200:
-					modifyResultContainer("success", data);
-					break;
-
-				case 204:
-					modifyResultContainer("warning", data);
-					break;
+			if (!data.user){
+				modifyResultContainer('danger',data);
+			} else {
+				setCookie("auth_token", data.authToken.token, 7);
+				window.location = '/';
 			}
 		})
 		.catch((err) => console.log(err));
@@ -50,13 +39,22 @@ $("#userRegisterForm").on("submit", (event) => {
 			email: $("#email").val(),
 		},
 	})
-		.then(({ user, authToken }) => {
-			if (user && authToken.token) {
+		.then(data => {
+			console.log(data);
+			if(data.code == 400){
+				modifyResultContainer('warning',data);
+				return;
+			} else {
+				const { user, authToken } = data;
+				setCookie("auth_token", authToken.token, 7);
+				window.location = "/";
+			}
+			/*if (user && authToken.token) {
 				setCookie("auth_token", authToken.token, 7);
 				window.location = "/";
 			} else {
 				throw new Error("something went wrong");
-			}
+			}*/
 		})
 		.catch((err) => alert(err.responseText));
 });

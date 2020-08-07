@@ -19,16 +19,41 @@ router.post('/register', async (req, res) => {
 		// Hash password
 		const hash = await bcrypt.hash(req.body.password, saltRounds);
 
+		let user;
+		let created;
+
 		// Create user object using hashed password
-		let user = await User.create(
+		User.findOrCreate({
+			where: {
+				username: req.body.username
+			},
+			defaults: {
+				username: req.body.username,
+				password: hash,
+				email: req.body.email
+			}
+		}).then(async result => {
+			user = result[0];
+			created = result[1];
+
+			if(created){
+				// Create data object from user and auth token
+				let data = await user.authorize();
+	
+				// Send back new user and auth token
+				return res.json(data);
+			} else if(!created) {
+				return res.json({
+					code: 400,
+					message: "User already exists, please log in"
+				});
+			}
+		});
+		
+		/*let user = await User.create(
 			Object.assign(req.body, { password: hash })
-		);
+		);*/
 
-		// Create data object from user and auth token
-		let data = await user.authorize();
-
-		// Send back new user and auth token
-		return res.json(data);
 	} catch(err){
 		console.log(err);
 		return res.status(400).send(err);
@@ -51,7 +76,7 @@ router.post('/login', async (req, res) => {
 		// Try logging in the user, if valid create user object
 		let user = await User.authenticate(username, password);
 
-		console.log(user);
+		//console.log(user);
 		// Verify user object is valid
 		// user = await user.authorize();
 
@@ -67,9 +92,8 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.delete('/logout', async (req, res) => {
+router.post('/logout', async (req, res) => {
 	// See if user is present in request in cookies
-	console.log(req);
 	const { user, cookies: { auth_token: authToken } } = req;
 
 	// If both exist, call user's logout method with authToken then return No Content
