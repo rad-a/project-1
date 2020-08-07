@@ -59,6 +59,51 @@ $("#userRegisterForm").on("submit", (event) => {
 		.catch((err) => alert(err.responseText));
 });
 
+$('#petAddForm').on('submit', event => {
+	event.preventDefault();
+
+	let API_URL = "http://localhost:8080/pets/add";
+
+	$.ajax(API_URL, {
+		method: 'POST',
+		data: {
+			petName: $('#petName').val(),
+			petAge: $('#petAge').val(),
+			petBreed: $('#petBreed').val(),
+			petGender: $('#petGender').val()
+		}
+	}).then(data => {
+		if(data){
+			window.location = '/home';
+		} else {
+			modifyResultContainer('danger',{
+				code: 400,
+				message: `An error occurred`
+			});
+		}
+	});
+
+});
+
+function populateBreeds() {
+	$.ajax({
+		url: "https://api.thedogapi.com/v1/breeds?api_key=e5a7d34e-abed-4bdf-80e2-2f1fd529fa6d",
+		method: "GET"
+	}).then(function (response) {
+		//console.log(response);
+
+		for (var i = 0; i < response.length; i++) {
+			var option = $('<option>');
+			option.attr('value', response[i].name);
+			option.text(response[i].name);
+
+			$('#petBreed').append(option);
+		}
+
+		$('#petBreed').val('Cardigan Welsh Corgi');
+	});
+}
+
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -86,3 +131,4 @@ function modifyResultContainer(style, data) {
 }
 
 resultContainer.hide();
+populateBreeds();

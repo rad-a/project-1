@@ -19,7 +19,15 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     email: DataTypes.STRING,
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: {
+		type: DataTypes.STRING,
+		validate: {
+			min: {
+				args: 2,
+				msg: "Password must be between 8 and 32 characters in length"
+			}
+		}
+	}
   }, {
     sequelize,
     modelName: 'User',

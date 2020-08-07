@@ -136,3 +136,22 @@ $(document).ready(function () {
     }
   });
 });
+
+
+$('#petCards').on('click','#petRemoveBtn', e => {
+	e.preventDefault();
+	const target = $(e.currentTarget);
+
+	$.ajax('/pets',{
+		method: 'DELETE',
+		data: {
+			id: target.attr('data-id')
+		}
+	}).then(data => {
+		if(data){
+			window.location.reload();
+		} else {
+			alert('An error has occurred');
+		}
+	});
+});
