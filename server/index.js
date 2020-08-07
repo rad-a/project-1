@@ -56,7 +56,7 @@ app.get('/', function(req, res){
 
 // Home page
 app.get('/home', function(req, res){
-	// console.log(req);
+
 	let username = req.user.username;
 
 	if(req.user){
