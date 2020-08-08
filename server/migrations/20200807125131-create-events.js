@@ -29,15 +29,14 @@ module.exports = {
         allowNull: true
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATEONLY,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
+        defaultValue: Sequelize.NOW
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATEONLY,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()')
-      }
+        allowNull: false,
+        defaultValue: Sequelize.NOW
     });
   },
   down: async (queryInterface, Sequelize) => {
