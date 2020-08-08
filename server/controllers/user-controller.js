@@ -22,6 +22,8 @@ router.post('/register', async (req, res) => {
 		let user;
 		let created;
 
+		console.log(req.body)
+
 		// Create user object using hashed password
 		User.findOrCreate({
 			where: {
@@ -31,7 +33,7 @@ router.post('/register', async (req, res) => {
 				username: req.body.username,
 				password: hash,
 				email: req.body.email,
-				profileImg: req.body.pfp_link
+				profileImg: req.body.profileImg
 			}
 		}).then(async result => {
 			user = result[0];
@@ -110,7 +112,7 @@ router.post('/logout', async (req, res) => {
 // WhoAmI
 router.get('/', (req, res) => {
 	// Check if user exists in request, then return
-	console.log(req);
+	//console.log(req);
 	if(req.user){
 		return res.send(req.user);
 	} else {
