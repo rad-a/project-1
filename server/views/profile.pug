@@ -1,5 +1,4 @@
-extends layouts/view
-
+extends layouts/main.pug
 block profile
 
     div(class="grid-x grid-padding-x largePaddingTop pageMainSection")
@@ -42,7 +41,7 @@ block profile
                         //- li 6 years old
                         li=val.petBreed
                         li=val.petGender
-                        button(class=class="button alert", data-id=val.id, id="petRemoveBtn") Remove
+                        button(class="button alert", data-id=val.id, id="petRemoveBtn") Remove
                 
 
                 //- div(class="grid-x petInfo "  id="petId2")

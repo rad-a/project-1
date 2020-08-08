@@ -11,12 +11,18 @@ const cors = require('cors');
 const { userController, petController } = require('./controllers');
 const clientDir = path.join(__dirname, '../client');
 
+
 // Express App Setup
 const app = express();
 //changed bottom 2
 let  http = require('http').createServer(app)
 let io = require('socket.io')(http);
 const PORT = process.env.PORT || 8080;
+
+// Socket.io Setup
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const socket = require('./socket')(io);
 
 // Express JSON Middleware Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -63,6 +69,8 @@ app.get('/home', function(req, res){
 
 	let username = req.user.username;
 
+	let allUsers = db.User.findAll();
+
 	if(req.user){
 		if(req.pets.length == 0){
 			res.render('petAdd',{
@@ -72,8 +80,8 @@ app.get('/home', function(req, res){
 		} else {
 			res.render('home', { 
 				pets: req.pets,
-				welcomeMessage: `Welcome back ${username}!`,
-				userLetter: `${username.charAt(0)}`
+				allUsers: allUsers,
+				username: username
 			});
 		}
 	} else {
@@ -112,17 +120,17 @@ app.get('/register', function(req, res){
 	}
 });
 
-//added the rout
-// app.get("/sms", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../client/index.html"));
-//   });
+
+// Socket Route
+app.get('/sms', async (req, res) => {
+	res.sendFile(path.join(clientDir, '/sms/index.html'))
+});
 
 
 // Server Init
-//changed bottom app to http to run socket.io
-db.sequelize.sync({ force: false}).then(() => {
-	http.listen(PORT, () => {
-		console.log(`Server running, listening on port ${PORT}`);
+db.sequelize.sync().then(() => {
+	http.listen(PORT, function () {
+		console.log("App now listening at localhost:" + PORT);
 	});
 });
 
