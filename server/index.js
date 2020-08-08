@@ -61,11 +61,12 @@ app.get('/', function(req, res){
 });
 
 // Home page
-app.get('/home', function(req, res){
+app.get('/home', async (req, res) => {
 
 	let username = req.user.username;
 
-	let allUsers = db.User.findAll();
+	let allUsers = await db.User.findAll();
+	
 
 	if(req.user){
 		if(req.pets.length == 0){
@@ -92,8 +93,11 @@ app.get('/home', function(req, res){
 // });
 
 app.get('/social', (req, res)=>{
-    res.render('social');
-    
+	if(!req.user){
+		res.render('error')
+	} else {
+		res.render('social');
+	}
 });
 
 app.get('/profile', (req, res)=>{
