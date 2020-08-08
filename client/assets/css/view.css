@@ -90,6 +90,11 @@ body {
   overflow-y: scroll;
 }
 
+.card-user-pets {
+  margin-bottom: 16px;
+}
+
+
 .card-user-container {
   margin-bottom: 1rem;
   background-color: #fefefe;
