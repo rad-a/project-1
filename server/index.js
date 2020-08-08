@@ -83,20 +83,45 @@ app.get('/home', function(req, res){
 //     res.render('index');
 // });
 
-app.get('/social', (req, res)=>{
-    res.render('social');
+
+app.get('/social', function(req, res){
+	if(!req.user){
+		res.render('social');
+	} else{
+		res.redirect('/home');
+	}
+});
+// app.get('/social', (req, res)=>{
+//     res.render('social');
     
+// });
+
+
+app.get('/profile', function(req, res){
+	if(!req.user){
+		res.render('profile');
+	} else{
+		res.redirect('home');
+	}
 });
 
-app.get('/profile', (req, res)=>{
-    res.render('profile');
+// app.get('/profile', (req, res)=>{
+//     res.render('profile');
+// });
+
+
+app.get('/forecast', function(req, res){
+	if(!req.user){
+		res.render('forecast');
+	} else{
+		res.redirect('/home');
+	}
 });
 
+// app.get('/forecast', (req, res)=>{
+//     res.render('forecast');
 
-app.get('/forecast', (req, res)=>{
-    res.render('forecast');
-
-});
+// });
 
 
 // Register page

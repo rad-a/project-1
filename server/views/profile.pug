@@ -1,4 +1,4 @@
-extends layouts/view
+extends layouts/main
 
 block profile
 
@@ -32,7 +32,7 @@ block profile
                         li Calm
                 
                 each val in pets
-                    div(class="grid-x petInfo" id= "pet"+val.id)
+                    div(class="grid-x petInfo" id= val.pet)
                     //- div(class="cell medium-7 medium-offset-1 petImage")
                     //-     a(href="/img/dog1.jpg" target="_blank")
                     //-         img(src="/img/dog1.jpg") 
@@ -42,7 +42,7 @@ block profile
                         //- li 6 years old
                         li=val.petBreed
                         li=val.petGender
-                        button(class=class="button alert", data-id=val.id, id="petRemoveBtn") Remove
+                        button(class="button alert", data-id=val.id, id="petRemoveBtn") Remove
                 
 
                 //- div(class="grid-x petInfo "  id="petId2")
