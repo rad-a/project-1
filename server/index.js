@@ -78,6 +78,27 @@ app.get('/home', function(req, res){
 	
 });
 
+
+// app.get('/', (req, res) => { 
+//     res.render('index');
+// });
+
+app.get('/social', (req, res)=>{
+    res.render('social');
+    
+});
+
+app.get('/profile', (req, res)=>{
+    res.render('profile');
+});
+
+
+app.get('/forecast', (req, res)=>{
+    res.render('forecast');
+
+});
+
+
 // Register page
 app.get('/register', function(req, res){
 	if(!req.user){
