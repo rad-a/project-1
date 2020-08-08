@@ -86,51 +86,49 @@ app.get('/home', function(req, res){
 	
 });
 
-
-// app.get('/', (req, res) => { 
-//     res.render('index');
+//Social messaging page
+// app.get('/social', function(req, res){
+// 	if(!req.user){
+// 		res.render('error');
+// 	} else{
+// 		res.render('social');
+// 	}
 // });
 
 
-app.get('/social', function(req, res){
-	if(!req.user){
-		res.render('social');
-	} else{
-		res.redirect('/home');
-	}
-});
-// app.get('/social', (req, res)=>{
-//     res.render('social');
-    
-// });
-
-
+//Profile page
 app.get('/profile', function(req, res){
+	let allUsers = db.User.findAll();
+	let username = req.user.username;
+
+	
 	if(!req.user){
-		res.render('profile');
+		res.render('login');
 	} else{
-		res.redirect('home');
+		res.render('profile', { 
+			pets: req.pets,
+			allUsers: allUsers,
+			username: username
+		});
 	}
 });
 
-// app.get('/profile', (req, res)=>{
-//     res.render('profile');
-// });
+//6-day weather forecast
+app.get('/weather', function(req, res){
+	let allUsers = db.User.findAll();
+	let username = req.user.username;
 
-
-app.get('/forecast', function(req, res){
+	
 	if(!req.user){
-		res.render('forecast');
+		res.render('login');
 	} else{
-		res.redirect('/home');
+		res.render('weather', { 
+			pets: req.pets,
+			allUsers: allUsers,
+			username: username
+		});
 	}
 });
-
-// app.get('/forecast', (req, res)=>{
-//     res.render('forecast');
-
-// });
-
 
 // Register page
 app.get('/register', function(req, res){
@@ -141,12 +139,10 @@ app.get('/register', function(req, res){
 	}
 });
 
-
 // Socket Route
 app.get('/sms', async (req, res) => {
 	res.sendFile(path.join(clientDir, '/sms/index.html'))
 });
-
 
 // Server Init
 db.sequelize.sync().then(() => {
