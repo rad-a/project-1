@@ -27,7 +27,6 @@ $("#userLoginForm").on("submit", (event) => {
 
 $("#userRegisterForm").on("submit", (event) => {
 	event.preventDefault();
-	console.log("form submitted");
 
 	let API_URL = "http://localhost:8080/user/register";
 
@@ -37,6 +36,7 @@ $("#userRegisterForm").on("submit", (event) => {
 			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val(),
+			profileImg: $("#profileImg").val()
 		},
 	})
 		.then(data => {
