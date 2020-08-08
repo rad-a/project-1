@@ -45,7 +45,7 @@ module.exports = function(io) {
     
           //emit user logged in to all sockets
         //   io.emit("user",data)
-          socket.broadcast.emit("user",flag,data)
+          socket.broadcast.emit("user",data)
       })
     //socket.broadcast.emit("user",data)
         socket.on("chat", function(message){

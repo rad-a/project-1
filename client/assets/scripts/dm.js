@@ -10,7 +10,7 @@ let socket = io();
 //step 6) retieve old messages saved to database
 
 let sendTo='';
-let sender='';
+let sender=$('#petAreaHeader').children().val();
 let message=''
 
 
@@ -43,7 +43,7 @@ $("document").ready(function(){
             $("#online").append($(`<button id=thisUser class="btn btn-primary" value=${result[i].username}>${result[i].username}</button>`))
           }
       })
-
+      console.log(sender)
 })
 socket.on("user",function(data){
     console.log("front-end "+data)
@@ -52,10 +52,7 @@ socket.on("user",function(data){
 })
 
 //on user page load get username
-// http://localhost:8080/sms
-$("window.location.href.match"('http://localhost:8080/sms')).ready(()=>{
-console.log('this page')
-})
+
 
 //2) emit
 //get user user username on load and emit it to back end serever
