@@ -65,6 +65,8 @@ app.get('/home', function(req, res){
 
 	let username = req.user.username;
 
+	let allUsers = db.User.findAll();
+
 	if(req.user){
 		if(req.pets.length == 0){
 			res.render('petAdd',{
@@ -74,8 +76,8 @@ app.get('/home', function(req, res){
 		} else {
 			res.render('home', { 
 				pets: req.pets,
-				welcomeMessage: `Welcome back ${username}!`,
-				userLetter: `${username.charAt(0)}`
+				allUsers: allUsers,
+				username: username
 			});
 		}
 	} else {
