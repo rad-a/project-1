@@ -21,7 +21,7 @@ module.exports = function(app) {
         }
       }
     }).then(function(oldmessage) {
-        console.log(oldmessage)
+        // console.log(oldmessage)
       res.json(oldmessage);
     });
   });

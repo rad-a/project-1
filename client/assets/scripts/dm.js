@@ -1,6 +1,5 @@
 //connecting/ setting up client side
 let socket = io();
-// let socket = io("http://localhost:8080",{ path: '/sms' }
 
 // let sender= $("#from").val()
 //step 1) send user name to back-end
@@ -13,6 +12,8 @@ let socket = io();
 let sendTo='';
 let sender='';
 let message=''
+
+
 $('#sendName').click(function(e){
      //for testing only to be deleted
     e.preventDefault();
@@ -27,9 +28,34 @@ socket.on("user",function(data){
         // $(`button[name=${data}`).removeClass( "redDot" ).addClass( "greenDot" );
     })
     
+
 //1) on load make an ajax call to get all user names
+// get user user username on load and emit it to back end serever
+$("document").ready(function(){
+    $.ajax({
+        url: "/user/allUsers",
+        method: "GET",
+      })
+      .then(function(result){
+          
+          console.log(result[0].username)
+          for (let i=0;i<result.length; i++){
+            $("#online").append($(`<button id=thisUser class="btn btn-primary" value=${result[i].username}>${result[i].username}</button>`))
+          }
+      })
 
+})
+socket.on("user",function(data){
+    console.log("front-end "+data)
+    // $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
+    $(`button[name=${data}`).removeClass( "redDot" ).addClass( "greenDot" );
+})
 
+//on user page load get username
+// http://localhost:8080/sms
+$("window.location.href.match"('http://localhost:8080/sms')).ready(()=>{
+console.log('this page')
+})
 
 //2) emit
 //get user user username on load and emit it to back end serever

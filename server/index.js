@@ -14,15 +14,12 @@ const clientDir = path.join(__dirname, '../client');
 
 // Express App Setup
 const app = express();
-//changed bottom 2
-let  http = require('http').createServer(app)
-let io = require('socket.io')(http);
 const PORT = process.env.PORT || 8080;
 
 // Socket.io Setup
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const socket = require('./socket')(io);
+
 
 // Express JSON Middleware Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -123,7 +120,7 @@ app.get('/register', function(req, res){
 
 // Socket Route
 app.get('/sms', async (req, res) => {
-	res.sendFile(path.join(clientDir, '/sms/index.html'))
+	res.sendFile(path.join(clientDir, '../client/assets/index.html'))
 });
 
 
@@ -136,6 +133,4 @@ db.sequelize.sync().then(() => {
 
 //added bottom 3
 //calling socket.js imported file
-// require("./socket")(io);
-// require("./controllers/controller/msg-controller")(app)
-// require("./controllers/controller/html-routes")(app)
+require("./socket")(io);

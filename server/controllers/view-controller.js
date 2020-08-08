@@ -1,29 +1,29 @@
-// const express = require('express');
-// const { Router } = require('express');
+const express = require('express');
+const { Router } = require('express');
 
-// const router = express.Router();
+const router = express.Router();
 
 
-// router.use(express.static(__dirname + '/client'));
+router.use(express.static(__dirname + '/client'));
 
-// router.get('/', (req, res) => { 
-//     res.render('index');
-// });
+router.get('/', (req, res) => { 
+    res.render('index');
+});
 
-// router.get('/social', (req, res)=>{
-//     res.render('social');
+router.get('/social', (req, res)=>{
+    res.render('social');
     
-// });
+});
 
-// router.get('/profile', (req, res)=>{
-//     res.render('profile');
-// });
-
-
-// router.get('/forecast', (req, res)=>{
-//     res.render('forecast');
-
-// });
+router.get('/profile', (req, res)=>{
+    res.render('profile');
+});
 
 
-// module.exports = router;
+router.get('/forecast', (req, res)=>{
+    res.render('forecast');
+
+});
+
+
+module.exports = router;
