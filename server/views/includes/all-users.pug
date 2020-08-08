@@ -3,7 +3,6 @@ article(class="grid-container" id="allUsersDiv")
 	div(class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-5 allUsers")
 		each val in allUsers
 			div(class="cell users")
-				img(src= val.img_src, alt="image for article")
 				div(class="textOverlay textCtr")
 					h5(class="user-name")= val.username
 					//span(class="location")
@@ -13,7 +12,7 @@ article(class="grid-container" id="allUsersDiv")
 						div(class="overlayInfo float-left")
 							p 
 								i(class="fa fa-paw big")
-								span(class="pets") #{ val.pets.length }
+								span(class="pets")= val.numPets
 						div(class="overlayContact float-right")
 							
 							//p 

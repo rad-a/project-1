@@ -61,11 +61,12 @@ app.get('/', function(req, res){
 });
 
 // Home page
-app.get('/home', function(req, res){
+app.get('/home', async (req, res) => {
 
 	let username = req.user.username;
 
-	let allUsers = db.User.findAll();
+	let allUsers = await db.User.findAll();
+	
 
 	if(req.user){
 		if(req.pets.length == 0){
@@ -77,7 +78,8 @@ app.get('/home', function(req, res){
 			res.render('home', { 
 				pets: req.pets,
 				allUsers: allUsers,
-				username: username
+				username: username,
+				numPets: req.user.numPets
 			});
 		}
 	} else {
@@ -86,32 +88,40 @@ app.get('/home', function(req, res){
 	
 });
 
-//Social messaging page
-// app.get('/social', function(req, res){
-// 	if(!req.user){
-// 		res.render('error');
-// 	} else{
-// 		res.render('social');
-// 	}
-// });
 
-
-//Profile page
-app.get('/profile', function(req, res){
-	let allUsers = db.User.findAll();
-	let username = req.user.username;
-
-	
+app.get('/social', (req, res)=>{
 	if(!req.user){
-		res.render('login');
-	} else{
-		res.render('profile', { 
-			pets: req.pets,
-			allUsers: allUsers,
-			username: username
+		res.render('error')
+	} else {
+		res.render('social');
+	}
+});
+
+app.get('/profile/:id', async (req, res)=>{
+    if(!req.user){
+		res.render('error');
+	} else {
+		const targetUser = await db.User.findOne({
+			where: {
+				id: req.params.id
+			}
+		});
+
+		const targetUserPets = await db.Pet.findAll({
+			where: {
+				UserId: targetUser.id
+			}
+		});
+
+		res.render('profile', {
+			user: targetUser,
+			pets: targetUserPets,
+			numPets: req.user.numPets,
+			username: req.user.username
 		});
 	}
 });
+
 
 //6-day weather forecast
 app.get('/weather', function(req, res){

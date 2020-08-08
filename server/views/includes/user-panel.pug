@@ -19,15 +19,16 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                         span(class="location-icon fa fa-map-marker")
                             pan(class="location-text") Austin, TX
                     p  
-                        span(id="pets")
+                        span(id="pets")= numPets + " "
+                            span fur babies!
                         </p>
             
                     //User's registered pets
                 div(class="card-user-pets")
-                    ul(class="menu")
+                    ul(class="menu", id="petCards")
                         each val in pets
-                            li(class="fa fa-paw" data-toggle="animatedPetOneModal")=val.petName
-                           
+                            li(class="fa fa-paw" id="petRemoveBtn" data-id= val.id)= val.petName
+
                 div(class="add-pets text-center")
                     button(class="hollow center expanded button" href="#") 
                         a(id="addPetsBtn", href="/pets/add") Add a Pet
@@ -55,12 +56,4 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                 p UV Index: 
                     span(id="uv-index")
                 p
-                    a(class="smallPrint" href="/weather" alt="6-day weather forecast") View 6-day forecast
-
-        
-//- block localScripts
-//-     script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAknu-YiOa6OcYDUB-Oy0AbQg1X3IIuZg&libraries=places&callback=createMap", async, defer)
-//-     script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js", type="text/javascript")
-//-     script(src="./assets/scripts/logout.js", type="text/javascript")
-//-     script(src="./assets/scripts/map.js", type="text/javascript")
-//-     script(src="./assets/scripts/home.js", type="text/javascript")
+                    a(class="smallPrint" href="/forecast" alt="") View 6-day forecast
