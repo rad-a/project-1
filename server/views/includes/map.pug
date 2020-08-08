@@ -1,0 +1,51 @@
+div(class="grid-x grid-margin-x small-up-12 mapArea")
+    div(class="mapInner cell small-12 medium-10")
+        h3(id="error")
+        h5
+            | Select a park from the map or the list below to view more details
+        
+        //Form to select desired search area radius
+
+        form(
+        action="/action_page.php"
+        id="radiusOptions"
+    
+        )
+            div(class="grid-x")
+            
+                div(class="cell small-12 medium-6 ")
+                    label Select radius
+                
+                        select(
+                
+                            id="distance"
+                            name="radius"
+                        )
+                            option(id="fiveMiles" value="8050") 5 miles
+                            option(id="tenMiles" value="16000") 10 miles
+                            option(id="twentyMiles" value="32000") 20 miles
+                            option(id="thirtyMiles" value="48000") 30 miles
+                    //Can we get rid of this step if possible? 
+                    input(
+                        class="button"
+                        id="submit"
+                        type="submit" value="Submit"
+                        ) 
+        //JS-generated map
+        div(id="map" class="cell small-12 medium-6")
+
+    div(class="grid-x small-12 infoSections parkInfoArea section")        
+    
+        div(id="parkList" class="cell small-12 medium-4")
+            h4(class="headerText") List of nearby parks
+            div(
+            id="searchResult"
+                class="cell small-12 yOverflow"
+            )
+        
+            // Area to display details for selected park
+
+        div(id="parkDetails" class="cell small-12 medium-8")
+            h4(class="headerText") Park details
+            div(id="parkInfo" class="cell small-12 yOverflow")
+

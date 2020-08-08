@@ -1,0 +1,433 @@
+.pageMainSection > article {
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+.petInfo {
+  height: 260px;
+  overflow: hidden;
+  /* margin: 2rem; */
+  /* border: 1px solid orange; */
+  margin-bottom: 1rem;
+}
+
+.petImage {
+  height: 100%;
+  display: flex;
+  border-radius: 0.5rem;
+  /* border: 2px solid red; */
+  overflow: hidden;
+}
+
+.petInfo a {
+  max-height: 260px;
+  object-fit: cover;
+  /* min-width: 100%; */
+}
+
+.PetDetails {
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.PetDetails li {
+  list-style: none;
+}
+
+.top-bar {
+  height: 70px;
+  box-shadow: 2px 2px 2px 2px teal;
+  /* margin-bottom: 2rem; */
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+#userBio {
+  /* margin: 2rem; */
+}
+.largePaddingTop {
+  padding-top: 90px;
+}
+
+.profileHeader {
+  border: 1px solid green;
+  /* margin: 6rem;  */
+  margin-bottom: 1rem;
+}
+* {
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: rgba(255, 255, 255, 0);
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: transparent !important;
+}
+
+body {
+  /* background-image: url("/img/zilker.jpg")!important; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Karla", sans-serif;
+  color: #3d3a35;
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; */
+  font-size: 16px;
+
+  overflow-y: scroll;
+}
+
+.card-user-container {
+  margin-bottom: 1rem;
+  background-color: #fefefe;
+  color: #0a0a0a;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 0;
+}
+
+.card-user-container .card-user-avatar .profile-image {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  width: 11.875rem;
+  height: 11.875rem;
+  padding: 0.9375rem;
+}
+
+.profile-image:hover,
+.users:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: ease 0.5s;
+}
+
+.card-user-container .card-user-bio {
+  padding: 1rem;
+  text-align: center;
+}
+
+.card-user-container .card-user-bio .location {
+  display: inline-block;
+  margin: 0 0.9375rem;
+  color: #767676;
+  font-size: 0.875rem;
+}
+
+.card-user-container .card-user-bio .location-icon,
+.card-user-container .card-user-bio .location-text {
+  display: inline-block;
+  padding: 0 0.3125rem;
+}
+
+.card-user-container .card-user-pets {
+  background: #e6e6e6;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0 0 .5rem .5rem;;
+}
+
+.card-user-container .card-user-pets ul {
+  display: inline-block;
+}
+
+.card-user-container .card-user-pets ul li {
+  margin: 0 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+/* .topbar-responsive-logo img {
+  width: 40px;
+  height: 40px;
+} */
+.card-user-container .card-user-pets ul li:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.card-user-container .card-user-button {
+  text-align: center;
+  padding: 1rem;
+}
+
+.site-footer {
+  height: 12rem;
+  padding: 2.5rem 0;
+  color: #999;
+  text-align: center;
+  background-color: thistle;
+  border-top: 0.05rem solid #e5e5e5;
+  margin-top: 3rem;
+ 
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.footerLinks {
+  position: absolute;
+  bottom: 29%;
+  right: 3%;
+}
+
+.users {
+  /* margin: .5rem; */
+  /* border: 2px solid red; */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+
+  margin: auto;
+  
+  width: 150px;
+  height: 275px;
+
+  margin-top: 1.3rem;
+
+  position: relative;
+}
+
+.users img {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #0103112c;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.75s ease;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+.ctr {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textOverlay {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  height: 50%;
+  width: 100%;
+  color: whitesmoke;
+  font-weight: 500;
+  z-index: 1000;
+  padding-bottom: 1rem;
+}
+
+.textOverlay:hover {
+  background-color: rgba(0, 128, 128, 0.37);
+}
+
+.textOverlay h5 {
+  font-weight: 500;
+}
+
+.textCtr {
+  position: absolute;
+  transform: translate(-50%, 115%);
+
+  padding: 0.8rem;
+}
+
+.users .overlay .button {
+  /* border: 2px solid red; */
+  border-radius: 0.6rem;
+  font-weight: 700;
+  background-color: rgba(0, 128, 128, 0.336);
+  color: rgb(253, 253, 253)!important;
+}
+
+.users .overlay .button:hover {
+ 
+  background-color: rgba(0, 128, 128, 0.336);
+
+}
+#allUsersDiv {
+  min-height: 700px;
+}
+
+.allUsers {
+  height: 500px;
+  overflow-y: auto;
+  padding: 1rem 0;
+  height: 100%;
+
+}
+
+.users .fa.big {
+  font-size: 22px;
+}
+
+.makeFlex {
+  display: flex;
+
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.tooltipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.flexPostBox {
+  display: flex;
+}
+
+.flexPostBox #post {
+  align-self: flex-end;
+}
+#social-text {
+
+  min-height: 80px;
+  padding: 10px;
+
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  overflow-y: hidden;
+  resize: none;
+}
+
+.hero-section {
+  background: url("/assets/images/corgi-with-friend.jpg") 50% no-repeat;
+  background-size: cover;
+  height: 40vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #ffffff;
+  -webkit-text-stroke: 1px #f8f8f8;
+  text-shadow: 0px 1px 4px #23430c;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.hero-section .hero-section-text {
+  color: #fefefe;
+  text-shadow: 1px 1px 2px #0a0a0a;
+}
+
+#userArea {
+  border-right: 1px solid rgb(233, 233, 233);
+}
+
+#infoArea {
+  border-left: 1px solid rgb(233, 233, 233);
+
+}
+
+
+.noMarginTop {
+  margin-top: 0;
+}
+
+.yOverflow {
+  overflow-y: auto;
+  border: 1px solid #969677;
+}
+
+.mapArea {
+  background-color: rgb(230, 236, 236);
+  padding-right: 0.9375rem;
+  padding-left: 0.9375rem;
+  justify-content: center;
+  height: 1100px;
+  margin: 2rem 0.9375rem !important;
+  border-radius: 0.5rem;
+  box-sizing: 5px 6px 6px;
+}
+
+.mapInner {
+  height: 600px;
+}
+
+#map {
+  height: 450px;
+  width: 700px;
+}
+
+.parkInfoArea {
+  display: flex;
+  margin-bottom: 20px;
+  height: 400px;
+}
+
+#temp {
+  font-size: 3rem;
+}
+
+.currentTempInfo {
+  padding-right: 0.1rem;
+}
+
+#weatherForecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.forecast {
+  background-color: rgb(71, 166, 255);
+  margin: 0.5rem;
+  padding: 10px 0;
+  font-weight: 600;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.5rem;
+  box-shadow: 2px 5px 8px #d3d3d3;
+}
+
+.forecast:hover {
+  background-color: rgb(42, 186, 253);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 3px 6px 10px #9b9b9b;
+}
