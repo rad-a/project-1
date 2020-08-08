@@ -1,0 +1,71 @@
+extends layouts/view
+
+block profile
+
+    div(class="grid-x grid-padding-x largePaddingTop pageMainSection")
+        include includes/user-panel 
+        article(class="cell medium-6 large-8 userProfile")
+            
+            //User bio section
+            //- div(class="cell text-center profileHeader" id="userBioHeader")
+                //- h5 #{ user } [user] 
+
+            //- div(id="userBio")
+            //-     p Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi tempore et natus voluptate unde consequuntur cupiditate deserunt hic modi! Magnam maiores possimus officiis quod incidunt optio dicta, sed in perferendis?
+
+            //Information about user's pet(s)
+            
+            div(class="cell text-center profileHeader" id="petAreaHeader")
+                h5 [ user ]'s Pets 
+
+            div(id="petArea")
+                //-Set id server-side
+                div(class="grid-x petInfo" id="petId1")
+                    div(class="cell medium-7 medium-offset-1 petImage")
+                        a(href="/assets/images/dog1.jpg" target="_blank")
+                            img(src="/assets/images/dog1.jpg") 
+                        
+                    div(class="cell medium-3 PetDetails")
+                        li Spot
+                        li 6 years old
+                        li Female
+                        li Calm
+                
+                each val in pets
+                    div(class="grid-x petInfo" id= "pet"+val.id)
+                    //- div(class="cell medium-7 medium-offset-1 petImage")
+                    //-     a(href="/img/dog1.jpg" target="_blank")
+                    //-         img(src="/img/dog1.jpg") 
+                        
+                    div(class="cell medium-3 PetDetails")
+                        h3(class="")= val.petName + ', ' + val.petAge
+                        //- li 6 years old
+                        li=val.petBreed
+                        li=val.petGender
+                        button(class=class="button alert", data-id=val.id, id="petRemoveBtn") Remove
+                
+
+                //- div(class="grid-x petInfo "  id="petId2")
+                //-     div(class="cell medium-7 medium-offset-1 petImage")
+                //-         a(href="/img/dog3.png" target="_blank")
+                //-             img(src="/img/dog3.png") 
+                        
+                //-     div(class="cell medium-3 PetDetails")
+                //-         li Tommy
+                //-         li 3 years old
+                //-         li Male
+                //-         li High energy
+
+                //- div(class="grid-x petInfo"  id="petId3")
+                //-     div(class="cell medium-7 medium-offset-1 petImage")
+                //-         a(href="/img/dog3.png" target="_blank")
+                //-             img(src="/img/dog2.jpg") 
+                        
+                //-     div(class="cell medium-3 PetDetails")
+                //-         li Loui
+                //-         li 8 years old
+                //-         li Female
+                //-         li High energy
+
+
+        include includes/info-panel

@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "dog_date",
-    "password": "zx+2m2Tz&N@SQlOwJ821fOP!Xa0Ec(sT&)i&dW8mo(/gJ$aS+nTNThDm1i0@/mQj7g5",
+    "username": "root",
+    "password": "Bebiai20!8",
     "database": "dog_date_v2",
-    "host": "2.0.0.1",
+    "host": "127.0.0.1",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
@@ -15,7 +16,7 @@
   },
   "production": {
     "username": "dog_date",
-    "password": "zx+2m2Tz&N@SQlOwJ821fOP!Xa0Ec(sT&)i&dW8mo(/gJ$aS+nTNThDm1i0@/mQj7g5",
+    "password": "Bebiai20!8",
     "database": "dog_date_v2_production",
     "host": "boswood.org",
     "dialect": "mysql"
