@@ -30,7 +30,8 @@ router.post('/register', async (req, res) => {
 			defaults: {
 				username: req.body.username,
 				password: hash,
-				email: req.body.email
+				email: req.body.email,
+				profileImg: req.body.pfp_link
 			}
 		}).then(async result => {
 			user = result[0];
