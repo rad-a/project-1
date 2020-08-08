@@ -19,6 +19,6 @@ module.exports = async function(req, res, next){
 			req.pets = pets;
 		}
 	}
-	console.log(req);
+	//console.log(req);
 	next();
 }
