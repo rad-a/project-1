@@ -89,10 +89,6 @@ app.get('/home', async (req, res) => {
 });
 
 
-// app.get('/', (req, res) => { 
-//     res.render('index');
-// });
-
 app.get('/social', (req, res)=>{
 	if(!req.user){
 		res.render('error')
@@ -127,11 +123,22 @@ app.get('/profile/:id', async (req, res)=>{
 });
 
 
-app.get('/forecast', (req, res)=>{
-    res.render('forecast');
+//6-day weather forecast
+app.get('/weather', function(req, res){
+	let allUsers = db.User.findAll();
+	let username = req.user.username;
 
+	
+	if(!req.user){
+		res.render('login');
+	} else{
+		res.render('weather', { 
+			pets: req.pets,
+			allUsers: allUsers,
+			username: username
+		});
+	}
 });
-
 
 // Register page
 app.get('/register', function(req, res){
@@ -142,12 +149,10 @@ app.get('/register', function(req, res){
 	}
 });
 
-
 // Socket Route
 app.get('/sms', async (req, res) => {
 	res.sendFile(path.join(clientDir, '/sms/index.html'))
 });
-
 
 // Server Init
 db.sequelize.sync().then(() => {

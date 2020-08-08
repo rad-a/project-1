@@ -1,3 +1,5 @@
+$(document).foundation();
+
 $(document).ready(function () {
   const forecastDiv = $("#forecast_div");
 
@@ -60,7 +62,7 @@ $(document).ready(function () {
     //Retrieve Data for user location's current weather data
     function getCurrentWeatherData() {
       //use moment js for date
-      var currentDate = { now: moment().format("dddd, MMMM Do") };
+      var currentDate = { now: moment().format("ddd, MMM Do") };
       var temperature = Math.floor(data.current.temp) + "°F";
       var humidity = data.current.humidity + "%";
       var windSpeed = data.current.wind_speed + "mph";
@@ -90,7 +92,7 @@ $(document).ready(function () {
         var forecastDates = $("<h4>").text(
           moment()
             .add(i + 1, "days")
-            .format("dddd, MMMM Do")
+            .format("ddd, MMM Do")
         );
         //variables for retrieving icon image
         var iconData = data.daily[i].weather[0].icon;
