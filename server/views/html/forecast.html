@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Date</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!--foundation CDN script -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <!--Foundation Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla&amp;family=Roboto+Slab&amp;display=swap">
+    <!-- Local stylesheets-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/view.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/css/foundation.css">
+  </head>
+  <body>
+    <header>
+      <nav class="top-bar topbar-responsive">  
+        <div class="top-bar-title"><span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle></button></span><a class="topbar-responsive-logo" href="#"><img src="/assets/images/login-corgi-small.png" width="30" height="30px" alt="">
+            <Strong>Dog Date</Strong></a></div>
+        <div class="topbar-responsive-links" id="topbar-responsive">
+          <div class="top-bar-right">
+            <ul class="menu simple vertical medium-horizontal">
+              <li> <a href="/profile"> <i class="fa fa-user"> </i>Profile</a></li>
+              <li> <a href="/"> <i class="fa fa-home"> </i>Home</a></li>
+              <li><a href="/messages"> <i class="fa fa-envelope"> </i>Messages</a></li>
+              <li> <a href="/social"> <i class="fa fa-comments"> </i>Social</a></li>
+              <li>
+                <button class="button small hollow topbar-responsive-button" type="button"><i class="fa fa-sign-out"> </i>  Sign Out</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--5-day weather forecast-->
+    <div class="infoSections grid-x grid-padding-x largePaddingTop pageMainSection">
+      <div class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea">
+        <div class="panel-radius" id="user">
+          <!--Start user card-->
+          <div class="card-user-container">
+            <!-- card's image-->
+            <div class="card-user-avatar"><a href="/profile"><img class="profile-image" src="/assets/images/4.jpg" alt=""></a>
+              <!--user info, pet, and location-->
+            </div>
+            <div class="card-user-bio">
+              <h4>Hi, <span id="username"></span></h4><span class="location"><span class="location-icon fa fa-map-marker">
+                  <pan class="location-text">Austin, TX</pan></span></span>
+              <p> <span id="pets">__  fur babies!</span></p></p>
+              <!--User's registered pets-->
+            </div>
+            <div class="card-user-pets">
+              <ul class="menu">
+                <li class="fa fa-paw" data-toggle="animatedPetOneModal">
+                  <undefined> </undefined>Tommy
+                </li>
+                <li class="fa fa-paw" data-toggle="animatedPetTwoModal">
+                  <undefined></undefined>Loui
+                </li>
+                <li class="fa fa-paw" data-toggle="animatedPetThreeModal">
+                  <undefined></undefined>Spot
+                </li>
+              </ul>
+            </div>
+            <div class="add-pets text-center">
+              <button class="hollow center expanded button" href="#"> <a id="addPetsBtn" href="/pets/add">Add a Pet</a></button>
+              <button class="button alert expanded " id="logoutBtn">Logout</button>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="panel-radius" id="weather">
+          <h5 id="currentDate"></h5>
+          <div class="weatherEl" id="currentWeather">
+            <div class="grid-x ">
+              <p class="cell small-4 medium-6 currentTempInfo"><span id="temp"></span></p><img class="cell small-4 medium-6" id="weather-icon" alt="">
+            </div>
+            <p>Humidity: <span id="humidity"></span></p>
+            <p>Wind Speed: <span id="wind"></span></p>
+            <p>UV Index: <span id="uv-index"></span></p>
+            <p><a class="smallPrint" href="/forecast" alt="">View 6-day forecast</a></p>
+          </div>
+        </div>
+      </div>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAknu-YiOa6OcYDUB-Oy0AbQg1X3IIuZg&amp;libraries=places&amp;callback=createMap" async defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" type="text/javascript"></script>
+      <script src="./assets/scripts/logout.js" type="text/javascript"></script>
+      <script src="./assets/scripts/map.js" type="text/javascript"></script>
+      <script src="./assets/scripts/home.js" type="text/javascript"></script>
+      <article class="cell medium-6 large-8 largePaddingTop" id="weatherForecast">
+        <h4 class="text-center">6-Day Forecast</h4>
+        <div class="grid-x grid-padding-x weatherEl align-center" id="forecast_div"></div>
+      </article>
+      <div class="cell medium-3 large-2 noMarginTop sidePanels" id="infoArea" data-sticky-container>
+        <div class="panel-radius" id="planner">
+          <h4 class="smallHeader">Planned Play Dates </h4>
+        </div>
+        <hr>
+        <div class="panel-radius" id="favorites">
+          <h4 class="smallHeader">Your Top Places </h4>
+        </div>
+        <hr>
+        <div class="panel-radius" id="events">
+          <h4 class="smallHeader">Nearby Events</h4>
+        </div>
+      </div>
+    </div>
+    <footer class="cell site-footer"><img src="/assets/images/login-corgi-small.png" width="80px">
+      <p>Copyright © 2020 Dog Date</p>
+      <hr>
+      <div class="grid-x align-justify align-middle float-right">
+        <div class="small-12 medium-shrink cell">
+          <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="https://github.com/jiberjiber/dog-date/blob/master/README.md" target="_blank" alt="">About</a></li>
+            <li><a href="https://github.com/jiberjiber/dog-date" target="_black" alt="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAknu-YiOa6OcYDUB-Oy0AbQg1X3IIuZg&amp;libraries=places&amp;callback=createMap" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" type="text/javascript"></script>
+<script src="./assets/scripts/logout.js" type="text/javascript"></script>
+<script src="./assets/scripts/map.js" type="text/javascript"></script>
+<script src="./assets/scripts/home.js" type="text/javascript"></script>

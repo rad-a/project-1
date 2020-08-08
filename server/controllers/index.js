@@ -4,5 +4,6 @@ const msgController = require('./msg-controller');
 module.exports = {
 	userController,
 	petController,
+	viewController,
 	msgController
 }

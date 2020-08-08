@@ -13,31 +13,26 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                     //user info, pet, and location
                 div(class="card-user-bio")
                     h4 Hi, 
-                        span(id="username")= username
+                        span(id="username")= userLetter
 
                     span(class="location")
                         span(class="location-icon fa fa-map-marker")
                             pan(class="location-text") Austin, TX
                     p  
-                        span(id="pets") __ #{ petTotal } fur babies!
+                        span(id="pets")= numPets + " "
+                            span fur babies!
                         </p>
             
                     //User's registered pets
                 div(class="card-user-pets")
-                    ul(class="menu")
-                        li(class="fa fa-paw" data-toggle="animatedPetOneModal")
-                            #{ petName } 
-                            | Tommy
-                        li(class="fa fa-paw" data-toggle="animatedPetTwoModal")
-                            #{ petName }
-                            | Loui
-                        li(class="fa fa-paw" data-toggle="animatedPetThreeModal")
-                            #{ petName }
-                            | Spot
+                    ul(class="menu", id="petCards")
+                        each val in pets
+                            li(class="fa fa-paw" id="petRemoveBtn" data-id= val.id)= val.petName
+
                 div(class="add-pets text-center")
                     button(class="hollow center expanded button" href="#") 
                         a(id="addPetsBtn", href="/pets/add") Add a Pet
-                    button(id="logoutBtn", class="button alert expanded ") Logout
+                    
                     
                 hr
 
@@ -62,5 +57,3 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                     span(id="uv-index")
                 p
                     a(class="smallPrint" href="/forecast" alt="") View 6-day forecast
-
-        
