@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+//changed bottom from require('./models/index')
 const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
@@ -12,6 +13,9 @@ const clientDir = path.join(__dirname, '../client');
 
 // Express App Setup
 const app = express();
+//changed bottom 2
+let  http = require('http').createServer(app)
+let io = require('socket.io')(http);
 const PORT = process.env.PORT || 8080;
 
 // Express JSON Middleware Setup
@@ -108,9 +112,22 @@ app.get('/register', function(req, res){
 	}
 });
 
+//added the rout
+// app.get("/sms", function(req, res) {
+//     res.sendFile(path.join(__dirname, "../client/index.html"));
+//   });
+
+
 // Server Init
-db.sequelize.sync().then(() => {
-	app.listen(PORT, () => {
+//changed bottom app to http to run socket.io
+db.sequelize.sync({ force: false}).then(() => {
+	http.listen(PORT, () => {
 		console.log(`Server running, listening on port ${PORT}`);
 	});
 });
+
+//added bottom 3
+//calling socket.js imported file
+// require("./socket")(io);
+// require("./controllers/controller/msg-controller")(app)
+// require("./controllers/controller/html-routes")(app)

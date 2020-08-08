@@ -1,10 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "Bebiai20!8",
+    "password": "654321",
     "database": "dog_date_v2",
     "host": "127.0.0.1",
-    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
@@ -15,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "dog_date",
-    "password": "Bebiai20!8",
-    "database": "dog_date_v2_production",
-    "host": "boswood.org",
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
