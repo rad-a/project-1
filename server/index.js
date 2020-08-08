@@ -78,7 +78,7 @@ app.get('/home', async (req, res) => {
 			res.render('home', { 
 				pets: req.pets,
 				allUsers: allUsers,
-				username: username,
+				user: req.user,
 				numPets: req.user.numPets
 			});
 		}
