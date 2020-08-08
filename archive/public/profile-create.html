@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dog Date - Register</title>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/css/uikit.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js"></script>
+
+    <!-- Local Style -->
+    <link rel="stylesheet" href="css/homepage.css" />
+  </head>
+
+  <body>
+    <!--Registration-->
+
+    <div id="registerContainer">
+      <div class="uk-container">
+        <div
+          class="uk-position-center uk-text-center uk-animation-fade uk-overlay"
+          uk-margin
+        >
+          <h1 class="uk-heading-line uk-text-light uk-text-bolder">
+            Welcome to Dog Date!
+          </h1>
+
+          <h3 class="uk-text-bold">
+            Please fill out this form to use our webpage
+          </h3>
+
+          <img
+            data-src="images/login-corgi-small.png"
+            width=""
+            height=""
+            alt="Your browser doesn't support images and that makes puppy sad."
+            uk-img
+          />
+
+          <form
+            autocomplete="off"
+            method="post"
+            id="registerForm"
+            class="uk-width-1-5@m uk-align-center uk-animation-slide-bottom"
+            uk-margin
+          >
+            <input
+              required
+              id="userName"
+              earch
+              class="uk-input uk-form-large"
+              type="text"
+              placeholder="Your Name"
+            />
+            <input
+              required
+              id="dogName"
+              class="uk-input uk-form-large"
+              type="text"
+              placeholder="Your Dog's Name"
+            />
+            <input
+              required
+              id="dogAge"
+              class="uk-input uk-form-large"
+              type="text"
+              placeholder="Your Dog's Age"
+            />
+            <select
+              id="dogBreed"
+              required
+              class="uk-select uk-form-large"
+              type="text"
+            >
+            </select>
+            <select
+              id="dogGender"
+              required
+              class="uk-select uk-form-large"
+              type="text"
+            >
+              <option value="">Your Dog's Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <button
+              id="registerSubmit"
+              class="uk-button uk-button-primary uk-width-1-1"
+            >
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Local Scripts -->
+    <script src="scripts/registration.js" type="text/javascript"></script>
+  </body>
+</html>
