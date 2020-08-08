@@ -10,9 +10,15 @@ const cors = require('cors');
 const { userController, petController } = require('./controllers');
 const clientDir = path.join(__dirname, '../client');
 
+
 // Express App Setup
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Socket.io Setup
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const socket = require('./socket')(io);
 
 // Express JSON Middleware Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -87,9 +93,16 @@ app.get('/register', function(req, res){
 	}
 });
 
+
+// Socket Route
+app.get('/sms', async (req, res) => {
+	res.sendFile(path.join(clientDir, '/sms/index.html'))
+});
+
+
 // Server Init
 db.sequelize.sync().then(() => {
-	app.listen(PORT, () => {
-		console.log(`Server running, listening on port ${PORT}`);
+	http.listen(PORT, function () {
+		console.log("App now listening at localhost:" + PORT);
 	});
 });

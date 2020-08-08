@@ -30,8 +30,6 @@ block content
 		div(class="uk-width-1-1@s uk-width-3-4@m uk-width-4-5@l section", id="mainArea")
 
 
-
-
 			div(class="uk-section-secondary infoSections uk-margin", id="pets")
 				h1(class="uk-align-center uk-heading-small") Your pets
 				hr
@@ -43,8 +41,6 @@ block content
 								p= val.petBreed
 								p= val.petGender
 								button(class="uk-button uk-button-danger", data-id=val.id, id="petRemoveBtn") Remove
-							
-
 
 						
 			div(class="uk-section-secondary uk-margin-bottom infoSections", id="parkMap")
@@ -67,8 +63,6 @@ block content
 						
 						div(id="map", class="uk-width-1-1@s uk-width-3-4@m")
 
-
-
 			
 			div(class="uk-section-secondary infoSections uk-margin-bottom", id="parkList")
 				h1(class="uk-align-center uk-heading-small") Park List
@@ -82,18 +76,25 @@ block content
 						div(id="parkInfo", class="uk-overflow-auto uk-height-1-1")
 
 
-
-
 			div(class="uk-section-secondary infoSections", id="forecast")
 				h1(class="uk-align-center uk-heading-small") Weather Forecast
 				hr
 				div(id="forecast_div", class="uk-grid-column-small uk-flex-center weatherEl uk-grid uk-grid-stack", uk-grid)
 
 
-
-
 	div(class="uk-section-secondary")
 		a(class="uk-button uk-width-1-1", href="#") Back to Top
+
+	div(id="chatWindow", uk-offcanvas="flip: true; overlay: true")
+		div(class="uk-offcanvas-bar")
+			button(class="uk-offcanvas-close", uk-close)
+			h1(class="uk-heading-medium") Chat
+			p Chat goes here 
+			p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa magnam voluptatem quos eius tempore accusantium illum! Modi dignissimos, provident quia mollitia labore odio obcaecati, at tempore eos, voluptatem odit distinctio?
+
+
+	div(class="rotate uk-position-center-right uk-position-fixed")
+		button(class="uk-display-block uk-button uk-button-secondary", uk-toggle="target: #chatWindow") Chat
 
 
 block localScripts
