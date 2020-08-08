@@ -15,20 +15,10 @@ block profile
             //Information about user's pet(s)
             
             div(class="cell text-center profileHeader" id="petAreaHeader")
-                h5 [ user ]'s Pets 
+                h5= user.username + "'s Pets" 
 
             div(id="petArea")
                 //-Set id server-side
-                div(class="grid-x petInfo" id="petId1")
-                    div(class="cell medium-7 medium-offset-1 petImage")
-                        a(href="/assets/images/dog1.jpg" target="_blank")
-                            img(src="/assets/images/dog1.jpg") 
-                        
-                    div(class="cell medium-3 PetDetails")
-                        li Spot
-                        li 6 years old
-                        li Female
-                        li Calm
                 
                 each val in pets
                     div(class="grid-x petInfo" id= "pet"+val.id)
