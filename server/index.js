@@ -8,7 +8,9 @@ const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
 const { userController, petController } = require('./controllers');
+const { sequelize } = require('./models/index');
 const clientDir = path.join(__dirname, '../client');
+const { Op } = require('sequelize');
 
 
 // Express App Setup
@@ -64,8 +66,15 @@ app.get('/', function(req, res){
 app.get('/home', async (req, res) => {
 
 	let username = req.user.username;
+	let thisID = req.user.id;
 
-	let allUsers = await db.User.findAll();
+	let allUsers = await db.User.findAll({
+		where: {
+			id: {
+				[Op.ne]: thisID
+			}
+		}
+	});
 	
 
 	if(req.user){
