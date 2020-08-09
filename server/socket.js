@@ -57,6 +57,8 @@ module.exports = function(io) {
            
             Message.create({sender:message.sender,reciever:message.receiver, message:message.message})
         })
+  
+
     } )
 
 

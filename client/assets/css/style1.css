@@ -1,57 +1,65 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
 
-/* #chat-room{
-    width: 300px;
-    height: 600px; */
-    /* background-color: tomato; */
-/* } */
+
 #instant-dm{
-    /* width: 500px;
-    height: 400px; */
-    /* background-color: tomato; */
+  
     height: 90%;
     
 }
 #keypad{
-    height: 8%;
+    height: 5%;
 }
-/* h1{
-    background-color: yellow;
-} */
+
 
 #container{
-    border: 4px black solid;
+    background-color: #182131;
+   
 }
-
+#feedback{
+    color: white;
+}
 #sideBar{
-    border: 4px black solid;
+    background-color:#222B3C;
+    
 }
 #main{
     height: 100VH;
     min-height:100vh;
 }
 #messageBar{
-    background-color: tomato;
-    height: 100VH;
+    /* background-color: #191970; */
+    height:auto;
     min-height:100vh;
 }
 
 #thisUser{
-    margin-bottom: 5%;
+    margin-bottom: 1.5%;
+    border-radius: 25px;
 }
-
+.allUsers{
+    background-color: #FF8C00;
+}
+.allUsersOnline{
+    background-color: #7FFFD4;
+}
+#toWho{
+    margin-left: 5%;
+    width: 200px;
+    background-color: tomato;
+    border-radius: 25px;
+}
 
 .dmout{
     position: relative;
     margin-left: 20px;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #A8DDFD;
+    background-color: #20B2AA;
     width: 200px;
     height: 50px;
     text-align: left;
     font: 400 .9em 'Open Sans', sans-serif;
-    border: 1px solid #97C6E3;
+    border: 1px solid #20B2AA;
     border-radius: 10px;
 }
 
@@ -61,12 +69,12 @@
     margin-bottom: 10px;
     margin-left: calc(100% - 240px);
     padding: 10px;
-    background-color: #96f8cf;
+    background-color: #00FF7F;
     width: 200px;
     height: 50px;
     text-align: left;
     font: 400 .9em 'Open Sans', sans-serif;
-    border: 1px solid #dfd087;
+    border: 1px solid #00FF7F;
     border-radius: 10px;
 }
 

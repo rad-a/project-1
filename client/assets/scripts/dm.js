@@ -24,8 +24,8 @@ $('#sendName').click(function(e){
 socket.on("user",function(data){
    //for testing only to be deleted
     console.log("front-end "+data)
-        $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
-        // $(`button[name=${data}`).removeClass( "redDot" ).addClass( "greenDot" );
+        // $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
+        $(`button[value=${data}`).removeClass( "allUsers" ).addClass( "allUsersOnline" );
     })
     
 
@@ -40,10 +40,10 @@ $("document").ready(function(){
           
           console.log(result[0].username)
           for (let i=0;i<result.length; i++){
-            $("#online").append($(`<button id=thisUser class="btn btn-primary" value=${result[i].username}>${result[i].username}</button>`))
+            $("#online").append($(`<button id=thisUser class="list-group-item allUsers" value=${result[i].username}>${result[i].username}</button>`))
           }
       })
-      console.log(sender)
+      
 })
 socket.on("user",function(data){
     console.log("front-end "+data)
@@ -72,8 +72,9 @@ $('#online').on('click','#thisUser',function(e){
         e.preventDefault();
     let thisUser= $(this).val()
     sendTo=thisUser
-    console.log("sending to "+sendTo)
-    console.log("sender "+sender)
+    // console.log("sending to "+sendTo)
+    // console.log("sender "+sender)
+    $("#textingTo").append($(`<img src="img_girl.jpg" width="10" height="10"><h3 id=toWho value=${sendTo}>Recipient: ${sendTo}</h3>`))
     //make an ajax call 
     $.ajax({
         url: `/api/msgs/${sender}/${sendTo}`,
@@ -84,7 +85,7 @@ $('#online').on('click','#thisUser',function(e){
           for (let i=0;i<result.length; i++){
             $("#incoming").append($('<p class=dmRetrieve>').text(`${result[i].sender} said: ${result[i].message}`))
           }
-        //   $("#incoming").append($('<li>').text(JSON.parse(`${result}`)))
+         
         });
 
     })
@@ -111,12 +112,16 @@ function emitChat(value){
         message:value
     });
     $("input:text").val('');
-    $("#incoming").append($('<p class=dmout>').text(`You:${value}`));
+    $("#incoming").append($('<p class=dmout>').text(`You:  
+    ${value}`));
+
 }
 
 //retrieve chat measage from back end when users are online
 socket.on("messageRecieved",function(message){
     console.log(message)
-    $("#incoming").append($('<p class=dmIn>').html(`${message.sender} said:${message.message}`))
+    $("#incoming").append($('<p class=dmIn>').html(`${message.sender} says:  ${message.message}`))
+
 
 })
+

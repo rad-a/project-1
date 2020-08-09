@@ -123,7 +123,7 @@ router.get('/allUsers',async (req, res) => {
 	try{
 	
 		const allUsers=await User.findAll({})
-		console.log(allUsers);
+		// console.log(allUsers);
 		res.send(allUsers)
 	} catch(err){
 		console.log(err);

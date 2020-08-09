@@ -156,12 +156,13 @@ app.get('/sms', async (req, res) => {
 });
 
 // Server Init
-db.sequelize.sync({force:true}).then(() => {
+db.sequelize.sync({force:false}).then(() => {
 	http.listen(PORT, function () {
 		console.log("App now listening at localhost:" + PORT);
 	});
 });
 
 //added bottom
-//calling socket.js imported file
+//calling socket.js imported file and route
+require("./controllers/msg-controller")(app)
 require("./socket")(io);
