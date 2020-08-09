@@ -44,9 +44,8 @@ module.exports = function(io) {
           console.log(usersArray)
     
           //emit user logged in to all sockets
-          //io.emit("user",data)
-		  // io.sockets.emit('chat', data)
-		  socket.broadcast.emit('user',data)
+        //   io.emit("user",data)
+          socket.broadcast.emit("user",data)
       })
     //socket.broadcast.emit("user",data)
         socket.on("chat", function(message){
@@ -59,5 +58,6 @@ module.exports = function(io) {
             Message.create({sender:message.sender,reciever:message.receiver, message:message.message})
         })
     } )
+
 
 }

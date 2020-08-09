@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+//changed bottom from require('./models/index')
 const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
@@ -20,7 +21,7 @@ const PORT = process.env.PORT || 8080;
 // Socket.io Setup
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const socket = require('./socket')(io);
+
 
 // Express JSON Middleware Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -160,12 +161,16 @@ app.get('/register', function(req, res){
 
 // Socket Route
 app.get('/sms', async (req, res) => {
-	res.sendFile(path.join(clientDir, '/sms/index.html'))
+	res.sendFile(path.join(clientDir, '../client/assets/index.html'))
 });
 
 // Server Init
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force:true}).then(() => {
 	http.listen(PORT, function () {
 		console.log("App now listening at localhost:" + PORT);
 	});
 });
+
+//added bottom
+//calling socket.js imported file
+require("./socket")(io);
