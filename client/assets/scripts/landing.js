@@ -4,7 +4,7 @@ const resultMsg = $("#resultMsg");
 $("#userLoginForm").on("submit", (event) => {
 	event.preventDefault();
 
-	let API_URL = "http://localhost:8080/user/login";
+	let API_URL = "/user/login";
 
 	$.ajax(API_URL, {
 		method: "POST",
@@ -30,7 +30,7 @@ $("#userRegisterForm").on("submit", (event) => {
 
 	let link = $("#profileImg").val();
 
-	let API_URL = "http://localhost:8080/user/register";
+	let API_URL = "/user/register";
 	if(checkURL(link) || link.length == 0){
 
 		if(link.length == 0){
@@ -78,7 +78,7 @@ $("#userRegisterForm").on("submit", (event) => {
 $('#petAddForm').on('submit', event => {
 	event.preventDefault();
 
-	let API_URL = "http://localhost:8080/pets/add";
+	let API_URL = "/pets/add";
 
 	$.ajax(API_URL, {
 		method: 'POST',
