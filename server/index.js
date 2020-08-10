@@ -158,7 +158,6 @@ app.get('/profile/:id', async (req, res)=>{
 app.get('/weather', function(req, res){
 	let allUsers = db.User.findAll();
 	let username = req.user.username;
-	let userID = req.user.id;
 
 
 	
@@ -169,7 +168,7 @@ app.get('/weather', function(req, res){
 			pets: req.pets,
 			allUsers: allUsers,
 			username: username,
-			userID: userID,
+			user: req.user,
 			numPets: req.user.numPets
 
 		});
