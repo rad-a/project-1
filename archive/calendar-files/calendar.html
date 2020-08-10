@@ -56,7 +56,7 @@
 									<form class="uk-form-select data-uk-form-select">
 										<label class="uk-form-label" for="form-stacked-text">Please Select A Date</label>
 										<br>
-										<input type="date" data-uk-datepicker="{format:'YYYY-MM-DD'}">
+										<input class="date" type="date" data-uk-datepicker="{format:'YYYY-MM-DD'}">
 									</form>
 									<br>
 									<form class="uk-form-stacked">
@@ -64,18 +64,18 @@
 										<div class="uk-margin">
 											<label class="uk-form-label" for="form-stacked-text">Title of Event</label>
 											<div class="uk-form-controls">
-												<input class="uk-input" id="form-stacked-text" type="text">
+												<input class="uk-input title" id="form-stacked-text" type="text">
 											</div>
 										</div>
 										<div class="uk-margin">
 											<label class="uk-form-label" for="form-stacked-text">Optional Details</label>
 											<div class="uk-form-controls">
-												<input class="uk-input" id="form-stacked-text" type="text">
+												<input class="uk-input details" id="form-stacked-text" type="text">
 											</div>
 										</div>
 									</form>
 									<button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-									<button class="uk-button uk-button-primary" type="button">Save</button>
+									<button id="save-btn" class="uk-button uk-button-primary" type="button">Save</button>
 								</div>
 							</div>
 					</ul>

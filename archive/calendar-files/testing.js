@@ -44,11 +44,6 @@ monthHeader.innerText = monthHeaderString;
 
 document.getElementById('plannerdiv').appendChild(monthHeader);
 
-//create add event button
-/*const addEvent = document.querySelector()
-addEvent.setAttribute('onclick',createEvent());
-monthHeader.append(addEvent);*/
-
 var weekHeader = document.createElement("DIV");
 weekHeader.setAttribute('class','weekHeader');
 document.getElementById('plannerdiv').appendChild(weekHeader);
@@ -124,7 +119,7 @@ for(var i = startWeek; i<=endWeek;i++){
             plusIcon.classList.add('fas');
             plusIcon.classList.add('fa-calendar-plus');
             plusIcon.classList.add('icon');
-            plusIcon.setAttribute('onclick',createEvent(this))
+           // plusIcon.setAttribute('onclick',createEvent(this))
             dayFooterElement.appendChild(plusIcon);
 
             dayElement.appendChild(dayBodyElement);
@@ -145,12 +140,23 @@ var firstDay = startDate.day();
 var lastNumericalDay = endDate.date(); // for mar: 31
 var lastDay = endDate.day(); 
 
-for(var i = firstNumericalDay; i<=lastNumericalDay;i++){
+//for(var i = firstNumericalDay; i<=lastNumericalDay;i++){}
     
     //a check should be made to see what week we're in and 
-}
+
+//click event for save button to write data to backend
+const save= document.getElementById('save-btn')
+const date= document.getElementsByClassName('date')
+const title= document.getElementsByClassName('title')
+const details= document.getElementsByClassName('details')
+$(save).on('click', function() {
+    //date.val()
+    //title.val() send to table
+    //details.val send to backend table
+
+    //render new event to table
+
+})
 
 
-function createEvent(element) {
-
-}
+ 
