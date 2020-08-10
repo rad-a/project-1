@@ -13,17 +13,17 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                     //user info, pet, and location
                 div(class="card-user-bio")
                     h4 Hi, 
-                        span(id="username")= username
+                        span(id="username")= user.username
                             
                     p  
                         if numPets == 1 
-                            span(id="pets")= numPets + " "
+                            span(id="pets")= user.numPets + " "
                                 span fur baby!
                         else if numPets <= 1
                         
                             h6 Such empty! Add a pet. 
                         else 
-                            span(id="pets")= numPets + " "
+                            span(id="pets")= user.numPets + " "
                                 span fur babies!
                         
                         </p>
