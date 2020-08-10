@@ -12,6 +12,8 @@ const { userController, petController } = require('./controllers');
 const { sequelize } = require('./models/index');
 const clientDir = path.join(__dirname, '../client');
 const { Op } = require('sequelize');
+const controllers = require('./controllers');
+
 
 
 // Express App Setup
@@ -43,6 +45,7 @@ app.use(authMiddleware);
 // Custom Routing
 app.use('/user', userController);
 app.use('/pets', petController);
+
 
 // CORS Setup
 app.use(cors());
@@ -193,6 +196,15 @@ app.get('/sms', async (req, res) => {
 	// res.render('test.pug', { 
 	
 	// })
+});
+
+// Calendar route
+app.get('/calendar', async (req, res) => {
+	if(!req.user){
+		res.redirect('/');
+	} else {
+		res.render('planner');
+	}
 });
 
 // Server Init
