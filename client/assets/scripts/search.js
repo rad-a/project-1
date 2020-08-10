@@ -32,35 +32,40 @@ $('#petSearchForm').on('submit', event => {
             petGender: $('#pet-gender').val(),
             petAge: $('#pet-age').val()
         }
-    }).then(data => {
+    }).then(function(data) {
         // petArray.push(data).value();
         console.log(data)
         
-        return(data);
+        // return(data);
+        $("#allUsers").html('');
 
-    })
+    
 
+    // let results = data.response[i];
+
+// getSearcResults(data)
     for(let i = 0; i < data.length; i++ ) {
         let petMatch = data.response[i];
         function insert() {
             $('<div class="cell users">').prependTo($('#allUsers'));
             $('<div class="textOverlay textCtr">').prependTo($('#allUsers'));
 
-        }
+        
         // let petMatchDiv = allUsers;
         let usersPet = $('<div class="cell users">'); //
           let match = $('<div class="textOverlay textCtr">'); //textOverlay textCtr
-            let matchName = $('<h5 class="user-name">');//user-name
+            let matchName = $('<h5 class="user-name">' + petMatch[i].petName + '</h5>');//user-name
             let matchFlex = $('<div class="makeFlex">'); //makeFlex
                 let overlay = $('<div class="overlayInfo float-left">');//overlayInfo float-left
-                    let matchP = $('<p></p>')
-                        let matchIcon = $('<i class="fa fa-paw big"') ;
-                        let matchpetNum = $('<span class="pet">');
-          let overlayColor = $('<div class="overlay ctr">');
-            // let matchLink = $('<a href=/profile/'+ pet)
+                    // let matchP = $('<p></p>')
+                        // let matchIcon = $('<i class="fa fa-paw big"') ;
+                        // let matchpetNum = $('<span class="pet">');
+            let overlayColor = $('<div class="overlay ctr">');
+            let matchLink = $('<a href=/profile/'+ petMatch[i].UserId)
             let matchBtn = $('<button class="hollow button small primary" type="button">View Profile!</button>')
 
-            $(overlayColor).append(matchBtn);
+            $(matchLink).append(matchBtn);
+            $(overlayColor).append(matchLink);
             $(matchP).append(matchpetNum);
             $(matchP).prepend(matchIcon);
             $(overlay).append(matchP);
@@ -71,12 +76,15 @@ $('#petSearchForm').on('submit', event => {
             $(usersPet).append(overlayColor);
 
 
-
         $("#allUsers").append(usersPet);
-}
+        console.log("user id:" + petMatch.UserId);
+}}
 
+    })
 })
 
 getBreeds();
+insert();
+
 
 
