@@ -66,7 +66,7 @@ app.get('/', function(req, res){
 // Home page
 app.get('/home', async (req, res) => {
 	let username = req.user.username;
-	let userID = req.user.id;
+	let thisID = req.user.id;
 
 
 	let allUsers = await db.User.findAll({
@@ -90,8 +90,7 @@ app.get('/home', async (req, res) => {
 			res.render('home', { 
 				pets: req.pets,
 				allUsers: allUsers,
-				username: username,
-				userID: userID,
+				user: req.user,
 				numPets: req.user.numPets
 			});
 		}
