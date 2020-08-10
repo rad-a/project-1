@@ -30,19 +30,20 @@
 let socket = require('socket.io');
 let {Message} = require("./models");
 const { Op } = require("sequelize");
+const {myProfile}= require('./index')
 module.exports = function(io) {
     let usersArray=[];
 
     io.on("connection", (socket)=>{
       // console.log(socket)
         console.log('made socket connection with id:',socket.id);
-        
+        console.log('this is my prfofile'+ myProfile)
         socket.on("user", function(data){
           console.log("back-end "+data)
     
           usersArray[data]=socket.id;
           console.log(usersArray)
-    
+         
           //emit user logged in to all sockets
         //   io.emit("user",data)
           socket.broadcast.emit("user",data)
@@ -57,6 +58,13 @@ module.exports = function(io) {
            
             Message.create({sender:message.sender,reciever:message.receiver, message:message.message})
         })
+
+        socket.on("keepNotify", function(data){
+          // console.log('i am running this '+data)
+          socket.broadcast.emit("user",data)
+      })
+  
+
     } )
 
 

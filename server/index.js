@@ -78,6 +78,8 @@ app.get('/home', async (req, res) => {
 	});
 	
 
+	
+	
 	if(req.user){
 		if(req.pets.length == 0){
 			res.render('petAdd',{
@@ -107,6 +109,8 @@ app.get('/social', (req, res)=>{
 	}
 });
 
+// let myProfile;
+// module.exports={myProfile}
 app.get('/profile/:id', async (req, res)=>{
     if(!req.user){
 		res.render('error');
@@ -116,13 +120,13 @@ app.get('/profile/:id', async (req, res)=>{
 				id: req.params.id
 			}
 		});
-
+		
 		const targetUserPets = await db.Pet.findAll({
 			where: {
 				UserId: targetUser.id
 			}
 		});
-
+		
 		res.render('profile', {
 			user: targetUser,
 			pets: targetUserPets,
@@ -161,7 +165,13 @@ app.get('/register', function(req, res){
 
 // Socket Route
 app.get('/sms', async (req, res) => {
+	// let allUsers = db.User.findAll();
+	// let username = req.user.username;
 	res.sendFile(path.join(clientDir, '../client/assets/index.html'))
+	
+	// res.render('test.pug', { 
+	
+	// })
 });
 
 // Server Init
@@ -172,5 +182,6 @@ db.sequelize.sync().then(() => {
 });
 
 //added bottom
-//calling socket.js imported file
+//calling socket.js imported file and route
+require("./controllers/msg-controller")(app)
 require("./socket")(io);
