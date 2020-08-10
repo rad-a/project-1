@@ -90,7 +90,7 @@ router.delete('/', async (req, res) => {
 		return;
 	}
 
-	console.log(req.body);
+	//console.log(req.body);
 
 	const result = await Pet.destroy({
 		where: {

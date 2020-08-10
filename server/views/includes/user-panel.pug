@@ -8,18 +8,25 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                 // card's image
                 div(class="card-user-avatar")
                     a(href="/profile")
-                        img(src="/assets/images/4.jpg" alt="" class="profile-image")
+                        img(src= ""+ user.profileImg, alt="" class="profile-image")
                 
                     //user info, pet, and location
                 div(class="card-user-bio")
                     h4 Hi, 
-                        span(id="username")= userLetter
-
-                    span(class="location")
-                        span(class="location-icon fa fa-map-marker")
-                            pan(class="location-text") Austin, TX
+                        span(id="username")= user.username
+                            
                     p  
-                        span(id="pets")= numPets + " "
+                        // Unnecessary logic
+                        //if numPets == 1 
+                            span(id="pets")= user.numPets + " "
+                                span fur baby!
+                        //else if numPets <= 1
+                        
+                            h6 Such empty! Add a pet. 
+                        //else 
+                            span(id="pets")= user.numPets + " "
+                                span fur babies!
+                        span(id="pets")= user.numPets + " "
                             span fur babies!
                         </p>
             
@@ -27,7 +34,9 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                 div(class="card-user-pets")
                     ul(class="menu", id="petCards")
                         each val in pets
-                            li(class="fa fa-paw" id="petRemoveBtn" data-id= val.id)= val.petName
+                            li(class="fa fa-paw" #id="totalPets" data-id= val.id)= val.petName
+                        else 
+                            li(class="far fa-sad-tear") Such empty. Why no pets?
 
                 div(class="add-pets text-center")
                     button(class="hollow center expanded button" href="#") 
@@ -36,7 +45,7 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                     
                 hr
 
-        div(class="panel-radius" id="weather")
+        div(class="panel-radius hide-for-small-only" id="weather")
 
             //-     | Current Weather 
             h5(id="currentDate")
@@ -56,4 +65,4 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                 p UV Index: 
                     span(id="uv-index")
                 p
-                    a(class="smallPrint" href="/forecast" alt="") View 6-day forecast
+                    a(class="smallPrint" href="/weather" alt="") View 6-day forecast

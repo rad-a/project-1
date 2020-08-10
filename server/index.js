@@ -9,7 +9,9 @@ const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
 const { userController, petController } = require('./controllers');
+const { sequelize } = require('./models/index');
 const clientDir = path.join(__dirname, '../client');
+const { Op } = require('sequelize');
 
 
 // Express App Setup
@@ -63,10 +65,18 @@ app.get('/', function(req, res){
 
 // Home page
 app.get('/home', async (req, res) => {
-
 	let username = req.user.username;
+	let thisID = req.user.id;
 
-	let allUsers = await db.User.findAll();
+
+	let allUsers = await db.User.findAll({
+		where: {
+			id: {
+				[Op.ne]: thisID
+			}
+		}
+	});
+	
 
 	
 	
@@ -80,7 +90,7 @@ app.get('/home', async (req, res) => {
 			res.render('home', { 
 				pets: req.pets,
 				allUsers: allUsers,
-				username: username,
+				user: req.user,
 				numPets: req.user.numPets
 			});
 		}
@@ -91,17 +101,32 @@ app.get('/home', async (req, res) => {
 });
 
 
-app.get('/social', (req, res)=>{
+app.get('/messages', (req, res)=>{
+	let allUsers = db.User.findAll();
+	let username = req.user.username;
+	let userID = req.user.id;
+
+
+	
 	if(!req.user){
-		res.render('error')
-	} else {
-		res.render('social');
+		res.render('login');
+	} else{
+		res.render('messages', { 
+			pets: req.pets,
+			allUsers: allUsers,
+			username: username,
+			userID: userID
+
+		});
 	}
 });
 
 // let myProfile;
 // module.exports={myProfile}
 app.get('/profile/:id', async (req, res)=>{
+	let userID = req.user.id;
+	// let newUserID = targetUser.id;
+
     if(!req.user){
 		res.render('error');
 	} else {
@@ -121,7 +146,9 @@ app.get('/profile/:id', async (req, res)=>{
 			user: targetUser,
 			pets: targetUserPets,
 			numPets: req.user.numPets,
-			username: req.user.username
+			username: req.user.username,
+			userID: userID,
+			// newUserID: newUserID
 		});
 	}
 });
@@ -131,6 +158,8 @@ app.get('/profile/:id', async (req, res)=>{
 app.get('/weather', function(req, res){
 	let allUsers = db.User.findAll();
 	let username = req.user.username;
+	let userID = req.user.id;
+
 
 	
 	if(!req.user){
@@ -139,7 +168,10 @@ app.get('/weather', function(req, res){
 		res.render('weather', { 
 			pets: req.pets,
 			allUsers: allUsers,
-			username: username
+			username: username,
+			userID: userID,
+			numPets: req.user.numPets
+
 		});
 	}
 });
@@ -165,7 +197,7 @@ app.get('/sms', async (req, res) => {
 });
 
 // Server Init
-db.sequelize.sync({force:false}).then(() => {
+db.sequelize.sync().then(() => {
 	http.listen(PORT, function () {
 		console.log("App now listening at localhost:" + PORT);
 	});
