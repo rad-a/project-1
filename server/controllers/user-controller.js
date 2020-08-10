@@ -64,7 +64,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 	// Create object from request
 	const { username, password } = req.body;
-
+	
 	//console.log(req);
 
 	// Check if valid request
@@ -109,7 +109,9 @@ router.post('/logout', async (req, res) => {
 // WhoAmI
 router.get('/', (req, res) => {
 	// Check if user exists in request, then return
-	console.log(req);
+	// console.log(req);
+	
+	
 	if(req.user){
 		return res.send(req.user);
 	} else {
