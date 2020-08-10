@@ -19,6 +19,10 @@ module.exports = async function(req, res, next){
 			req.pets = pets;
 		}
 	}
+<<<<<<< HEAD
 	// console.log(req);
+=======
+	//console.log(req);
+>>>>>>> 2029ba5e6e100dd7326ef376a8c810dcf22b71b5
 	next();
 }

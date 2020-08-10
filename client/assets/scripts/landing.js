@@ -27,36 +27,52 @@ $("#userLoginForm").on("submit", (event) => {
 
 $("#userRegisterForm").on("submit", (event) => {
 	event.preventDefault();
-	console.log("form submitted");
+
+	let link = $("#profileImg").val();
 
 	let API_URL = "http://localhost:8080/user/register";
+	if(checkURL(link) || link.length == 0){
 
-	$.ajax(API_URL, {
-		method: "POST",
-		data: {
-			username: $("#username").val(),
-			password: $("#password").val(),
-			email: $("#email").val(),
-		},
-	})
-		.then(data => {
-			console.log(data);
-			if(data.code == 400){
-				modifyResultContainer('warning',data);
-				return;
-			} else {
-				const { user, authToken } = data;
-				setCookie("auth_token", authToken.token, 7);
-				window.location = "/";
-			}
-			/*if (user && authToken.token) {
-				setCookie("auth_token", authToken.token, 7);
-				window.location = "/";
-			} else {
-				throw new Error("something went wrong");
-			}*/
+		if(link.length == 0){
+			link = "https://i.imgur.com/ha9QImO.png";
+		}
+
+		$.ajax(API_URL, {
+			method: "POST",
+			data: {
+				username: $("#username").val(),
+				password: $("#password").val(),
+				email: $("#email").val(),
+				profileImg: link
+			},
 		})
-		.catch((err) => alert(err.responseText));
+			.then(data => {
+				console.log(data);
+				if(data.code == 400){
+					modifyResultContainer('warning',data);
+					return;
+				} else {
+					const { user, authToken } = data;
+					setCookie("auth_token", authToken.token, 7);
+					window.location = "/";
+				}
+				/*if (user && authToken.token) {
+					setCookie("auth_token", authToken.token, 7);
+					window.location = "/";
+				} else {
+					throw new Error("something went wrong");
+				}*/
+			})
+			.catch((err) => alert(err.responseText));
+
+	} else {
+		modifyResultContainer('warning',{
+			code: 401,
+			message: "Please enter a valid image link"
+		});
+	}
+
+	
 });
 
 $('#petAddForm').on('submit', event => {
@@ -84,6 +100,10 @@ $('#petAddForm').on('submit', event => {
 	});
 
 });
+
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
 
 function populateBreeds() {
 	$.ajax({
