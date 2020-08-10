@@ -29,11 +29,11 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="infoArea" data-stic
                             id="pet-age"
                             name="pet-age"
                     )
-                        option(value="Any" selected) Any
-                        option(value="Puppy") Puppy (<1 year)
-                        option(value="Young" ) Young (1-3 years)
-                        option(value="Adult") Adult (3-7 years)
-                        option(value="Senior") Senior (7+ years)
+                        option(value="0" selected) Any
+                        option(value="1") Puppy (<1 year)
+                        option(value="2" ) Young (1-3 years)
+                        option(value="3") Adult (3-7 years)
+                        option(value="4") Senior (7+ years)
 
                     label Size
                     select(
@@ -48,7 +48,7 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="infoArea" data-stic
                         option(value="Extra-large") Extra-large (100+ lbs)
 
                    
-                    button(type="button" class="primary button expanded search-button" id="petSearchSubmit")
+                    button(type="submit" class="primary button expanded search-button" id="petSearchSubmit")
                         | Search
                    
              
@@ -61,6 +61,10 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="infoArea" data-stic
 
             h5(class="smallHeader") Planned Play Dates 
 
+            a(href="/planner")
+                button(type="button" class="primary button expanded search-button" id="plannerLink")
+                    | View Planner
+
             //-   <!--   Todo items go here  -->
 
         hr
@@ -72,8 +76,8 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="infoArea" data-stic
         
         //- hr
 
-        div(class="panel-radius" id="events")
+        //- div(class="panel-radius" id="events")
 
-            h5(class="smallHeader") Nearby Events
+        //-     h5(class="smallHeader") Nearby Events
 
             
