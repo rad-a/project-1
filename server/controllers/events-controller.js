@@ -25,46 +25,47 @@ module.exports = function(app) {
     });
   });
 
-  // Get route for retrieving a single post
+  // Get route for retrieving a single event
+  //functionality to search events by date later?
   app.get("/api/posts/:date", function(req, res) {
     db.events.findOne({
       where: {
         date: req.params.date
       }
-    }).then(function(dbPost) {
-      console.log(dbPost);
-      res.json(dbPost);
+    }).then(function(events) {
+      console.log(events);
+      res.json(events);
     });
   });
 
   // POST route for saving a new post
-  app.post("/api/posts", function(req, res) {
-    db.Post.create(req.body).then(function(dbPost) {
-      res.json(dbPost);
+  app.post("/api/events", function(req, res) {
+    db.events.create(req.body).then(function(events) {
+      res.json(events);
     });
   });
 
   // DELETE route for deleting posts
-  app.delete("/api/posts/:id", function(req, res) {
-    db.Post.destroy({
+  app.delete("/api/posts/:date", function(req, res) {
+    db.events.destroy({
       where: {
-        id: req.params.id
+        date: req.params.date
       }
-    }).then(function(dbPost) {
-      res.json(dbPost);
+    }).then(function(events) {
+      res.json(events);
     });
   });
 
   // PUT route for updating posts
-  app.put("/api/posts", function(req, res) {
-    db.Post.update(
+  app.put("/api/events", function(req, res) {
+    db.events.update(
       req.body,
       {
         where: {
-          id: req.body.id
+          date: req.body.date
         }
-      }).then(function(dbPost) {
-      res.json(dbPost);
+      }).then(function(events) {
+      res.json(events);
     });
   });
 };
