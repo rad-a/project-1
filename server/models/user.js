@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-	  User.hasMany(models.AuthToken);
-    User.hasMany(models.Pet);
-    User.hasMany(models.Event)
+	  User.hasMany(models.authToken);
+    User.hasMany(models.pet);
+    User.hasMany(models.events)
     }
   };
   User.init({
