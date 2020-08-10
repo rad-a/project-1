@@ -14,12 +14,15 @@ let sender=$('#petAreaHeader').children().val();
 let message=''
 let find=$("h5").val()
 let notifier=''
+//this variable hepls make sure messaged only appends/show on specific screen(stops 3 user messages from showing on the same screen)
+let conversationWith=''
 
 $('#sendName').click(function(e){
      //for testing only to be deleted
     e.preventDefault();
     console.log("emiting")
     sender= $("#from").val()
+    //emiting here
     socket.emit("user",sender)
     console.log("this is the result"+ find)
     $(`button[value=${sender}`).hide();
@@ -84,6 +87,7 @@ $('#online').on('click','#thisUser',function(e){
     $("#textingTo").empty(),
     $("#incoming").empty()
     $("#textingTo").append($(`<h3 id=toWho value=${sendTo}>Recipient: ${sendTo}</h3>`))
+    conversationWith=sendTo
     //make an ajax call 
     $.ajax({
         url: `/api/msgs/${sender}/${sendTo}`,
@@ -108,6 +112,7 @@ $('#send').click(function(e){
     alert("Text must be filled out");
     return false
     }else{
+        // calling my emit function
         emitChat(message)
     }    
     
@@ -128,7 +133,10 @@ function emitChat(value){
 //retrieve chat measage from back end when users are online
 socket.on("messageRecieved",function(message){
     console.log(message)
+    if(message.sender==conversationWith){
     $("#incoming").append($('<p class=dmIn>').html(`${message.sender} says:  ${message.message}`))
+    }
+    // $("#incoming").append($('<p class=dmIn>').html(`${message.sender} says:  ${message.message}`))
     $(`#newSms[value=${message.sender}`).css("visibility", "visible")
 
 })
