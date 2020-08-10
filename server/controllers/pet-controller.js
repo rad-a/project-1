@@ -110,7 +110,7 @@ router.get("/search", async (req, res) => {
 	} else {
 		res.send({
 			code: 400,
-			message: "Oops, look like something went wrong.",
+			message: "An error occured",
 		});
 		return;
 	}

@@ -1,7 +1,4 @@
-// const { format } = require("sequelize/types/lib/utils");
-
 const dogAPIKey = 'e5a7d34e-abed-4bdf-80e2-2f1fd529fa6d';
-
 
 function getBreeds() {
 	$.ajax({
@@ -22,21 +19,7 @@ function getBreeds() {
 	});
 }
 
-
-
-// function getAgeRange() {
-
-// }
-// let petBreed =
-// let petGender = 
-// let petAge =
-// let petSize =
-// let petBreed = $('#pet-breed').val();
-// let petGender = $('#pet-gender').val();
-// let petAge = $('#pet-age').val();
-// let petSize = $('#pet-size').val();
-
-// let petArray = [];
+//Get pet based on user-input
 
 $('#petSearchForm').on('submit', event => {
     event.preventDefault();
@@ -52,42 +35,47 @@ $('#petSearchForm').on('submit', event => {
     }).then(data => {
         // petArray.push(data).value();
         console.log(data)
+        
         return(data);
+
     })
 
+    for(let i = 0; i < data.length; i++ ) {
+        let petMatch = data.response[i];
+        function insert() {
+            $('<div class="cell users">').prependTo($('#allUsers'));
+            $('<div class="textOverlay textCtr">').prependTo($('#allUsers'));
+
+        }
+        // let petMatchDiv = allUsers;
+        let usersPet = $('<div class="cell users">'); //
+          let match = $('<div class="textOverlay textCtr">'); //textOverlay textCtr
+            let matchName = $('<h5 class="user-name">');//user-name
+            let matchFlex = $('<div class="makeFlex">'); //makeFlex
+                let overlay = $('<div class="overlayInfo float-left">');//overlayInfo float-left
+                    let matchP = $('<p></p>')
+                        let matchIcon = $('<i class="fa fa-paw big"') ;
+                        let matchpetNum = $('<span class="pet">');
+          let overlayColor = $('<div class="overlay ctr">');
+            // let matchLink = $('<a href=/profile/'+ pet)
+            let matchBtn = $('<button class="hollow button small primary" type="button">View Profile!</button>')
+
+            $(overlayColor).append(matchBtn);
+            $(matchP).append(matchpetNum);
+            $(matchP).prepend(matchIcon);
+            $(overlay).append(matchP);
+            $(matchFlex).append(overlay);
+            $(match).append(matchFlex);
+            $(match).prepend(matchName);
+            $(usersPet).prepend(match);
+            $(usersPet).append(overlayColor);
+
+
+
+        $("#allUsers").append(usersPet);
+}
+
 })
-    // let queryParams = {};
-
-
-    // petBreed = $('#pet-breed').val();
-
-// console.log(queryURL+$param(queryParams))
-// return queryURL + $.$param(queryParams);
-
-
-
-    // const petSearchForm = {
-    // pBreed: document.getElementById('pet-breed'),
-    // pGender: document.getElementById('pet-gender'),
-    // pAge: document.getElementById('pet-age'),
-    // pSize: document.getElementById('pet-size'),
-    // pSubmit: document.getElementById('petSearchSubmit')
-// });
-// console.log(petSearchForm);
-
-// petSearchForm.pSubmit.addEventListener('click', () => { 
-//     // console.log('button pressed');
-//     const request = new XMLHttpRequest();
-
-//     request.onload = () => {
-//         console.log(request.responseText);
-//     }
-
-//     request.open('post', )
-// })
-
-// })
-
 
 getBreeds();
 
