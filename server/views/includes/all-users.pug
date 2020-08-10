@@ -1,5 +1,5 @@
-article(class="grid-container" id="allUsersDiv")
-	p.text-center Connect with other users in your area and make new bff for your dog!
+article(class="grid-container fluid" id="allUsersDiv")
+	p.text-center Connect with other users in your area and make a new bff for your dog!
 	div(class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-5 allUsers")
 		each val in allUsers
 			div(class="cell users")
@@ -19,5 +19,5 @@ article(class="grid-container" id="allUsersDiv")
 								i(class="fa fa-user big")
 							
 				div(class="overlay ctr")
-					a(href="/profile/"+val.id target="_blank")
+					a(href="/profile/"+val.id)
 						button(type="button" class="hollow button small primary") View profile!
