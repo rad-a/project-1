@@ -158,15 +158,18 @@ nav {
 	box-shadow: 5px 5px 10px black;
 } */
 
-.mapArea {
-	justify-content: center;
-}
 
-.parkInfoArea,
+
+/* .parkInfoArea,
 .mapArea {
 	display: flex;
-	margin-bottom: 20px;
-}
+	margin-bottom: 20px; */
+/* }
+
+.mapArea {
+	/* justify-content: center; */
+	/* flex-direction: column; */
+/* } */
 
 #radiusOptions, #radiusOptions #submit  {
 	margin-bottom: 3px;
@@ -177,13 +180,18 @@ nav {
 } */
 
 #map {
-	height: 450px;
-	width: 700px;
+	/* height: 450px;
+	width: 700px; */
+	width: 100%;
+	height: 100%;
+	/* overflow: scroll; */
+	background-color: lightgreen;
+	border-radius: .2rem;
 }
 
-.parkInfoArea > div {
+/* .parkInfoArea > div {
 	height: 600px;
-}
+} */
 
 #parkInfo {
 	padding: 20px;
@@ -413,9 +421,9 @@ forecast uk-width-1-2@s uk-width-1-3@l   */
 	#weather {
 		border-radius: 0 0 3px 3px !important;
 	} */
-
+/* 
 	#map {
 		height: 500px;
 		width: 100%;
-	}
+	} */
 }

@@ -27,22 +27,42 @@ function getBreeds() {
 // function getAgeRange() {
 
 // }
+// let petBreed =
+// let petGender = 
+// let petAge =
+// let petSize =
+// let petBreed = $('#pet-breed').val();
+// let petGender = $('#pet-gender').val();
+// let petAge = $('#pet-age').val();
+// let petSize = $('#pet-size').val();
+
+// let petArray = [];
 
 $('#petSearchForm').on('submit', event => {
     event.preventDefault();
 
-    let queryURL = "http://localhost:8080/pets";
+    let queryURL = "http://localhost:8080/pets/search";
+    $.ajax(queryURL, {
+        method: 'GET',
+        data: {
+            petBreed: $('#pet-breed').val(),
+            petGender: $('#pet-gender').val(),
+            petAge: $('#pet-age').val()
+        }
+    }).then(data => {
+        // petArray.push(data).value();
+        console.log(data)
+        return(data);
+    })
 
-    let queryParams = {};
+})
+    // let queryParams = {};
 
-    let petBreed = $('#pet-breed').val();
-    let petGender = $('#pet-gender').val();
-    let petAge = $('##pet-age').val();
-    let petSize = $('#pet-size').val();
+
     // petBreed = $('#pet-breed').val();
 
-console.log(queryURL+$param(queryParams))
-return queryURL + $.$param(queryParams);
+// console.log(queryURL+$param(queryParams))
+// return queryURL + $.$param(queryParams);
 
 
 
@@ -52,7 +72,7 @@ return queryURL + $.$param(queryParams);
     // pAge: document.getElementById('pet-age'),
     // pSize: document.getElementById('pet-size'),
     // pSubmit: document.getElementById('petSearchSubmit')
-});
+// });
 // console.log(petSearchForm);
 
 // petSearchForm.pSubmit.addEventListener('click', () => { 
@@ -69,6 +89,6 @@ return queryURL + $.$param(queryParams);
 // })
 
 
-// getBreeds();
+getBreeds();
 
 

@@ -278,7 +278,7 @@ color: white!important;
   background-color: rgba(0, 128, 128, 0.336);
 }
 #allUsersDiv {
-  min-height: 700px;
+  min-height: 400px;
 }
 
 .allUsers {
@@ -382,25 +382,27 @@ color: white!important;
   padding-right: 0.9375rem;
   padding-left: 0.9375rem;
   justify-content: center;
-  height: 1100px;
+  min-height: 1100px;
   margin: 2rem 0.9375rem !important;
   border-radius: 0.5rem;
   box-sizing: 5px 6px 6px;
+  display: flex!important;
+  flex-direction: column;
 }
 
-.mapInner {
-  height: 600px;
-}
+/* .mapInner {
+  min-height: 600px;
+} */
 
 #map {
-  height: 450px;
-  width: 700px;
+  /* min-height: 300px;
+  width: 400px; */
 }
 
 .parkInfoArea {
   display: flex;
   margin-bottom: 20px;
-  height: 400px;
+  min-height: 300px;
 }
 
 #temp {
