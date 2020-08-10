@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+//changed bottom from require('./models/index')
 const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
@@ -18,7 +19,7 @@ const PORT = process.env.PORT || 8080;
 // Socket.io Setup
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const socket = require('./socket')(io);
+
 
 // Express JSON Middleware Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,8 +68,9 @@ app.get('/home', async (req, res) => {
 
 
 	let allUsers = await db.User.findAll();
-	
 
+	
+	
 	if(req.user){
 		if(req.pets.length == 0){
 			res.render('petAdd',{
@@ -111,6 +113,8 @@ app.get('/messages', (req, res)=>{
 	}
 });
 
+// let myProfile;
+// module.exports={myProfile}
 app.get('/profile/:id', async (req, res)=>{
 	let userID = req.user.id;
 	// let newUserID = targetUser.id;
@@ -123,13 +127,13 @@ app.get('/profile/:id', async (req, res)=>{
 				id: req.params.id
 			}
 		});
-
+		
 		const targetUserPets = await db.Pet.findAll({
 			where: {
 				UserId: targetUser.id
 			}
 		});
-
+		
 		res.render('profile', {
 			user: targetUser,
 			pets: targetUserPets,
@@ -175,13 +179,23 @@ app.get('/register', function(req, res){
 
 // Socket Route
 app.get('/sms', async (req, res) => {
-	res.sendFile(path.join(clientDir, '/sms/index.html'))
+	// let allUsers = db.User.findAll();
+	// let username = req.user.username;
+	res.sendFile(path.join(clientDir, '../client/assets/index.html'))
+	
+	// res.render('test.pug', { 
+	
+	// })
 });
 
 // Server Init
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force:false}).then(() => {
 	http.listen(PORT, function () {
 		console.log("App now listening at localhost:" + PORT);
 	});
 });
 
+//added bottom
+//calling socket.js imported file and route
+require("./controllers/msg-controller")(app)
+require("./socket")(io);
