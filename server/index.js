@@ -199,6 +199,15 @@ app.get('/sms', async (req, res) => {
 	// })
 });
 
+// Calendar route
+app.get('/calendar', async (req, res) => {
+	if(!req.user){
+		res.redirect('/');
+	} else {
+		res.render('planner');
+	}
+});
+
 // Server Init
 db.sequelize.sync().then(() => {
 	http.listen(PORT, function () {
