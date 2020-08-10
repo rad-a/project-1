@@ -16,16 +16,18 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                         span(id="username")= user.username
                             
                     p  
-                        if numPets == 1 
+                        // Unnecessary logic
+                        //if numPets == 1 
                             span(id="pets")= user.numPets + " "
                                 span fur baby!
-                        else if numPets <= 1
+                        //else if numPets <= 1
                         
                             h6 Such empty! Add a pet. 
-                        else 
+                        //else 
                             span(id="pets")= user.numPets + " "
                                 span fur babies!
-                        
+                        span(id="pets")= user.numPets + " "
+                            span fur babies!
                         </p>
             
                     //User's registered pets
