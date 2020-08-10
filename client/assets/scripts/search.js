@@ -47,8 +47,9 @@ $('#petSearchForm').on('submit', event => {
     for(let i = 0; i < data.length; i++ ) {
         let petMatch = data.response[i];
         function insert() {
-            $('<div class="cell users">').prependTo($('#allUsers'));
-            $('<div class="textOverlay textCtr">').prependTo($('#allUsers'));
+            $('#allUsers').append()
+            $('<div class="cell users">').prepend($('#allUsers'));
+            $('<div class="textOverlay textCtr">').prepend($('#allUsers'));
 
         
         // let petMatchDiv = allUsers;
@@ -61,7 +62,7 @@ $('#petSearchForm').on('submit', event => {
                         // let matchIcon = $('<i class="fa fa-paw big"') ;
                         // let matchpetNum = $('<span class="pet">');
             let overlayColor = $('<div class="overlay ctr">');
-            let matchLink = $('<a href=/profile/'+ petMatch[i].UserId)
+            let matchLink = $('<a href="/profile/'+ petMatch[i].UserId + '">')
             let matchBtn = $('<button class="hollow button small primary" type="button">View Profile!</button>')
 
             $(matchLink).append(matchBtn);

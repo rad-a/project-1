@@ -47,11 +47,6 @@ body {
   overflow: hidden;
 }
 
-/* .petInfo a {
-  max-height: 260px;
-  object-fit: cover;
-  /* min-width: 100%; 
-} */
 
 .PetDetails {
   padding-left: 2rem;
@@ -374,7 +369,7 @@ color: white!important;
 
 .yOverflow {
   overflow-y: auto;
-  border: 1px solid #969677;
+  /* border: 1px solid #969677; */
 }
 
 .mapArea {
@@ -388,15 +383,6 @@ color: white!important;
   box-sizing: 5px 6px 6px;
   display: flex!important;
   flex-direction: column;
-}
-
-/* .mapInner {
-  min-height: 600px;
-} */
-
-#map {
-  /* min-height: 300px;
-  width: 400px; */
 }
 
 .parkInfoArea {
