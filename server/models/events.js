@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
-  events.init({
+  const events = sequelize.define("events", {
     Date: { 
       type: Sequelize.DATEONLY,
       validate: {
