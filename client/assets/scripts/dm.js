@@ -10,9 +10,9 @@ let socket = io();
 //step 6) retieve old messages saved to database
 
 let sendTo='';
-let sender=$('#petAreaHeader').children().val();
+let sender='';
 let message=''
-let find=$("h5").val()
+// let find=$("h5").val()
 let notifier=''
 //this variable hepls make sure messaged only appends/show on specific screen(stops 3 user messages from showing on the same screen)
 let conversationWith=''
@@ -24,7 +24,7 @@ $('#sendName').click(function(e){
     sender= $("#from").val()
     //emiting here
     socket.emit("user",sender)
-    console.log("this is the result"+ find)
+    // console.log("this is the result"+ find)
     $(`button[value=${sender}`).hide();
     $("#from").toggle();
     $("#sendName").toggle();
