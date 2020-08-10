@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Require Models
-const { Pet } = require('../models');
+const { Pet, User } = require('../models');
 
 //
 // Routes ------------------------------------------------------------
@@ -57,14 +57,24 @@ router.post('/add', async (req, res) => {
 		return;
 	}
 
-	const thisUser = req.user;
-
 	const pet = await Pet.create({
 		petName: req.body.petName,
 		petAge: req.body.petAge,
 		petBreed: req.body.petBreed,
 		petGender: req.body.petGender,
 		UserId: req.user.id
+	});
+
+	const petCount = await Pet.count({
+		where: {
+			UserId: req.user.id
+		}
+	});
+
+	await User.update({ numPets: petCount },{
+		where: {
+			id: req.user.id
+		}
 	});
 
 	res.send(pet);
@@ -80,7 +90,7 @@ router.delete('/', async (req, res) => {
 		return;
 	}
 
-	console.log(req.body);
+	//console.log(req.body);
 
 	const result = await Pet.destroy({
 		where: {

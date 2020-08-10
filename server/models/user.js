@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
 				msg: "Password must be between 8 and 32 characters in length"
 			}
 		}
-	}
+	},
+	numPets: DataTypes.INTEGER,
+	profileImg: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

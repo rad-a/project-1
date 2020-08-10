@@ -1,4 +1,4 @@
-* {
+/* * {
 	box-sizing: border-box !important;
 	margin: 0;
 	padding: 0;
@@ -12,10 +12,10 @@ body {
 	height: 100%;
 	width: 100%;
 	background-color: transparent !important;
-}
+} */
 
 body {
-	background-image: url("../images/zilker.jpg");
+	
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -27,30 +27,34 @@ body {
 	font-size: 16px;
 }
 
+body.background-image {
+	background-image: url("../images/zilker.jpg");
+}
+
 .form-container {
 	width: 50vw;
 	align-content: space-around;
 }
-
+/* 
 nav {
 	z-index: 980;
 	padding: 0 30px;
 	display: flex;
 	justify-content: space-between;
-}
+} */
 
-.headerText {
+/* .headerText {
 	font-family: "Roboto Slab", sans-serif;
-}
-
+} */
+/* 
 .uk-logo {
 	text-transform: uppercase;
-}
+} */
 
-.navLinks {
+/* .navLinks {
 	background: #f8f8f8;
-}
-
+} */
+/* 
 .navText {
 	color: #807f3c !important;
 	font-weight: 400;
@@ -63,13 +67,13 @@ nav {
 	min-height: 80px;
 	padding: 0 15px;
 	font-size: 15px;
-}
+} */
 
-.navText a {
+/* .navText a {
 	color: #807f3c !important;
-}
+} */
 
-.uk-navbar a:hover,
+/* .uk-navbar a:hover,
 .uk-navbar-nav li:hover {
 	background-color: #96abb0;
 	border-radius: 3px;
@@ -83,7 +87,7 @@ nav {
 
 #toggle {
 	display: none;
-}
+} */
 
 #main {
 	margin: auto;
@@ -96,7 +100,7 @@ nav {
 	flex-direction: column;
 }
 
-#userArea {
+/* #userArea {
 	padding-right: 25px;
 	padding-bottom: 5px;
 	opacity: 0.95;
@@ -106,15 +110,15 @@ nav {
 	display: flex;
 	flex-direction: column;
 	align-content: center;
-}
+} */
 
-#user {
+/* #user {
 	padding-top: 65px;
 	display: flex;
 	flex-direction: column;
-}
+} */
 
-#profileImage {
+/* #profileImage {
 	align-self: center;
 	height: 130px;
 	width: 130px;
@@ -124,15 +128,15 @@ nav {
 	color: #ffffff;
 	text-align: center;
 	line-height: 130px;
-}
+} */
 
-ul {
+/* ul {
 	padding-left: 0;
-}
+} */
 
-.userInfo li {
+/* .userInfo li {
 	list-style: none;
-}
+} */
 
 .uk-button {
 	border-radius: 3px;
@@ -146,13 +150,13 @@ ul {
 #mainArea {
 	padding-left: 10px;
 }
-
+/* 
 .infoSections {
 	border-radius: 20px;
 	padding: 32px;
 	opacity: 0.96;
 	box-shadow: 5px 5px 10px black;
-}
+} */
 
 .mapArea {
 	justify-content: center;
@@ -164,13 +168,13 @@ ul {
 	margin-bottom: 20px;
 }
 
-#radiusOptions {
+#radiusOptions, #radiusOptions #submit  {
 	margin-bottom: 3px;
 }
 
-#radiusOptions #submit {
+/* #radiusOptions #submit {
 	margin-bottom: 3px;
-}
+} */
 
 #map {
 	height: 450px;
@@ -212,7 +216,7 @@ ul {
 
 #searchResult h6 {
 	margin: 0 0 5px !important;
-	background-color: #46433e;
+	background-color: #09627e;
 	color: #d7e0e7;
 }
 
@@ -244,57 +248,62 @@ ul {
 }
 /* const forecastDiv = $("#forecast_div");
 forecast uk-width-1-2@s uk-width-1-3@l   */
-#weather {
+/* #weather {
 	background-color: #d7e0e7;
-}
-
+} */
+/* 
 #weather-icon {
 	width: 100px;
 	height: auto;
-}
+} */
 
-#temp {
+/* #temp {
 	margin: 0;
 	font-size: 35px;
-}
-
+} */
+/* 
 #currentDate {
 	font-size: 18px;
-}
-
+} */
+/* 
 #currentWeather {
 	margin-bottom: 10px;
-}
-#forecast_div {
+} */
+/* #forecast_div {
 	display: flex;
 	align-content: center;
 	width: 95%;
 	overflow-x: auto;
-}
-.forecast {
+} */
+/* .forecast {
 	padding: 16px;
 	margin: 3px !important;
 	border-radius: 3px;
 	color: #46433e;
 	background-color: #96abb0;
-}
-.whiteText {
+} */
+/* .whiteText {
 	color: white;
-}
-.send-back{
+} */
+/* .send-back{
 	z-index: -1;
 	position: relative;
-}
+} */
+/* 
+.rotate {
+	-webkit-transform: rotate(90deg) translate3d(0, 0, 0);
+	-webkit-transform-origin-x: 75%;
+} */
 
 /* Styling for screens 959px and smaller */
 
 @media only screen and (max-width: 959px) {
-	.uk-logo {
+	/* .uk-logo {
 		height: 70px;
 		font-size: 1.1rem;
 		white-space: nowrap;
-	}
-
+	} */
+/* 
 	.navLinks {
 		text-align: center;
 		width: 100%;
@@ -304,9 +313,9 @@ forecast uk-width-1-2@s uk-width-1-3@l   */
 		top: 0;
 		padding: 70px 0 0;
 		line-height: normal;
-	}
+	} */
 
-	.navLinks li {
+	/* .navLinks li {
 		height: 20px;
 		display: block;
 		z-index: 100000;
@@ -332,7 +341,7 @@ forecast uk-width-1-2@s uk-width-1-3@l   */
 
 		top: 0px;
 		right: 0px;
-	}
+	} */
 
 	#main {
 		width: 95%;
@@ -344,19 +353,19 @@ forecast uk-width-1-2@s uk-width-1-3@l   */
 		border-radius: 0;
 	}
 
-	#userArea {
+	/* #userArea {
 		padding-bottom: 35px;
 		margin-bottom: 0;
 		flex: 1;
-	}
-
+	} */
+/* 
 	#mainArea {
 		padding: 0;
-	}
+	} */
 
-	.infoSections {
+	/* .infoSections {
 		padding: 20px;
-	}
+	} */
 
 	.uk-grid-column-small {
 		margin-left: 0;
@@ -384,26 +393,26 @@ forecast uk-width-1-2@s uk-width-1-3@l   */
 	#searchResult {
 		height: 80%;
 	}
-
+/* 
 	.weatherEl {
 		display: flex;
 		flex-direction: column;
-		align-content: center;
-	}
+		/* align-content: center; */
+	/* }  */
 
-	.icon-temp {
+	/* .icon-temp {
 		padding: 0 60px;
-	}
-
+	} */
+/* 
 	.weatherEl #weather-icon {
 		width: 70px;
 		align-self: center;
 		height: auto;
-	}
-
+	} */
+/* 
 	#weather {
 		border-radius: 0 0 3px 3px !important;
-	}
+	} */
 
 	#map {
 		height: 500px;

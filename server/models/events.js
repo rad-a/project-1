@@ -1,4 +1,5 @@
 'use strict';
+const Sequelize = require("sequelize");
 const {
   Model
 } = require('sequelize');
@@ -8,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         // Event should belong to user
       // An event can't be created without a user
-      events.belongsTo(models.user, {
+      events.belongsTo(models.users, {
         foreignKey: {
           allowNull: false
         }
       });
     }
   };
-  const events = sequelize.define("events", {
+  events.init({
     Date: { 
       type: Sequelize.DATEONLY,
       validate: {

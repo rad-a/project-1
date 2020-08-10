@@ -22,6 +22,8 @@ router.post('/register', async (req, res) => {
 		let user;
 		let created;
 
+		console.log(req.body)
+
 		// Create user object using hashed password
 		User.findOrCreate({
 			where: {
@@ -30,7 +32,8 @@ router.post('/register', async (req, res) => {
 			defaults: {
 				username: req.body.username,
 				password: hash,
-				email: req.body.email
+				email: req.body.email,
+				profileImg: req.body.profileImg
 			}
 		}).then(async result => {
 			user = result[0];
@@ -64,7 +67,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 	// Create object from request
 	const { username, password } = req.body;
-
+	
 	//console.log(req);
 
 	// Check if valid request
@@ -109,12 +112,28 @@ router.post('/logout', async (req, res) => {
 // WhoAmI
 router.get('/', (req, res) => {
 	// Check if user exists in request, then return
-	console.log(req);
+	// console.log(req);
+	
+	
 	if(req.user){
 		return res.send(req.user);
 	} else {
 		res.status(404).send({ errors: [{ message: 'User Not Found or Missing Auth Token' }] });
 	}
+});
+
+// get all users
+router.get('/allUsers',async (req, res) => {
+	
+	try{
+	
+		const allUsers=await User.findAll({})
+		// console.log(allUsers);
+		res.send(allUsers)
+	} catch(err){
+		console.log(err);
+	}
+	
 });
 
 

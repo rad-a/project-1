@@ -1,0 +1,53 @@
+
+<div class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea">
+  <div class="panel-radius" id="user">
+    <!--Start user card-->
+    <div class="card-user-container">
+      <!-- card's image-->
+      <div class="card-user-avatar"><a href="/profile"><img class="profile-image" src="/assets/images/4.jpg" alt=""/></a>
+        <!--user info, pet, and location-->
+      </div>
+      <div class="card-user-bio">
+        <h4>Hi, <span id="username"></span></h4><span class="location"><span class="location-icon fa fa-map-marker">
+            <pan class="location-text">Austin, TX</pan></span></span>
+        <p> <span id="pets">__  fur babies!</span></p></p>
+        <!--User's registered pets-->
+      </div>
+      <div class="card-user-pets">
+        <ul class="menu">
+          <li class="fa fa-paw" data-toggle="animatedPetOneModal">
+            <undefined> </undefined>Tommy
+          </li>
+          <li class="fa fa-paw" data-toggle="animatedPetTwoModal">
+            <undefined></undefined>Loui
+          </li>
+          <li class="fa fa-paw" data-toggle="animatedPetThreeModal">
+            <undefined></undefined>Spot
+          </li>
+        </ul>
+      </div>
+      <div class="add-pets text-center">
+        <button class="hollow center expanded button" href="#"> <a id="addPetsBtn" href="/pets/add">Add a Pet</a></button>
+        <button class="button alert expanded " id="logoutBtn">Logout</button>
+      </div>
+      <hr/>
+    </div>
+  </div>
+  <div class="panel-radius" id="weather">
+    <h5 id="currentDate"></h5>
+    <div class="weatherEl" id="currentWeather">
+      <div class="grid-x ">
+        <p class="cell small-4 medium-6 currentTempInfo"><span id="temp"></span></p><img class="cell small-4 medium-6" id="weather-icon" alt=""/>
+      </div>
+      <p>Humidity: <span id="humidity"></span></p>
+      <p>Wind Speed: <span id="wind"></span></p>
+      <p>UV Index: <span id="uv-index"></span></p>
+      <p><a class="smallPrint" href="/forecast" alt="">View 6-day forecast</a></p>
+    </div>
+  </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAknu-YiOa6OcYDUB-Oy0AbQg1X3IIuZg&amp;libraries=places&amp;callback=createMap" async="async" defer="defer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" type="text/javascript"></script>
+<script src="./assets/scripts/logout.js" type="text/javascript"></script>
+<script src="./assets/scripts/map.js" type="text/javascript"></script>
+<script src="./assets/scripts/home.js" type="text/javascript"></script>

@@ -4,15 +4,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+//changed bottom from require('./models/index')
 const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
 const { userController, petController } = require('./controllers');
+const { sequelize } = require('./models/index');
 const clientDir = path.join(__dirname, '../client');
+const { Op } = require('sequelize');
+const controllers = require('./controllers');
+
+
 
 // Express App Setup
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Socket.io Setup
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
 
 // Express JSON Middleware Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,6 +46,7 @@ app.use(authMiddleware);
 app.use('/user', userController);
 app.use('/pets', petController);
 
+
 // CORS Setup
 app.use(cors());
 app.use(function(req, res, next) {
@@ -55,10 +67,22 @@ app.get('/', function(req, res){
 });
 
 // Home page
-app.get('/home', function(req, res){
-
+app.get('/home', async (req, res) => {
 	let username = req.user.username;
+	let thisID = req.user.id;
 
+
+	let allUsers = await db.User.findAll({
+		where: {
+			id: {
+				[Op.ne]: thisID
+			}
+		}
+	});
+	
+
+	
+	
 	if(req.user){
 		if(req.pets.length == 0){
 			res.render('petAdd',{
@@ -68,8 +92,9 @@ app.get('/home', function(req, res){
 		} else {
 			res.render('home', { 
 				pets: req.pets,
-				welcomeMessage: `Welcome back ${username}!`,
-				userLetter: `${username.charAt(0)}`
+				allUsers: allUsers,
+				user: req.user,
+				numPets: req.user.numPets
 			});
 		}
 	} else {
@@ -79,25 +104,80 @@ app.get('/home', function(req, res){
 });
 
 
-// app.get('/', (req, res) => { 
-//     res.render('index');
-// });
+app.get('/messages', (req, res)=>{
+	let allUsers = db.User.findAll();
+	let username = req.user.username;
+	let userID = req.user.id;
 
-app.get('/social', (req, res)=>{
-    res.render('social');
-    
+
+	
+	if(!req.user){
+		res.render('login');
+	} else{
+		res.render('messages', { 
+			pets: req.pets,
+			allUsers: allUsers,
+			username: username,
+			userID: userID
+
+		});
+	}
 });
 
-app.get('/profile', (req, res)=>{
-    res.render('profile');
+// let myProfile;
+// module.exports={myProfile}
+app.get('/profile/:id', async (req, res)=>{
+	let userID = req.user.id;
+	// let newUserID = targetUser.id;
+
+    if(!req.user){
+		res.render('error');
+	} else {
+		const targetUser = await db.User.findOne({
+			where: {
+				id: req.params.id
+			}
+		});
+		
+		const targetUserPets = await db.Pet.findAll({
+			where: {
+				UserId: targetUser.id
+			}
+		});
+		
+		res.render('profile', {
+			user: targetUser,
+			pets: targetUserPets,
+			numPets: req.user.numPets,
+			username: req.user.username,
+			userID: userID,
+			// newUserID: newUserID
+		});
+	}
 });
 
 
-app.get('/forecast', (req, res)=>{
-    res.render('forecast');
+//6-day weather forecast
+app.get('/weather', function(req, res){
+	let allUsers = db.User.findAll();
+	let username = req.user.username;
+	let userID = req.user.id;
 
+
+	
+	if(!req.user){
+		res.render('login');
+	} else{
+		res.render('weather', { 
+			pets: req.pets,
+			allUsers: allUsers,
+			username: username,
+			userID: userID,
+			numPets: req.user.numPets
+
+		});
+	}
 });
-
 
 // Register page
 app.get('/register', function(req, res){
@@ -108,9 +188,25 @@ app.get('/register', function(req, res){
 	}
 });
 
+// Socket Route
+app.get('/sms', async (req, res) => {
+	// let allUsers = db.User.findAll();
+	// let username = req.user.username;
+	res.sendFile(path.join(clientDir, '../client/assets/index.html'))
+	
+	// res.render('test.pug', { 
+	
+	// })
+});
+
 // Server Init
 db.sequelize.sync().then(() => {
-	app.listen(PORT, () => {
-		console.log(`Server running, listening on port ${PORT}`);
+	http.listen(PORT, function () {
+		console.log("App now listening at localhost:" + PORT);
 	});
 });
+
+//added bottom
+//calling socket.js imported file and route
+require("./controllers/msg-controller")(app)
+require("./socket")(io);

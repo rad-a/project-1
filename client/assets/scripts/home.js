@@ -1,3 +1,5 @@
+$(document).foundation();
+
 $(document).ready(function () {
   const forecastDiv = $("#forecast_div");
 
@@ -51,17 +53,18 @@ $(document).ready(function () {
     function attachIcon() {
       var iconID = data.current.weather[0].icon;
 
-      var iconURL = "https://api.openweathermap.org/img/w/" + iconID + ".png";
+      var iconURL = "https://openweathermap.org/img/wn/" + iconID + "@2x.png";
 
-      $("#weather-icon").attr("src", iconURL);
-      $("#weather-icon").attr("alt", data.current.weather.description);
+      $("#weather-icon, #wpWeatherIcon").attr("src", iconURL);
+      $("#weather-icon, #wpWeatherIcon").attr("alt", data.current.weather.description);
     }
 
     //Retrieve Data for user location's current weather data
     function getCurrentWeatherData() {
       //use moment js for date
-      var currentDate = { now: moment().format("dddd, MMMM Do") };
-      var temperature = Math.floor(data.current.temp) + "°F";
+      // const currentWeatherPage = 
+      var currentDate = { now: moment().format("ddd, MMM Do") };
+      var temperature = Math.floor(data.current.temp) + "&#8457;";
       var humidity = data.current.humidity + "%";
       var windSpeed = data.current.wind_speed + "mph";
       var uvIndex = data.current.uvi;
@@ -70,7 +73,19 @@ $(document).ready(function () {
       $("#humidity").append(" " + humidity);
       $("#wind").append(" " + windSpeed);
       $("#uv-index").append(" " + uvIndex);
+
+      let wpCurrentDate = { now: moment().format("ddd, MMM Do") };
+      let wpTemp = Math.floor(data.current.temp) + "&#8457;";
+      let wpHumidity = data.current.humidity + "%";
+      let wpWind = data.current.wind_speed + "mph";
+      let wpUV = data.current.uvi;
+      $("#wpCurrentDate").append(" " + wpCurrentDate.now);
+      $("#wpTemp").append(" " + wpTemp);
+      $("#wpHumidity").append(" " + wpHumidity);
+      $("#wpWind").append(" " + wpWind);
+      $("#wpUV").append(" " + wpUV);
     }
+
 
     function getForecastData() {
       var forecastDataArray = [
@@ -85,17 +100,17 @@ $(document).ready(function () {
         //generate parent_div with viewport responsive class.
         //add 1 day to current date and add class to keep centered
         var parent_div = $("<div>", {
-          class: "forecast uk-width-1-1@s uk-width-1-2@m uk-width-1-4@l",
+          class: "forecast cell small-10 medium-5 large-3",
         });
         var forecastDates = $("<h4>").text(
           moment()
             .add(i + 1, "days")
-            .format("dddd, MMMM Do")
+            .format("ddd, MMM Do")
         );
         //variables for retrieving icon image
         var iconData = data.daily[i].weather[0].icon;
         var iconURLForecast =
-          "https://api.openweathermap.org/img/w/" + iconData + ".png";
+        "https://openweathermap.org/img/wn/" + iconData + "@2x.png";
         var forecastIconIMG = $("<img>", {
           src: iconURLForecast,
           alt: forecastDesc,
@@ -105,13 +120,13 @@ $(document).ready(function () {
           data.daily[i].weather[0].description
         );
         var forecastTemp = $("<li></li>").text(
-          "Temperature: " + Math.floor(data.daily[i].temp.day) + "°F"
+          "Temp: " + Math.floor(data.daily[i].temp.day) + "°F"
         );
         var forecastHumidity = $("<li></li>").text(
           "Humidity: " + data.daily[i].humidity + "%"
         );
         var forecastWindSpeed = $("<li></li>").text(
-          "Wind speed: " + data.daily[i].wind_speed + "mph"
+          "Wind: " + data.daily[i].wind_speed + "mph"
         );
         var forecastUV = $("<li></li>").text("UV Index: " + data.daily[i].uvi);
         //create ul, attach li's and append to parent_div
@@ -120,7 +135,7 @@ $(document).ready(function () {
         //finish loop by appending to html forecast_container div
         $(forecastDiv).append(parent_div);
         parent_div.append(forecastDates);
-        forecastDates.append(weatherListStart);
+        parent_div.append(weatherListStart);
         weatherListStart.append(forecastIconIMG);
         weatherListStart.append(forecastDesc);
         weatherListStart.append(forecastTemp);
@@ -128,17 +143,13 @@ $(document).ready(function () {
         weatherListStart.append(forecastWindSpeed);
         weatherListStart.append(forecastUV);
 
-        /* $(".forecast-temp").append(forecastTemp);
-      $(".forecast-hum").append(forecastHumidity);
-      $(".forecast-wind").append(forecastWindSpeed);
-      $(".forecast-uv").append(forecastUV);*/
       }
     }
   });
 });
 
 
-$('#petCards').on('click','#petRemoveBtn', e => {
+$('.petInfo').on('click','#petRemoveBtn', e => {
 	e.preventDefault();
 	const target = $(e.currentTarget);
 
@@ -146,8 +157,9 @@ $('#petCards').on('click','#petRemoveBtn', e => {
 		method: 'DELETE',
 		data: {
 			id: target.attr('data-id')
-		}
+    }
 	}).then(data => {
+    
 		if(data){
 			window.location.reload();
 		} else {
@@ -155,3 +167,16 @@ $('#petCards').on('click','#petRemoveBtn', e => {
 		}
 	});
 });
+
+
+// Mobile navbar toggle
+const toggleBtn = document.getElementsByClassName('toggle-button')[0];
+const navbarLinks = document.getElementsByClassName('navbar-links')[0];
+
+toggleBtn.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active');
+})
+
+// const updatePetNum = document.getElementById('totalPets');
+
+//   if 
