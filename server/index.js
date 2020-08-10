@@ -9,7 +9,9 @@ const db = require('./models/index');
 const authMiddleware = require('./middleware/auth-middleware');
 const cors = require('cors');
 const { userController, petController } = require('./controllers');
+const { sequelize } = require('./models/index');
 const clientDir = path.join(__dirname, '../client');
+const { Op } = require('sequelize');
 
 
 // Express App Setup
@@ -64,10 +66,17 @@ app.get('/', function(req, res){
 // Home page
 app.get('/home', async (req, res) => {
 	let username = req.user.username;
-	let userID = req.user.id;
+	let thisID = req.user.id;
 
 
-	let allUsers = await db.User.findAll();
+	let allUsers = await db.User.findAll({
+		where: {
+			id: {
+				[Op.ne]: thisID
+			}
+		}
+	});
+	
 
 	
 	
@@ -81,8 +90,7 @@ app.get('/home', async (req, res) => {
 			res.render('home', { 
 				pets: req.pets,
 				allUsers: allUsers,
-				username: username,
-				userID: userID,
+				user: req.user,
 				numPets: req.user.numPets
 			});
 		}
@@ -189,7 +197,7 @@ app.get('/sms', async (req, res) => {
 });
 
 // Server Init
-db.sequelize.sync({force:false}).then(() => {
+db.sequelize.sync().then(() => {
 	http.listen(PORT, function () {
 		console.log("App now listening at localhost:" + PORT);
 	});

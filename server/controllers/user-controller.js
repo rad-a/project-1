@@ -22,6 +22,8 @@ router.post('/register', async (req, res) => {
 		let user;
 		let created;
 
+		console.log(req.body)
+
 		// Create user object using hashed password
 		User.findOrCreate({
 			where: {
@@ -30,7 +32,8 @@ router.post('/register', async (req, res) => {
 			defaults: {
 				username: req.body.username,
 				password: hash,
-				email: req.body.email
+				email: req.body.email,
+				profileImg: req.body.profileImg
 			}
 		}).then(async result => {
 			user = result[0];

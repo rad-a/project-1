@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
 			}
 		}
 	},
-	numPets: DataTypes.INTEGER
+	numPets: DataTypes.INTEGER,
+	profileImg: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

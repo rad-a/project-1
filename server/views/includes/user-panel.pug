@@ -8,24 +8,26 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                 // card's image
                 div(class="card-user-avatar")
                     a(href="/profile")
-                        img(src="/assets/images/4.jpg" alt="" class="profile-image")
+                        img(src= ""+ user.profileImg, alt="" class="profile-image")
                 
                     //user info, pet, and location
                 div(class="card-user-bio")
                     h4 Hi, 
-                        span(id="username")= username
+                        span(id="username")= user.username
                             
                     p  
-                        if numPets == 1 
-                            span(id="pets")= numPets + " "
+                        // Unnecessary logic
+                        //if numPets == 1 
+                            span(id="pets")= user.numPets + " "
                                 span fur baby!
-                        else if numPets <= 1
+                        //else if numPets <= 1
                         
                             h6 Such empty! Add a pet. 
-                        else 
-                            span(id="pets")= numPets + " "
+                        //else 
+                            span(id="pets")= user.numPets + " "
                                 span fur babies!
-                        
+                        span(id="pets")= user.numPets + " "
+                            span fur babies!
                         </p>
             
                     //User's registered pets
