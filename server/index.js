@@ -67,8 +67,9 @@ app.get('/home', async (req, res) => {
 	let username = req.user.username;
 
 	let allUsers = await db.User.findAll();
-	
 
+	
+	
 	if(req.user){
 		if(req.pets.length == 0){
 			res.render('petAdd',{
@@ -98,6 +99,8 @@ app.get('/social', (req, res)=>{
 	}
 });
 
+// let myProfile;
+// module.exports={myProfile}
 app.get('/profile/:id', async (req, res)=>{
     if(!req.user){
 		res.render('error');
@@ -107,13 +110,13 @@ app.get('/profile/:id', async (req, res)=>{
 				id: req.params.id
 			}
 		});
-
+		
 		const targetUserPets = await db.Pet.findAll({
 			where: {
 				UserId: targetUser.id
 			}
 		});
-
+		
 		res.render('profile', {
 			user: targetUser,
 			pets: targetUserPets,
@@ -152,7 +155,13 @@ app.get('/register', function(req, res){
 
 // Socket Route
 app.get('/sms', async (req, res) => {
+	// let allUsers = db.User.findAll();
+	// let username = req.user.username;
 	res.sendFile(path.join(clientDir, '../client/assets/index.html'))
+	
+	// res.render('test.pug', { 
+	
+	// })
 });
 
 // Server Init
