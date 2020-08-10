@@ -30,13 +30,13 @@ $('#sendName').click(function(e){
     $("#sendName").toggle();
     notifier=sender
 })
-socket.on("user",function(data){
-   //for testing only to be deleted
-    console.log("front-end "+data)
-        // $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
-        // $(`button[value=${data}`).removeClass( "allUsers" ).addClass( "allUsersOnline" );
-        $(`#onlineNow[value=${data}`).css("visibility", "visible")
-    })
+// socket.on("user",function(data){
+//    //for testing only to be deleted
+//     console.log("front-end "+data)
+//         // $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
+//         // $(`button[value=${data}`).removeClass( "allUsers" ).addClass( "allUsersOnline" );
+//         $(`#onlineNow[value=${data}`).css("visibility", "visible")
+//     })
     
 
 //1) on load make an ajax call to get all user names
@@ -154,14 +154,14 @@ $("#toggler").click(function(){
 
   //this interval keeps letting everyone know that you are logged in 
   //if they logged in after you
-  keepNotify()
-  function keepNotify(){
-    setInterval(function()
-    { socket.emit("keepNotify",sender); }, 5000);
+//   keepNotify()
+//   function keepNotify(){
+//     setInterval(function()
+//     { socket.emit("keepNotify",sender); }, 5000);
     
-  }
-  socket.on("keepNotify",function(data){
-    //for testing only to be deleted
-     console.log("front-end "+data)
-    $(`#onlineNow[value=${data}`).css("visibility", "visible")
-     })
+//   }
+//   socket.on("keepNotify",function(data){
+//     //for testing only to be deleted
+//      console.log("front-end "+data)
+//     $(`#onlineNow[value=${data}`).css("visibility", "visible")
+//      })
