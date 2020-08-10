@@ -1,5 +1,5 @@
 // for nodejs
-const moment = require('moment');
+//const moment = require('moment');
 const dateFormat = 'YYYY-MM-dd';
 const myDate = '2020-08-09';
 const numberOfDays = 7;
