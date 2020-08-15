@@ -7,13 +7,13 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
 
                 // card's image
                 div(class="card-user-avatar")
-                    a(href="/profile")
-                        img(src= ""+ user.profileImg, alt="" class="profile-image")
+                    a(href="/profile/"+user.id)
+                        img(src= ''+user.link, alt="profile image" class="profile-image")
                 
                     //user info, pet, and location
                 div(class="card-user-bio")
                     h4 Hi, 
-                        span(id="username")= user.username
+                        span(id="username")= username
                             
                     p  
                         // Unnecessary logic
@@ -26,7 +26,7 @@ div(class="cell medium-3 large-2 noMarginTop sidePanels" id="userArea" )
                         //else 
                             span(id="pets")= user.numPets + " "
                                 span fur babies!
-                        span(id="pets")= user.numPets + " "
+                        span(id="pets")= numPets + " "
                             span fur babies!
                         </p>
             
