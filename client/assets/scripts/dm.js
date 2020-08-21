@@ -154,14 +154,14 @@ $("#toggler").click(function(){
 
   //this interval keeps letting everyone know that you are logged in 
   //if they logged in after you
-//   keepNotify()
-//   function keepNotify(){
-//     setInterval(function()
-//     { socket.emit("keepNotify",sender); }, 5000);
+  keepNotify()
+  function keepNotify(){
+    setInterval(function()
+    { socket.emit("keepNotify",sender); }, 5000);
     
-//   }
-//   socket.on("keepNotify",function(data){
-//     //for testing only to be deleted
-//      console.log("front-end "+data)
-//     $(`#onlineNow[value=${data}`).css("visibility", "visible")
-//      })
+  }
+  socket.on("keepNotify",function(data){
+    //for testing only to be deleted
+     console.log("front-end "+data)
+    $(`#onlineNow[value=${data}`).css("visibility", "visible")
+     })
