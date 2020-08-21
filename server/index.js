@@ -198,8 +198,8 @@ app.get('/sms', async (req, res) => {
 	// })
 });
 
-// Calendar route
-app.get('/calendar', async (req, res) => {
+// planner/calendar route
+app.get('/planner', async (req, res) => {
 	if(!req.user){
 		res.redirect('/');
 	} else {
