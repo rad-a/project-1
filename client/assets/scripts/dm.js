@@ -10,9 +10,9 @@ let socket = io();
 //step 6) retieve old messages saved to database
 
 let sendTo='';
-let sender=$('#petAreaHeader').children().val();
+let sender='';
 let message=''
-let find=$("h5").val()
+// let find=$("h5").val()
 let notifier=''
 //this variable hepls make sure messaged only appends/show on specific screen(stops 3 user messages from showing on the same screen)
 let conversationWith=''
@@ -24,19 +24,19 @@ $('#sendName').click(function(e){
     sender= $("#from").val()
     //emiting here
     socket.emit("user",sender)
-    console.log("this is the result"+ find)
+    // console.log("this is the result"+ find)
     $(`button[value=${sender}`).hide();
     $("#from").toggle();
     $("#sendName").toggle();
     notifier=sender
 })
-socket.on("user",function(data){
-   //for testing only to be deleted
-    console.log("front-end "+data)
-        // $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
-        // $(`button[value=${data}`).removeClass( "allUsers" ).addClass( "allUsersOnline" );
-        $(`#onlineNow[value=${data}`).css("visibility", "visible")
-    })
+// socket.on("user",function(data){
+//    //for testing only to be deleted
+//     console.log("front-end "+data)
+//         // $("#online").append($(`<button id=thisUser value=${data}>${data}</button>`))
+//         // $(`button[value=${data}`).removeClass( "allUsers" ).addClass( "allUsersOnline" );
+//         $(`#onlineNow[value=${data}`).css("visibility", "visible")
+//     })
     
 
 //1) on load make an ajax call to get all user names

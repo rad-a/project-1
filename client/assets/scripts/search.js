@@ -1,7 +1,4 @@
-// const { format } = require("sequelize/types/lib/utils");
-
 const dogAPIKey = 'e5a7d34e-abed-4bdf-80e2-2f1fd529fa6d';
-
 
 function getBreeds() {
 	$.ajax({
@@ -22,53 +19,73 @@ function getBreeds() {
 	});
 }
 
-
-
-// function getAgeRange() {
-
-// }
+//Get pet based on user-input
 
 $('#petSearchForm').on('submit', event => {
     event.preventDefault();
 
-    let queryURL = "http://localhost:8080/pets";
+    let queryURL = "http://localhost:8080/pets/search";
+    $.ajax(queryURL, {
+        method: 'GET',
+        data: {
+            petBreed: $('#pet-breed').val(),
+            petGender: $('#pet-gender').val(),
+            petAge: $('#pet-age').val()
+        }
+    }).then(function(data) {
+        // petArray.push(data).value();
+        console.log(data)
+        
+        // return(data);
+        $("#allUsers").html('');
 
-    let queryParams = {};
+    
 
-    let petBreed = $('#pet-breed').val();
-    let petGender = $('#pet-gender').val();
-    let petAge = $('##pet-age').val();
-    let petSize = $('#pet-size').val();
-    // petBreed = $('#pet-breed').val();
+    // let results = data.response[i];
 
-console.log(queryURL+$param(queryParams))
-return queryURL + $.$param(queryParams);
+// getSearcResults(data)
+    for(let i = 0; i < data.length; i++ ) {
+        let petMatch = data.response[i];
+        function insert() {
+            $('#allUsers').append()
+            $('<div class="cell users">').prepend($('#allUsers'));
+            $('<div class="textOverlay textCtr">').prepend($('#allUsers'));
+
+        
+        // let petMatchDiv = allUsers;
+        let usersPet = $('<div class="cell users">'); //
+          let match = $('<div class="textOverlay textCtr">'); //textOverlay textCtr
+            let matchName = $('<h5 class="user-name">' + petMatch[i].petName + '</h5>');//user-name
+            let matchFlex = $('<div class="makeFlex">'); //makeFlex
+                let overlay = $('<div class="overlayInfo float-left">');//overlayInfo float-left
+                    // let matchP = $('<p></p>')
+                        // let matchIcon = $('<i class="fa fa-paw big"') ;
+                        // let matchpetNum = $('<span class="pet">');
+            let overlayColor = $('<div class="overlay ctr">');
+            let matchLink = $('<a href="/profile/'+ petMatch[i].UserId + '">')
+            let matchBtn = $('<button class="hollow button small primary" type="button">View Profile!</button>')
+
+            $(matchLink).append(matchBtn);
+            $(overlayColor).append(matchLink);
+            $(matchP).append(matchpetNum);
+            $(matchP).prepend(matchIcon);
+            $(overlay).append(matchP);
+            $(matchFlex).append(overlay);
+            $(match).append(matchFlex);
+            $(match).prepend(matchName);
+            $(usersPet).prepend(match);
+            $(usersPet).append(overlayColor);
 
 
+        $("#allUsers").append(usersPet);
+        console.log("user id:" + petMatch.UserId);
+}}
 
-    // const petSearchForm = {
-    // pBreed: document.getElementById('pet-breed'),
-    // pGender: document.getElementById('pet-gender'),
-    // pAge: document.getElementById('pet-age'),
-    // pSize: document.getElementById('pet-size'),
-    // pSubmit: document.getElementById('petSearchSubmit')
-});
-// console.log(petSearchForm);
+    })
+})
 
-// petSearchForm.pSubmit.addEventListener('click', () => { 
-//     // console.log('button pressed');
-//     const request = new XMLHttpRequest();
+getBreeds();
+insert();
 
-//     request.onload = () => {
-//         console.log(request.responseText);
-//     }
-
-//     request.open('post', )
-// })
-
-// })
-
-
-// getBreeds();
 
 
