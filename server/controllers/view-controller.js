@@ -25,5 +25,10 @@ router.get('/forecast', (req, res)=>{
 
 });
 
+router.get('/planner', (req, res)=>{
+    res.render('planner');
+
+});
+
 
 module.exports = router;
