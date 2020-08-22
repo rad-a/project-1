@@ -5,13 +5,16 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 //changed bottom from require('./models/index')
-const db = require("./models/index");
-const authMiddleware = require("./middleware/auth-middleware");
-const cors = require("cors");
-const { userController, petController } = require("./controllers");
-const { sequelize } = require("./models/index");
-const clientDir = path.join(__dirname, "../client");
-const { Op } = require("sequelize");
+const db = require('./models/index');
+const authMiddleware = require('./middleware/auth-middleware');
+const cors = require('cors');
+const { userController, petController } = require('./controllers');
+const { sequelize } = require('./models/index');
+const clientDir = path.join(__dirname, '../client');
+const { Op } = require('sequelize');
+const controllers = require('./controllers');
+
+
 
 // Express App Setup
 const app = express();
@@ -41,6 +44,7 @@ app.use(authMiddleware);
 // Custom Routing
 app.use("/user", userController);
 app.use("/pets", petController);
+
 
 // CORS Setup
 app.use(cors());
@@ -176,6 +180,7 @@ app.get("/weather", function (req, res) {
       allUsers: allUsers,
       username: username,
       userID: userID,
+      user: req.user,
       numPets: req.user.numPets,
     });
   }
@@ -190,6 +195,15 @@ app.get("/sms", async (req, res) => {
   // res.render('test.pug', {
 
   // })
+});
+
+// Calendar route
+app.get('/calendar', async (req, res) => {
+	if(!req.user){
+		res.redirect('/');
+	} else {
+		res.render('planner');
+	}
 });
 
 // Server Init
