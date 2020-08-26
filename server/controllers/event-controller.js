@@ -27,7 +27,7 @@ module.exports = function(app) {
 
   // Get route for retrieving a single event
   //functionality to search events by date later?
-  app.get("/api/posts/:date", function(req, res) {
+  app.get("/api/events/:date", function(req, res) {
     db.Event.findOne({
       where: {
         date: req.params.date
@@ -38,7 +38,7 @@ module.exports = function(app) {
     });
   });
 
-  // POST route for saving a new post
+  // POST route for saving a new event
   app.post("/api/events", function(req, res) {
     db.Event.create(req.body).then(function(events) {
       res.json(events);
@@ -46,7 +46,7 @@ module.exports = function(app) {
   });
 
   // DELETE route for deleting posts
-  app.delete("/api/posts/:date", function(req, res) {
+  app.delete("/api/events/:date", function(req, res) {
     db.Event.destroy({
       where: {
         date: req.params.date
