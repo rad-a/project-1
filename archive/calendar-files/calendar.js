@@ -1,5 +1,5 @@
 // for nodejs
-// var moment = require('moment');
+// const moment = require('moment');
 const dateFormat = 'MM-DD-YYYY';
 const myDate = '08-08-2020';
 const numberOfDays = 7;
@@ -23,14 +23,6 @@ const startWeek = startDate.week();
 const endDate = currentTime.endOf('month');
 // week # at end of month
 const endWeek = endDate.week();
-
-//console.log(currentTime);
-
-// date: obtaining new instance of date & time
-//currentTime = moment(myDate,dateFormat);
-
-
-// console.log(currentTime);
 
 const totalNumberOfWeeks = endWeek - startWeek; // # of rows needed to render the current Month
 
@@ -64,11 +56,9 @@ for (let i = startWeek; i<=endWeek;i++){
     document.getElementById('plannerdiv').append(weekElement);
 }
 
-// console.log('currentTime before cloning',currentTime);
-
 //date
 const startOfMonthLoop = moment().startOf('month');
-//let currentTime = moment(myDate,dateFormat)
+//let currentTime = moment(myDate,dateFormat);
 // console.log('start of month:', startOfMonthLoop);
 
 let endOfMonthFlag = true;
@@ -86,11 +76,12 @@ for(let i = startWeek; i<=endWeek;i++){
             
             if(startOfMonthLoop.date()==endDate.date()){
                 endOfMonthFlag=false;
-                }
+                };
             console.log('start of month ',startOfMonthLoop.date(),'end date' ,endDate.date(),'current time: ',currentTime.date());
             if( (startOfMonthLoop.date() == currentTime.date() ) && (day==0 || day==6) ){
                 dayElement.setAttribute('class','day weekend today');
-            } else if (startOfMonthLoop.date() == currentTime.date()) {
+            }
+            else if (startOfMonthLoop.date() == currentTime.date()) {
                 dayElement.classList.add('today');
                 dayElement.classList.add('day');
             }
@@ -101,16 +92,15 @@ for(let i = startWeek; i<=endWeek;i++){
             dayNumberElement.innerText = startOfMonthLoop.date();
             dayElement.append(dayNumberElement);
 
-                //dayBody div class=dayBody
+                //dayBody div class=dayBody will display event info
             const dayBodyElement = document.createElement('DIV');
             dayBodyElement.classList.add('dayBody');
-
+            //footer holds icons for add, update, and delete event functions
             const dayFooterElement = document.createElement('DIV');
             dayFooterElement.classList.add('dayFooter');
-            var plusIcon = document.createElement('SPAN');
-            plusIcon.classList.add('fas');
-            plusIcon.classList.add('fa-calendar-plus');
+            const plusIcon = document.createElement('SPAN');
             plusIcon.classList.add('icon');
+            plusIcon.setAttribute('uk-icon','icon: plus-circle')
             plusIcon.setAttribute('onclick','createEvent(this)')
             dayFooterElement.append(plusIcon);
 
@@ -118,6 +108,18 @@ for(let i = startWeek; i<=endWeek;i++){
             dayElement.append(dayFooterElement);
 
             startOfMonthLoop.add(1,'days');//increment by 1 day
+            //if element has event then display these icons
+            //const updateIcon = document.createElement('SPAN');
+            //updateIcon.classList.add('icon');
+            //updateIcon.setAttribute('uk-icon','icon: pencil')
+            //updateIcon.setAttribute('onclick','updateEvent(this)')
+            //dayFooterElement.append(updateIcon);
+
+            //const deleteIcon = document.createElement('SPAN');
+            //deleteIcon.classList.add('icon');
+            //deleteIcon.setAttribute('uk-icon','icon: trash')
+            //deleteIcon.setAttribute('onclick','deleteEvent(this)')
+            //dayFooterElement.append(updateIcon);
         } 
 
         document.getElementById('week'+i).append(dayElement);
@@ -132,12 +134,4 @@ const firstDay = startDate.day();
 const lastNumericalDay = endDate.date(); 
 const lastDay = endDate.day(); 
 
-for(let i = firstNumericalDay; i<=lastNumericalDay;i++){
-    
-    //a check should be made to see what week we're in and 
-}
-
-
-function createEvent(element) {
-
-}
+//function to append dates to calendar
