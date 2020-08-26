@@ -1,7 +1,7 @@
 // for nodejs
 // var moment = require('moment');
-const dateFormat = 'YYYY-MM-dd';
-const myDate = '2020-08-08';
+const dateFormat = 'MM-DD-YYYY';
+const myDate = '08-08-2020';
 const numberOfDays = 7;
 
 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -11,55 +11,54 @@ const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Satur
 const shortDays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 // date
-let currentTime = moment(myDate,dateFormat) // current date & time
-//let currentTime = moment(myDate,dateFormat)
-// console.log(currentTime);
+let currentTime = moment() // current date & time
+console.log(currentTime);
 
 // start of the month
-var startDate = currentTime.startOf('plannerdiv');
+const startDate = currentTime.startOf('month');
 // week # at start of month
-var startWeek = startDate.week();
+const startWeek = startDate.week();
 
 // end of the month
-var endDate = currentTime.endOf('plannerdiv');
+const endDate = currentTime.endOf('month');
 // week # at end of month
-var endWeek = endDate.week();
+const endWeek = endDate.week();
 
 //console.log(currentTime);
 
 // date: obtaining new instance of date & time
-currentTime = moment(myDate,dateFormat);
-//let currentTime = moment(myDate,dateFormat)
+//currentTime = moment(myDate,dateFormat);
+
 
 // console.log(currentTime);
 
-var totalNumberOfWeeks = endWeek - startWeek; // # of rows needed to render the current Month
+const totalNumberOfWeeks = endWeek - startWeek; // # of rows needed to render the current Month
 
-var monthHeaderString = shortMonths[currentTime.month()] + " "+currentTime.year();
+const monthHeaderString = shortMonths[currentTime.month()] + " "+currentTime.year();
 
 //appending the month as a div to body
-var monthHeader = document.createElement('DIV');
+const monthHeader = document.createElement('DIV');
 monthHeader.setAttribute('class','monthHeader');
 monthHeader.innerText = monthHeaderString;
 
 document.getElementById('plannerdiv').append(monthHeader);
 
-var weekHeader = document.createElement("DIV");
+const weekHeader = document.createElement("DIV");
 weekHeader.setAttribute("class","weekHeader");
 document.getElementById('plannerdiv').append(weekHeader);
 
 //adding day headers to weekHeader div
-for(var day=0 ;day<numberOfDays; day++){
+for(let day=0 ;day<numberOfDays; day++){
     // create a DOM div element
-    var dayOfWeek = document.createElement('DIV');
+    const dayOfWeek = document.createElement('DIV');
     dayOfWeek.setAttribute('class','dayHeader');
     dayOfWeek.innerText = shortDays[day];
     //getElementsByClassName returns an array
     document.getElementsByClassName('weekHeader')[0].append(dayOfWeek);
 }
 //appending weeks to the month div
-for (var i = startWeek; i<=endWeek;i++){
-    var weekElement = document.createElement('DIV');
+for (let i = startWeek; i<=endWeek;i++){
+    const weekElement = document.createElement('DIV');
     weekElement.setAttribute('class','week');
     weekElement.setAttribute('id','week'+i);//week1 etc
     document.getElementById('plannerdiv').append(weekElement);
@@ -68,15 +67,15 @@ for (var i = startWeek; i<=endWeek;i++){
 // console.log('currentTime before cloning',currentTime);
 
 //date
-var startOfMonthLoop = moment(currentTime).startOf('plannerdiv');
+const startOfMonthLoop = moment().startOf('month');
 //let currentTime = moment(myDate,dateFormat)
 // console.log('start of month:', startOfMonthLoop);
 
-var endOfMonthFlag = true;
+let endOfMonthFlag = true;
 //populating each week with a day div. Final grid should be number of weeks x 7 days
-for(var i = startWeek; i<=endWeek;i++){
-    for(var day =0;day<numberOfDays;day++){ // day will cycle from 0 to 6
-        var dayElement = document.createElement('DIV');
+for(let i = startWeek; i<=endWeek;i++){
+    for(let day =0;day<numberOfDays;day++){ // day will cycle from 0 to 6
+        const dayElement = document.createElement('DIV');
         dayElement.setAttribute('class','day');
 
         if(day==0 || day==6){
@@ -96,17 +95,17 @@ for(var i = startWeek; i<=endWeek;i++){
                 dayElement.classList.add('day');
             }
             // div class=dayNumber (number header)
-            var dayNumberElement = document.createElement('DIV');
+            const dayNumberElement = document.createElement('DIV');
             dayNumberElement.setAttribute('class','dayNumber');
 
             dayNumberElement.innerText = startOfMonthLoop.date();
             dayElement.append(dayNumberElement);
 
                 //dayBody div class=dayBody
-            var dayBodyElement = document.createElement('DIV');
+            const dayBodyElement = document.createElement('DIV');
             dayBodyElement.classList.add('dayBody');
 
-            var dayFooterElement = document.createElement('DIV');
+            const dayFooterElement = document.createElement('DIV');
             dayFooterElement.classList.add('dayFooter');
             var plusIcon = document.createElement('SPAN');
             plusIcon.classList.add('fas');
@@ -128,12 +127,12 @@ for(var i = startWeek; i<=endWeek;i++){
 }
 
 //appending days to each week div
-var firstNumericalDay = startDate.date(); // for mar: 1
-var firstDay = startDate.day(); 
-var lastNumericalDay = endDate.date(); // for mar: 31
-var lastDay = endDate.day(); 
+const firstNumericalDay = startDate.date(); 
+const firstDay = startDate.day(); 
+const lastNumericalDay = endDate.date(); 
+const lastDay = endDate.day(); 
 
-for(var i = firstNumericalDay; i<=lastNumericalDay;i++){
+for(let i = firstNumericalDay; i<=lastNumericalDay;i++){
     
     //a check should be made to see what week we're in and 
 }
