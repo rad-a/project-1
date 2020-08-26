@@ -79,7 +79,7 @@ for(let i = startWeek; i<=endWeek;i++){
                 };
             console.log('start of month ',startOfMonthLoop.date(),'end date' ,endDate.date(),'current time: ',currentTime.date());
             if( (startOfMonthLoop.date() == currentTime.date() ) && (day==0 || day==6) ){
-                dayElement.setAttribute('class','day weekend today');
+                dayElement.setAttribute('class','day weekend');
             }
             else if (startOfMonthLoop.date() == currentTime.date()) {
                 dayElement.classList.add('today');
@@ -99,8 +99,9 @@ for(let i = startWeek; i<=endWeek;i++){
             const dayFooterElement = document.createElement('DIV');
             dayFooterElement.classList.add('dayFooter');
             const plusIcon = document.createElement('SPAN');
-            plusIcon.classList.add('icon');
+            plusIcon.setAttribute('class', 'icon plus-icon');
             plusIcon.setAttribute('uk-icon','icon: plus-circle')
+            plusIcon.setAttribute('uk-toggle','target: .addEvent')
             plusIcon.setAttribute('onclick','createEvent(this)')
             dayFooterElement.append(plusIcon);
 
@@ -110,13 +111,13 @@ for(let i = startWeek; i<=endWeek;i++){
             startOfMonthLoop.add(1,'days');//increment by 1 day
             //if element has event then display these icons
             //const updateIcon = document.createElement('SPAN');
-            //updateIcon.classList.add('icon');
+            //updateIcon.classList.add('icon update-icon');
             //updateIcon.setAttribute('uk-icon','icon: pencil')
             //updateIcon.setAttribute('onclick','updateEvent(this)')
             //dayFooterElement.append(updateIcon);
 
             //const deleteIcon = document.createElement('SPAN');
-            //deleteIcon.classList.add('icon');
+            //deleteIcon.classList.add('icon delete-icon');
             //deleteIcon.setAttribute('uk-icon','icon: trash')
             //deleteIcon.setAttribute('onclick','deleteEvent(this)')
             //dayFooterElement.append(updateIcon);
@@ -135,3 +136,10 @@ const lastNumericalDay = endDate.date();
 const lastDay = endDate.day(); 
 
 //function to append dates to calendar
+
+
+    $(".plus-icon").on("click", function(event) {
+      
+        event.preventDefault();
+        console.log('success!');
+    });
