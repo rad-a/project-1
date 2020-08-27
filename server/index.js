@@ -14,8 +14,6 @@ const clientDir = path.join(__dirname, '../client');
 const { Op } = require('sequelize');
 const controllers = require('./controllers');
 
-
-
 // Express App Setup
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -45,7 +43,6 @@ app.use(authMiddleware);
 app.use("/user", userController);
 app.use("/pets", petController);
 
-
 // CORS Setup
 app.use(cors());
 app.use(function (req, res, next) {
@@ -73,6 +70,7 @@ app.get("/home", async (req, res) => {
   let username = req.user.username;
   let thisID = req.user.id;
   let profileImg = req.user.link;
+  let userID = req.user.id; //passig user ID in a variable regognized by nav link
 
   let allUsers = await db.User.findAll({
     where: {
@@ -96,14 +94,17 @@ app.get("/home", async (req, res) => {
         user: req.user,
         numPets: req.user.numPets,
         profileImg: profileImg,
+        thisID: thisID,
+        userID: userID,
       });
+      console.log("targetUserImg", req.params);
     }
   } else {
     res.render("error");
   }
 });
 
-app.get("/messages", (req, res) => {
+app.get("/search", (req, res) => {
   let allUsers = db.User.findAll();
   let username = req.user.username;
   let userID = req.user.id;
@@ -112,12 +113,13 @@ app.get("/messages", (req, res) => {
   if (!req.user) {
     res.render("login");
   } else {
-    res.render("messages", {
+    res.render("search", {
       pets: req.pets,
       allUsers: allUsers,
       username: username,
       userID: userID,
       profileImg: profileImg,
+      user: req.user,
     });
   }
 });
@@ -127,12 +129,14 @@ app.get("/messages", (req, res) => {
 app.get("/profile/:id", async (req, res) => {
   let userID = req.user.id;
   let profileImg = req.user.link;
+  let targetUserID = req.params.id;
 
   // let newUserID = targetUser.id;
 
   if (!req.user) {
     res.render("error");
-  } else {
+  } 
+  else {
     const targetUser = await db.User.findOne({
       where: {
         id: req.params.id,
@@ -152,7 +156,7 @@ app.get("/profile/:id", async (req, res) => {
       username: req.user.username,
       userID: userID,
       profileImg: profileImg,
-      // newUserID: newUserID
+      targetUserID: targetUserID,
     });
   }
 });
@@ -169,8 +173,11 @@ app.get("/register", function (req, res) {
 //6-day weather forecast
 app.get("/weather", function (req, res) {
   let allUsers = db.User.findAll();
+  let thisID = req.user.id;
   let username = req.user.username;
   let userID = req.user.id;
+  let targetUserID = req.params.id;
+
 
   if (!req.user) {
     res.render("login");
@@ -182,6 +189,9 @@ app.get("/weather", function (req, res) {
       userID: userID,
       user: req.user,
       numPets: req.user.numPets,
+      targetUserID: targetUserID,
+      thisID: thisID,
+
     });
   }
 });
@@ -198,12 +208,12 @@ app.get("/sms", async (req, res) => {
 });
 
 // Calendar route
-app.get('/calendar', async (req, res) => {
-	if(!req.user){
-		res.redirect('/');
-	} else {
-		res.render('planner');
-	}
+app.get("/calendar", async (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    res.render("planner");
+  }
 });
 
 // Server Init
