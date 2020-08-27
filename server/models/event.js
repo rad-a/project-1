@@ -17,4 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Event',
   });
   return Event;
+  //run a check to make sure our 
+  //event is equal to our sequalize model (return true)
+  console.log(Event === sequelize.models.Event);
 };
