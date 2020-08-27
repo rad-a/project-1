@@ -2,19 +2,19 @@
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
 
-// Dependencies
 // =============================================================
-
+const express = require("express");
+const app = express.router();
 // Requiring our models
-var db = require("../models");
+const db = require("../models");
+const { app } = require("express");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
     
   // GET route for getting all of the events
   app.get("/api/events", function(req, res) {
-    var query = {};
+    let query = {};
     if (req.query.user_id) {
       query.userId = req.query.user_id;
     }
@@ -39,10 +39,23 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new event
-  app.post("/api/events", function(req, res) {
-    db.Event.create(req.body).then(function(events) {
-      res.json(events);
+  app.post("/addEvent", async (req, res) => {
+    if (!req.user) {
+      res.render("error", {
+        code: "400",
+        message: "No user logged in",
+      });
+      return;
+    }
+  
+    const event = await Event.create({
+      date: req.body.date,
+      title: req.body.title,
+      details: req.body.details,
+      UserId: req.user.id,
     });
+  
+    res.send(event);
   });
 
   // DELETE route for deleting posts
@@ -68,4 +81,3 @@ module.exports = function(app) {
       res.json(events);
     });
   });
-};
