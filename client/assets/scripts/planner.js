@@ -1,7 +1,7 @@
 // for nodejs
-//const moment = require('moment');
-const dateFormat = 'YYYY-MM-dd';
-const myDate = '2020-08-09';
+// const moment = require('moment');
+const dateFormat = 'MM-DD-YYYY';
+const myDate = '08-08-2020';
 const numberOfDays = 7;
 
 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -10,74 +10,62 @@ const shortMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const shortDays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-// date and format include both to render days
-var currentTime = moment(myDate,dateFormat); // current date & time
-//currentTime = moment();
-// console.log(currentTime);
+// date
+let currentTime = moment() // current date & time
+console.log(currentTime);
 
 // start of the month
-var startDate = currentTime.startOf('month');
+const startDate = currentTime.startOf('month');
 // week # at start of month
-var startWeek = startDate.week();
+const startWeek = startDate.week();
 
 // end of the month
-var endDate = currentTime.endOf('month');
+const endDate = currentTime.endOf('month');
 // week # at end of month
-var endWeek = endDate.week();
+const endWeek = endDate.week();
 
-//console.log(currentTime);
+const totalNumberOfWeeks = endWeek - startWeek; // # of rows needed to render the current Month
 
-// date: obtaining new instance of date & time
-currentTime = moment(myDate, dateFormat);
-//currentTime = moment();
-
-// console.log(currentTime);
-
-var totalNumberOfWeeks = endWeek - startWeek; // # of rows needed to render the current Month
-console.log(totalNumberOfWeeks)
-var monthHeaderString = shortMonths[currentTime.month()] + " "+currentTime.year();
+const monthHeaderString = shortMonths[currentTime.month()] + " "+currentTime.year();
 
 //appending the month as a div to body
-var monthHeader = document.createElement('DIV');
+const monthHeader = document.createElement('DIV');
 monthHeader.setAttribute('class','monthHeader');
 monthHeader.innerText = monthHeaderString;
 
-document.getElementById('plannerdiv').appendChild(monthHeader);
+document.getElementById('plannerdiv').append(monthHeader);
 
-var weekHeader = document.createElement("DIV");
-weekHeader.setAttribute('class','weekHeader');
-document.getElementById('plannerdiv').appendChild(weekHeader);
+const weekHeader = document.createElement("DIV");
+weekHeader.setAttribute("class","weekHeader");
+document.getElementById('plannerdiv').append(weekHeader);
 
 //adding day headers to weekHeader div
-//WORKING DO NOT CHANGE
-for(var i=0; i< days.length; i++){
+for(let day=0 ;day<numberOfDays; day++){
     // create a DOM div element
-    var dayOfWeek = document.createElement('DIV');
+    const dayOfWeek = document.createElement('DIV');
     dayOfWeek.setAttribute('class','dayHeader');
-    dayOfWeek.innerText = shortDays[i];
+    dayOfWeek.innerText = shortDays[day];
     //getElementsByClassName returns an array
-    document.getElementsByClassName('weekHeader')[0].appendChild(dayOfWeek);
+    document.getElementsByClassName('weekHeader')[0].append(dayOfWeek);
 }
 //appending weeks to the month div
-for (var i = startWeek; i<=endWeek;i++){
-    var weekElement = document.createElement('DIV');
+for (let i = startWeek; i<=endWeek;i++){
+    const weekElement = document.createElement('DIV');
     weekElement.setAttribute('class','week');
     weekElement.setAttribute('id','week'+i);//week1 etc
-    document.getElementById('plannerdiv').appendChild(weekElement);
+    document.getElementById('plannerdiv').append(weekElement);
 }
 
-// console.log('currentTime before cloning',currentTime);
-
 //date
-var startOfMonthLoop = moment(myDate,dateFormat).startOf('plannerdiv');
-//currentTime = moment();
+const startOfMonthLoop = moment().startOf('month');
+//let currentTime = moment(myDate,dateFormat);
 // console.log('start of month:', startOfMonthLoop);
 
-var endOfMonthFlag = true;
+let endOfMonthFlag = true;
 //populating each week with a day div. Final grid should be number of weeks x 7 days
-for(var i = startWeek; i<=endWeek;i++){
-    for(var day =0;day<numberOfDays;day++){ // day will cycle from 0 to 6
-        var dayElement = document.createElement('DIV');
+for(let i = startWeek; i<=endWeek;i++){
+    for(let day =0;day<numberOfDays;day++){ // day will cycle from 0 to 6
+        const dayElement = document.createElement('DIV');
         dayElement.setAttribute('class','day');
 
         if(day==0 || day==6){
@@ -86,77 +74,87 @@ for(var i = startWeek; i<=endWeek;i++){
         
         if(i == startOfMonthLoop.week() && day==startOfMonthLoop.day() && endOfMonthFlag){
             
-            if(startOfMonthLoop.date()== endDate.date()){
+            if(startOfMonthLoop.date()==endDate.date()){
                 endOfMonthFlag=false;
-                }
-            //console.log('start of month ',startOfMonthLoop.date(),'end date' ,endDate.date(),'current time: ',moment().date());
-            if( (startOfMonthLoop.date() == moment() ) && (day==0 || day==6) ){
+                };
+            console.log('start of month ',startOfMonthLoop.date(),'end date' ,endDate.date(),'current time: ',currentTime.date());
+            if( (startOfMonthLoop.date() == currentTime.date() ) && (day==0 || day==6) ){
                 dayElement.setAttribute('class','day weekend');
             }
-            else if (startOfMonthLoop.date()== moment().date()) {
-                dayElement.setAttribute('class', 'day today')
+            else if (startOfMonthLoop.date() == currentTime.date()) {
+                dayElement.classList.add('today');
+                dayElement.classList.add('day');
             }
-            
             // div class=dayNumber (number header)
-            var dayNumberElement = document.createElement('DIV');
+            const dayNumberElement = document.createElement('DIV');
             dayNumberElement.setAttribute('class','dayNumber');
 
             dayNumberElement.innerText = startOfMonthLoop.date();
-            dayElement.appendChild(dayNumberElement);
+            dayElement.append(dayNumberElement);
 
-            if(startOfMonthLoop.date() == moment()) {
-                dayNumberElement.setAttribute('class', 'today')
-                console.log("today is " + moment())
-            }
-
-                //dayBody div class=dayBody
-            var dayBodyElement = document.createElement('DIV');
+            //dayBody div class=dayBody will display event info
+            const dayBodyElement = document.createElement('DIV');
             dayBodyElement.classList.add('dayBody');
-
-            var dayFooterElement = document.createElement('DIV');
+            //footer holds icons for add, update, and delete event functions
+            const dayFooterElement = document.createElement('DIV');
             dayFooterElement.classList.add('dayFooter');
-            var plusIcon = document.createElement('SPAN');
-            plusIcon.classList.add('fas');
-            plusIcon.classList.add('fa-calendar-plus');
-            plusIcon.classList.add('icon');
-           // plusIcon.setAttribute('onclick',createEvent(this))
-            dayFooterElement.appendChild(plusIcon);
+            //create span element for a plus icon that can be targeted 
+            //for a clickevent that opens the event form
+            const plusIcon = document.createElement('SPAN');
+            plusIcon.setAttribute('class', 'icon plus-icon');
+            plusIcon.setAttribute('uk-icon','icon: plus-circle');
+            plusIcon.setAttribute('uk-toggle','target: .addEvent');
+            
+            
+            dayFooterElement.append(plusIcon);
+            dayElement.append(dayBodyElement);
+            dayElement.append(dayFooterElement);
+            //increment by 1 day
+            startOfMonthLoop.add(1,'days');
+            //if element has event then display these icons
+            //const updateIcon = document.createElement('SPAN');
+            //updateIcon.classList.add('icon update-icon');
+            //updateIcon.setAttribute('uk-icon','icon: pencil')
+            //updateIcon.setAttribute('onclick','updateEvent(this)')
+            //dayFooterElement.append(updateIcon);
 
-            dayElement.appendChild(dayBodyElement);
-            dayElement.appendChild(dayFooterElement);
-
-            startOfMonthLoop.add(1,'days');//increment by 1 day
+            //const deleteIcon = document.createElement('SPAN');
+            //deleteIcon.classList.add('icon delete-icon');
+            //deleteIcon.setAttribute('uk-icon','icon: trash')
+            //deleteIcon.setAttribute('onclick','deleteEvent(this)')
+            //dayFooterElement.append(updateIcon);
         } 
 
-        document.getElementById('week'+i).appendChild(dayElement);
+        document.getElementById('week'+i).append(dayElement);
         
 
     }
 }
 
 //appending days to each week div
-var firstNumericalDay = startDate.date(); // for mar: 1
-var firstDay = startDate.day(); 
-var lastNumericalDay = endDate.date(); // for mar: 31
-var lastDay = endDate.day(); 
+const firstNumericalDay = startDate.date(); 
+const firstDay = startDate.day(); 
+const lastNumericalDay = endDate.date(); 
+const lastDay = endDate.day(); 
 
-//for(var i = firstNumericalDay; i<=lastNumericalDay;i++){}
+//render all user events needs to be added
+//plus icon brings up event form 
+//we collect values from the form and send them to
+//backend to be rendered
+$("#save-btn").on("click", function(event) {
     
-    //a check should be made to see what week we're in and 
-
-//click event for save button to write data to backend
-const save= document.getElementById('save-btn')
-const date= document.getElementsByClassName('date')
-const title= document.getElementsByClassName('title')
-const details= document.getElementsByClassName('details')
-$(save).on('click', function() {
-    //date.val()
-    //title.val() send to table
-    //details.val send to backend table
-
-    //render new event to table
-
-})
-
-
- 
+    let newEvent = {
+        date: $(".date").val(),
+        title: $(".title").val().trim(),
+        details: $(".details").val().trim()
+      };
+    
+      $.ajax("/api/events", {
+        type: "POST",
+        data: newEvent,
+      }).then(function() {
+        console.log("Event Added");
+        console.log(newEvent);
+        location.reload();
+      });
+});
