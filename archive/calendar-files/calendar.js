@@ -92,23 +92,25 @@ for(let i = startWeek; i<=endWeek;i++){
             dayNumberElement.innerText = startOfMonthLoop.date();
             dayElement.append(dayNumberElement);
 
-                //dayBody div class=dayBody will display event info
+            //dayBody div class=dayBody will display event info
             const dayBodyElement = document.createElement('DIV');
             dayBodyElement.classList.add('dayBody');
             //footer holds icons for add, update, and delete event functions
             const dayFooterElement = document.createElement('DIV');
             dayFooterElement.classList.add('dayFooter');
+            //create span element for a plus icon that can be targeted 
+            //for a clickevent that opens the event form
             const plusIcon = document.createElement('SPAN');
             plusIcon.setAttribute('class', 'icon plus-icon');
-            plusIcon.setAttribute('uk-icon','icon: plus-circle')
-            plusIcon.setAttribute('uk-toggle','target: .addEvent')
-            plusIcon.setAttribute('onclick','createEvent(this)')
+            plusIcon.setAttribute('uk-icon','icon: plus-circle');
+            plusIcon.setAttribute('uk-toggle','target: .addEvent');
+            //plusIcon.setAttribute('onclick','addEvent(this)');
+            
             dayFooterElement.append(plusIcon);
-
             dayElement.append(dayBodyElement);
             dayElement.append(dayFooterElement);
-
-            startOfMonthLoop.add(1,'days');//increment by 1 day
+            //increment by 1 day
+            startOfMonthLoop.add(1,'days');
             //if element has event then display these icons
             //const updateIcon = document.createElement('SPAN');
             //updateIcon.classList.add('icon update-icon');
@@ -135,11 +137,16 @@ const firstDay = startDate.day();
 const lastNumericalDay = endDate.date(); 
 const lastDay = endDate.day(); 
 
-//function to append dates to calendar
-
-
-    $(".plus-icon").on("click", function(event) {
-      
-        event.preventDefault();
-        console.log('success!');
-    });
+//render all user events needs to be added
+//plus icon brings up event form 
+//we collect values from the form and send them to
+//backend to be rendered
+$("#save-btn").on("click", function(event) {
+    
+    let newEvent = {
+        date: $(".date").val(),
+        title: $(".title").val().trim(),
+        details: $(".details").val().trim()
+      };
+    
+});
