@@ -33,8 +33,8 @@ app.use(bodyParser.json());
 app.use(express.static(clientDir));
 
 // Pug Engine Setup
-//app.set('views', path.join(__dirname, '/views'));
-//app.set('view engine','pug');
+app.set('views', path.join(__dirname, '/views'));
+app.set('view engine','pug');
 
 // Express Cookie Middleware Setup
 app.use(cookieParser());
@@ -45,7 +45,7 @@ app.use(authMiddleware);
 // Custom Routing
 app.use('/user', userController);
 app.use('/pets', petController);
-
+app.use(controllers.eventController)
 
 
 // CORS Setup
@@ -201,13 +201,13 @@ app.get('/sms', async (req, res) => {
 
 // planner/calendar route
 app.get('/planner', async (req, res) => {
-	/*if(!req.user){
+	if(!req.user){
 		res.redirect('/');
 	} else {
-		res.sendFile(path.join(clientDir, '/assets/calendar.html'))
-		//res.render('planner');
-	}*/
-	res.sendFile(path.join(clientDir, '../client/assets/calendar.html'))
+		
+		res.render('planner');
+	}
+	
 });
 
 // Server Init
