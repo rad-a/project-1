@@ -3,17 +3,19 @@
 // *********************************************************************************
 
 // =============================================================
+// Add Dependencies
 const express = require("express");
-const app = express.router();
+const router = express.Router();
 // Requiring our models
 const db = require("../models");
-const { app } = require("express");
+
+
 
 // Routes
 // =============================================================
     
   // GET route for getting all of the events
-  app.get("/api/events", function(req, res) {
+  router.get("/api/events", function(req, res) {
     let query = {};
     if (req.query.user_id) {
       query.userId = req.query.user_id;
@@ -27,8 +29,8 @@ const { app } = require("express");
 
   // Get route for retrieving a single event
   //functionality to search events by date later?
-  app.get("/api/events/:date", function(req, res) {
-    db.Event.findOne({
+  router.get("/api/events/:date", function(req, res) {
+    db.Events.findOne({
       where: {
         date: req.params.date
       }
@@ -39,7 +41,9 @@ const { app } = require("express");
   });
 
   // POST route for saving a new event
-  app.post("/addEvent", async (req, res) => {
+  router.post("/api/events", async (req, res) => {
+    console.log("hey!");
+    try{
     if (!req.user) {
       res.render("error", {
         code: "400",
@@ -48,18 +52,18 @@ const { app } = require("express");
       return;
     }
   
-    const event = await Event.create({
+    const event = await db.Event.create({
       date: req.body.date,
       title: req.body.title,
-      details: req.body.details,
-      UserId: req.user.id,
+      details: req.body.details
     });
   
-    res.send(event);
+    res.json(event);
+  }catch(err){console.error("eventsPOST",err)}
   });
 
   // DELETE route for deleting posts
-  app.delete("/api/events/:date", function(req, res) {
+  router.delete("/api/events/:date", function(req, res) {
     db.Event.destroy({
       where: {
         date: req.params.date
@@ -70,7 +74,7 @@ const { app } = require("express");
   });
 
   // PUT route for updating posts
-  app.put("/api/events", function(req, res) {
+  router.put("/api/events", function(req, res) {
     db.Event.update(
       req.body,
       {
@@ -81,3 +85,4 @@ const { app } = require("express");
       res.json(events);
     });
   });
+module.exports = router;

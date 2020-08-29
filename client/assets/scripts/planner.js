@@ -1,5 +1,5 @@
 // for nodejs
-// const moment = require('moment');
+//const moment = require('moment');
 const dateFormat = 'MM-DD-YYYY';
 const myDate = '08-08-2020';
 const numberOfDays = 7;
@@ -10,8 +10,8 @@ const shortMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const shortDays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-// date
-let currentTime = moment() // current date & time
+// current date & time object
+let currentTime = moment() 
 console.log(currentTime);
 
 // start of the month
@@ -56,28 +56,28 @@ for (let i = startWeek; i<=endWeek;i++){
     document.getElementById('plannerdiv').append(weekElement);
 }
 
-//date
+//get start of the month variable for our loop
 const startOfMonthLoop = moment().startOf('month');
-//let currentTime = moment(myDate,dateFormat);
-// console.log('start of month:', startOfMonthLoop);
 
+//set to false when end of the month is reached
 let endOfMonthFlag = true;
 //populating each week with a day div. Final grid should be number of weeks x 7 days
 for(let i = startWeek; i<=endWeek;i++){
     for(let day =0;day<numberOfDays;day++){ // day will cycle from 0 to 6
         const dayElement = document.createElement('DIV');
         dayElement.setAttribute('class','day');
-
+        //if Sunday (western convention) or Saturday set class to weekend
         if(day==0 || day==6){
             dayElement.setAttribute('class','day weekend');
         }
-        
+        //if checks for the begining of the month, week and day
         if(i == startOfMonthLoop.week() && day==startOfMonthLoop.day() && endOfMonthFlag){
-            
+            //if date is equal to endDate then set flag to end the month
             if(startOfMonthLoop.date()==endDate.date()){
                 endOfMonthFlag=false;
                 };
-            console.log('start of month ',startOfMonthLoop.date(),'end date' ,endDate.date(),'current time: ',currentTime.date());
+            //console.log('start of month ',startOfMonthLoop.date(),'end date' ,endDate.date(),'current time: ',currentTime.date());
+            
             if( (startOfMonthLoop.date() == currentTime.date() ) && (day==0 || day==6) ){
                 dayElement.setAttribute('class','day weekend');
             }
@@ -137,10 +137,27 @@ const firstDay = startDate.day();
 const lastNumericalDay = endDate.date(); 
 const lastDay = endDate.day(); 
 
-//render all user events needs to be added
+//shorthand on document on ready function
+$(function() {
+    //get all user events and render them to page
+    $.get("/api/events", function(data) {
+        console.log("events", data);
+        events = data;
+    });
+
+    // $.ajax("/api/events", {
+    //     type: "GET",
+    //     events = data,
+    // }).then(function() {
+    //     console.log("get success");
+    //     console.log(data);
+    //     location.reload();
+    // });
+    
 //plus icon brings up event form 
-//we collect values from the form and send them to
-//backend to be rendered
+//we collect values from the form and send 
+//them to backend to be added to the table
+//once in table they will be rendered to calender
 $("#save-btn").on("click", function(event) {
     
     let newEvent = {
@@ -158,3 +175,5 @@ $("#save-btn").on("click", function(event) {
         location.reload();
       });
 });
+
+})
