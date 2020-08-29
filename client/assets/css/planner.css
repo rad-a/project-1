@@ -14,6 +14,10 @@ html,body {
     height: 100%;
     background-color:#ffffff;
 }
+
+.plannerHomeBtn {
+    background-color: #2695b5;
+}
 #dropDown {
     float: inline-end;
 }
