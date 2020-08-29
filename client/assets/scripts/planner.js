@@ -137,13 +137,19 @@ const firstDay = startDate.day();
 const lastNumericalDay = endDate.date(); 
 const lastDay = endDate.day(); 
 
-//shorthand on document on ready function
-$(function() {
-    //get all user events and render them to page
-    $.get("/api/events", function(data) {
-        console.log("events", data);
-        events = data;
-    });
+//get all user events and render them to page
+$.get("/api/events", function(data) {
+    
+    console.log("events", data);
+    events = data;
+    
+}).then(function(){
+
+    if(currentTime.date() == events){
+        dayBodyElement.append(events.title)
+    }
+
+});
 
     // $.ajax("/api/events", {
     //     type: "GET",
@@ -176,4 +182,3 @@ $("#save-btn").on("click", function(event) {
       });
 });
 
-})
