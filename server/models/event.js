@@ -9,9 +9,32 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Event.init({
-    date: DataTypes.STRING,
-    title: DataTypes.STRING,
-    details: DataTypes.STRING
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+        validate: {
+            isDate: true,
+            isAfter: DataTypes.NOW,  
+        }
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+        validate: {
+          len: [1,100]
+        }
+    },
+    details: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
   }, {
     sequelize,
     modelName: 'Event',
