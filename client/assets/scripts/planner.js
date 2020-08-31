@@ -103,7 +103,7 @@ for(let i = startWeek; i<=endWeek;i++){
             const plusIcon = document.createElement('SPAN');
             plusIcon.setAttribute('class', 'icon plus-icon');
             plusIcon.setAttribute('uk-icon','icon: plus-circle');
-            plusIcon.setAttribute('uk-toggle','target: .addEvent');
+            plusIcon.setAttribute('uk-toggle','target: #addEvent');
             
             
             dayFooterElement.append(plusIcon);
