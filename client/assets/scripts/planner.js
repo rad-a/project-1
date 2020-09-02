@@ -111,18 +111,7 @@ for(let i = startWeek; i<=endWeek;i++){
             dayElement.append(dayFooterElement);
             //increment by 1 day
             startOfMonthLoop.add(1,'days');
-            //if element has event then display these icons
-            //const updateIcon = document.createElement('SPAN');
-            //updateIcon.classList.add('icon update-icon');
-            //updateIcon.setAttribute('uk-icon','icon: pencil')
-            //updateIcon.setAttribute('onclick','updateEvent(this)')
-            //dayFooterElement.append(updateIcon);
-
-            //const deleteIcon = document.createElement('SPAN');
-            //deleteIcon.classList.add('icon delete-icon');
-            //deleteIcon.setAttribute('uk-icon','icon: trash')
-            //deleteIcon.setAttribute('onclick','deleteEvent(this)')
-            //dayFooterElement.append(updateIcon);
+           
         } 
 
         document.getElementById('week'+i).append(dayElement);
@@ -144,13 +133,28 @@ $.get("/api/events", function(data) {
     events = data;
     
 }).then(function(){
-
+//match date of event to date on calendar
     if(currentTime.date() == events){
         dayBodyElement.append(events.title)
+        //append update and delete button icons 
+        //for days that have an event scheduled
+         //if element has event then display these icons
+            //const updateIcon = document.createElement('SPAN');
+            //updateIcon.classList.add('icon update-icon');
+            //updateIcon.setAttribute('uk-icon','icon: pencil')
+            //updateIcon.setAttribute('onclick','updateEvent(this)')
+            //dayFooterElement.append(updateIcon);
+
+            //const deleteIcon = document.createElement('SPAN');
+            //deleteIcon.classList.add('icon delete-icon');
+            //deleteIcon.setAttribute('uk-icon','icon: trash')
+            //deleteIcon.setAttribute('onclick','deleteEvent(this)')
+            //dayFooterElement.append(updateIcon);
     }
+    
 
 });
-
+//alternate style for ajax request that reloads page
     // $.ajax("/api/events", {
     //     type: "GET",
     //     events = data,
