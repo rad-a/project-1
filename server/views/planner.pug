@@ -15,19 +15,14 @@ head
   // Google Fonts
   link(href='https://fonts.googleapis.com/css2?family=Karla&family=Roboto+Slab&display=swap' rel='stylesheet')
   // Local Style
-  link(rel='stylesheet' href='../../assets/css/planner.css')
+  link(rel='stylesheet' href='/assets/css/planner.css')
 #plannerdiv
   a.uk-button.uk-button-primary.plannerHomeBtn(type='button' href="/home") Return Home
-  #dropDown.uk-inline
-    button.uk-button.uk-button-default(type='button') Dropdown
-    div(uk-dropdown='')
-      ul.uk-nav.uk-dropdown-nav
-        li.uk-nav-header What Would You Like To Do?
-        button(uk-toggle='target: #addEvent' type='button') Add New Event
+ 
         // This is the modal
         #addEvent(uk-modal='')
           .uk-modal-dialog.uk-modal-body
-            h2.Add.A.New.Event
+            h2.modalHeader Add An Event
             form.uk-form-select.data-uk-form-select
               label.uk-form-label(for='form-stacked-text') Please Select A Date
               br

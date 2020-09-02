@@ -22,11 +22,11 @@ html,body {
     float: inline-end;
 }
 .monthHeader {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Karla','Cabin Sketch', 'Fredoka One','Roboto Slab';
     font-size: 48px;
     /*color: #A4C639;
     color: #f88379;*/
-    color: tomato;
+    color: #2695b5;
     width: 100%;
     align-self: center;
 }
@@ -37,7 +37,7 @@ html,body {
     grid-column-gap: 5px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
-    color: tomato;
+    color: #2695b5;
     /*color: #aaa8a8;*/
     width: 100%;
     align-self: center;
@@ -62,7 +62,7 @@ html,body {
     border-bottom-width: 4px;
     /*border-color: #A4C639;
     border-color: #f88379;*/
-    border-color: tomato;
+    border-color: #2695b5;
     color:  #b5bcbc;
 }
 
@@ -70,20 +70,20 @@ html,body {
     align-self: center;
     border-bottom-style: solid;
     border-bottom-width: 4px;
-    border-color: tomato;
+    border-color: #2695b5;
     /*
     border-color: #A4C639;
     border-color: #f88379;*/
-    color:  #b5bcbc;
+    color:  #374444;
 }
 .weekend {
-    background-color: #f4f4f4;
+    background-color: #b9bcc3;
 }
 
 .dayNumber {
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
-    color: #aaa8a8;
+    color: #3d3a35;
     height: 20px;
     width: 20px;
     text-align: center;
@@ -91,7 +91,7 @@ html,body {
 
 .today .dayNumber{
     color: white;
-    background-color: tomato;
+    background-color: #2695b5;
     border-radius: 50%;
     text-align: center;
 }

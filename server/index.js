@@ -40,8 +40,10 @@ app.use(cookieParser());
 app.use(authMiddleware);
 
 // Custom Routing
-app.use("/user", userController);
-app.use("/pets", petController);
+app.use('/user', userController);
+app.use('/pets', petController);
+app.use(controllers.eventController)
+
 
 // CORS Setup
 app.use(cors());
@@ -207,13 +209,15 @@ app.get("/sms", async (req, res) => {
   // })
 });
 
-// Calendar route
-app.get("/calendar", async (req, res) => {
-  if (!req.user) {
-    res.redirect("/");
-  } else {
-    res.render("planner");
-  }
+// planner route
+app.get('/calendar', async (req, res) => {
+	if(!req.user){
+		res.redirect('/');
+	} else {
+		
+		res.render('planner');
+	}
+	
 });
 
 // Server Init
