@@ -1,0 +1,50 @@
+article(class="grid-x grid-margin-x small-12 mapArea")
+    div(class="mapInner grid-x small-12")
+        h3(id="error")
+       
+        h5(class="sectionHeader")
+            | Discover
+        
+        //Form to select desired search area radius
+
+        form(
+        action="/action_page.php"
+        id="radiusOptions" class="small-12"
+    
+        )
+            div(class="grid-x")
+            
+                div(class="cell small-12 large-6")
+                    label Select radius
+                
+                        select(
+                
+                            id="distance"
+                            name="distance"
+                        )
+                            option(id="fiveMiles" value="8050") 5 miles
+                            option(id="tenMiles" value="16000") 10 miles
+                            option(id="twentyMiles" value="32000") 20 miles
+                            option(id="thirtyMiles" value="48000") 30 miles
+                        p#display
+
+        //JS-generated map
+        div(id="map" class="cell")
+
+    div(class="grid-x small-12 parkInfoArea")        
+    
+        div(id="parkList" class="cell small-12 large-4")
+            h5
+                strong(class="headerText") Parks
+            div(
+            id="searchResult"
+                class="cell small-12 yOverflow"
+            )
+        
+            // Area to display details for selected park
+
+        div(id="parkDetails" class="cell small-12 large-8")
+            h5
+                strong(class="headerText") Details
+            div(id="parkInfo" class="cell small-12 yOverflow")
+

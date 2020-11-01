@@ -1,0 +1,54 @@
+div(class="cell medium-4 large-2 noMarginTop" id="userArea")
+
+    //Start user card
+    div(class="card-user-container" id="userCard")
+
+        div(class="card-user-avatar")
+            a(href="/profile/"+user.id)
+                img(src=""+ user.profileImg, alt="profile image" class="profile-image")
+
+        div(class="card-user-bio")
+            if targetUserID == undefined
+                h4 Hi, 
+                    =user.username
+            else if targetUserID == userID
+                h4 Hi, 
+                    =username
+            else
+                h4  
+                    =user.username
+            p  
+                span(id="pets")= user.numPets + " "
+                    span pet(s)
+            //User's registered pets
+        div(class="card-user-pets")
+            ul(class="menu", id="petCards")
+                each val in pets
+                    li(class="fa fa-paw" data-id= val.id)= val.petName
+        
+        if pets.length < 4
+            div(class="add-pets text-center")
+                a(id="addPetsBtn", href="/pets/add")
+                    button(class="hollow center expanded button" href="#") Add a Pet
+        a(id="addPetsBtn", href="/home#searchForm")
+            button(class="center expanded button hide-for-large") Search Dogs
+                  
+    div(class="hide-for-small-only" id="weather")
+
+        h5(id="currentDate")
+            //Current weather div
+
+        .weatherEl#currentWeather
+            div(class="grid-x")
+                h3(class="cell small-6 medium-4")
+                    span(id="temp")
+                img(class="cell small-6 medium-4" id="weather-icon" alt="")
+
+            p Humidity: 
+                span(id="humidity")
+            p Wind Speed: 
+                span(id="wind")
+            p UV Index: 
+                span(id="uv-index")
+            p
+                a(class="smallPrint" href="/weather" alt="") View 6-day forecast

@@ -1,0 +1,32 @@
+extends layouts/main.pug
+block profile
+
+    div(class="grid-x grid-padding-x largePaddingTop pageMainSection")
+        include includes/user-panel 
+        article(class="grid-x cell medium-8 userProfile")
+
+            //Information about user's pet(s)
+            
+                //- div(class="cell text-center sectionHeader" id="petAreaHeader")
+            if userID == targetUserID
+                h5(class="sectionHeader marginBottom")  Your Pets 
+            else
+                h5(class="sectionHeader")= user.username + "'s Pets" 
+
+            div(id="petArea" class="cell")
+           
+                each val in pets
+                    div(class="grid-x petInfo" id= val.pet)
+                        div(class="cell large-8 petImage")
+                            img(src="/assets/images/corgi-vector-profile.png") 
+                            
+                        div(class="cell grid-x large-4 PetDetails")
+                            h3(class="")= val.petName + ', ' + val.petAge
+                            li=val.petBreed
+                            li=val.petGender
+                            if userID == targetUserID
+                                button(class="medium-6 button alert", data-id=val.id, id="petRemoveBtn") Remove
+                            else
+                                p 
+                else 
+                    h5= user.username + " has no pets listed yet."

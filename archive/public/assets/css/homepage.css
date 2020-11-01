@@ -8,7 +8,6 @@ html {
   background: rgba(255, 255, 255, 0);
 }
 
-html,
 body {
   height: 100%;
   width: 100%;
@@ -26,6 +25,11 @@ body {
   flex-direction: column;
   height: 100%;
   font-size: 16px;
+}
+
+.form-container {
+  width: 50vw;
+  align-content: space-around;
 }
 
 nav {
@@ -136,14 +140,14 @@ ul {
   border-radius: 3px;
   margin-top: 3px;
 }
-
+/* 
 .hover-danger:hover {
   background-color: palevioletred;
-}
+} */
 
-#mainArea {
+/* #mainArea {
   padding-left: 10px;
-}
+} */
 
 .infoSections {
   border-radius: 3px;

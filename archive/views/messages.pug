@@ -1,0 +1,26 @@
+extends layouts/main.pug
+
+block social
+        
+        div(class="grid-x grid-padding-x largePaddingTop pageMainSection")
+                include includes/user-panel 
+                article(class="cell medium-6 large-8 socialArea")
+                        div(class="cell profileHeader" id="socialHeader")
+                                h4 Social
+                                p See what others are talking about
+                        div(class="socialForm")
+                                form(id="social-form" method="POST")
+                                        div(class="grid-x grid-padding-x")
+                                                div(class="small-9 cell")
+                                                        //- Make this auto exapand using JS
+                                                        textarea(placeholder="What's on your mind?" name="social-text" id="social-text")
+                                                div(class="small-3 cell flexPostBox")  
+                                                        input(class="button" id="post" type="submit" value="Post")
+                                //-Total social posts
+                                h5 Latest posts: 
+                                        span(id="comment-count")
+                                ul(id="comments")
+
+                include includes/info-panel
+
+

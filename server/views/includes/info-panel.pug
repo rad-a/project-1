@@ -1,0 +1,39 @@
+aside(class="cell large-2 noMarginTop sidePanels" id="infoArea" data-sticky-container)
+
+        div(class="panel-radius" id="searchForm")
+            div( class="translucent-form-overlay")
+                form(data-abide novalidate id="petSearchForm" method="POST")
+                    h5 
+                        strong Search dogs
+                    
+                    label Breed
+                    select(
+                
+                            id="pet-breed"
+                            name="pet-breed"
+                    )
+
+                    label Gender
+                    select(
+                
+                            id="pet-gender"
+                            name="pet-gender"
+                    )
+                        option(value="Male") Male
+                        option(value="Female") Female
+                        option(value="Other") Other
+
+                    label Age
+                    select(
+                
+                            id="pet-age"
+                            name="pet-age"
+                    )
+                        option(value="0" selected) Any
+                        option(value="1") Puppy (<1 year)
+                        option(value="2" ) Young (1-3 years)
+                        option(value="3") Adult (3-7 years)
+                        option(value="4") Senior (7+ years)
+
+                    a(type="submit" href="/home#allUsersDiv" class="primary button expanded search-button" id="petSearchSubmit")
+                        | Search

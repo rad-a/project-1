@@ -1,0 +1,43 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Dog Date
+  // jQuery
+  script(src='https://code.jquery.com/jquery-3.5.1.js' integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=' crossorigin='anonymous')
+  // UIkit CSS
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/css/uikit.css')
+  // UIkit JS
+  script(src='https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js')
+  // Font-Awesome
+  link(href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN' crossorigin='anonymous')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css2?family=Karla&family=Roboto+Slab&display=swap' rel='stylesheet')
+  // Local Style
+  link(rel='stylesheet' href='/assets/css/planner.css')
+#plannerdiv
+  a.uk-button.uk-button-primary.plannerHomeBtn(type='button' href="/home") Return Home
+ 
+        // This is the modal
+        #addEvent(uk-modal='')
+          .uk-modal-dialog.uk-modal-body
+            h2.modalHeader Add An Event
+            form.uk-form-select.data-uk-form-select
+              label.uk-form-label(for='form-stacked-text') Please Select A Date
+              br
+              input.date(type='date' data-uk-datepicker="{format:'YYYY-MM-DD'}")
+            br
+            form.uk-form-stacked
+              .uk-margin
+                label.uk-form-label(for='form-stacked-text') Title of Event
+                .uk-form-controls
+                  input#form-stacked-text.uk-input.title(type='text')
+              .uk-margin
+                label.uk-form-label(for='form-stacked-text') Optional Details
+                .uk-form-controls
+                  input#form-stacked-text.uk-input.details(type='text')
+            button.uk-button.uk-button-default.uk-modal-close(type='button') Cancel
+            button#save-btn.uk-button.uk-button-primary(type='button') Save
+script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js' type='text/javascript')
+script(src='/assets/scripts/planner.js' type='text/javascript')

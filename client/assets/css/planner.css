@@ -1,0 +1,127 @@
+html,body {
+    min-height: 100%;
+    min-width: 100%;
+}
+#month {
+    display: grid;
+    grid-template-rows:  repeat(auto-fit,minmax(100px,1fr));
+    grid-template-columns: repeat(auto);
+    justify-items: center;
+    text-align: left;
+    grid-column-gap: 5px;
+
+    width: 100%;
+    height: 100%;
+    background-color:#ffffff;
+}
+
+.plannerHomeBtn {
+    background-color: #2695b5;
+}
+#dropDown {
+    float: inline-end;
+}
+.monthHeader {
+    font-family: 'Karla','Cabin Sketch', 'Fredoka One','Roboto Slab';
+    font-size: 48px;
+    /*color: #A4C639;
+    color: #f88379;*/
+    color: #2695b5;
+    width: 100%;
+    align-self: center;
+}
+
+.weekHeader {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
+    grid-column-gap: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: #2695b5;
+    /*color: #aaa8a8;*/
+    width: 100%;
+    align-self: center;
+}
+
+.week {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
+    grid-column-gap: 5px;
+    align-self: center;
+    width:100%;
+    height:100%;
+}
+
+.day {
+    display: grid;
+    align-self: center;
+    grid-template-rows: 1fr 5fr 1fr;
+    width:100%;
+    height:100px;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    /*border-color: #A4C639;
+    border-color: #f88379;*/
+    border-color: #2695b5;
+    color:  #b5bcbc;
+}
+
+.dayHeader {
+    align-self: center;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-color: #2695b5;
+    /*
+    border-color: #A4C639;
+    border-color: #f88379;*/
+    color:  #374444;
+}
+.weekend {
+    background-color: #b9bcc3;
+}
+
+.dayNumber {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    color: #3d3a35;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.today .dayNumber{
+    color: white;
+    background-color: #2695b5;
+    border-radius: 50%;
+    text-align: center;
+}
+
+div.today :hover {
+    color: #b5bcbc;
+}
+
+.day:hover .dayNumber{
+    font-weight: bold;
+    
+}
+
+/*.day:hover {
+    border-width: 4px;
+    border-color: #A4C639;
+    border-style: solid;
+} */
+
+.dayFooter {
+    justify-self: end;
+    visibility: hidden;
+}
+
+.day:hover .dayFooter{
+    visibility: visible;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+    font-size:20px;
+}
