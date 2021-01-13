@@ -126,6 +126,7 @@ router.get("/search", async (req, res) => {
 	res.send(result);
 	return;
 });
+
 router.delete("/", async (req, res) => {
 	if (!req.user) {
 		res.render("error", {

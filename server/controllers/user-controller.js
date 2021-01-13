@@ -6,6 +6,8 @@ const router = express.Router();
 
 // Require models
 const { User } = require('../models');
+const user = require("../models/user");
+
 
 //
 // Routes ------------------------------------------------------------
@@ -136,5 +138,14 @@ router.get('/allUsers',async (req, res) => {
 	
 });
 
-
+router.get("/user/:id", (req, res) => {
+	console.log("id of user we wonat", req.params);
+	console.log("this i souyr user mode!!!", User);
+	User.findByPk(req.params.id).then(function (userWeFound) {
+	  res.json(userWeFound);
+	});
+  
+	// res.send(u)
+  });
+  
 module.exports = router;
