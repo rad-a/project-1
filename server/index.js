@@ -172,31 +172,33 @@ app.get("/register", function (req, res) {
   }
 });
 
-//6-day weather forecast
-app.get("/weather", function (req, res) {
-  let allUsers = db.User.findAll();
-  let thisID = req.user.id;
-  let username = req.user.username;
-  let userID = req.user.id;
-  let targetUserID = req.params.id;
+//=======(POST-BC) REMOVING WEATHER PAGE!!!! ========
+
+// //6-day weather forecast
+// app.get("/weather", function (req, res) {
+//   let allUsers = db.User.findAll();
+//   let thisID = req.user.id;
+//   let username = req.user.username;
+//   let userID = req.user.id;
+//   let targetUserID = req.params.id;
 
 
-  if (!req.user) {
-    res.render("login");
-  } else {
-    res.render("weather", {
-      pets: req.pets,
-      allUsers: allUsers,
-      username: username,
-      userID: userID,
-      user: req.user,
-      numPets: req.user.numPets,
-      targetUserID: targetUserID,
-      thisID: thisID,
+//   if (!req.user) {
+//     res.render("login");
+//   } else {
+//     res.render("weather", {
+//       pets: req.pets,
+//       allUsers: allUsers,
+//       username: username,
+//       userID: userID,
+//       user: req.user,
+//       numPets: req.user.numPets,
+//       targetUserID: targetUserID,
+//       thisID: thisID,
 
-    });
-  }
-});
+//     });
+//   }
+// });
 
 // Socket Route
 app.get("/sms", async (req, res) => {

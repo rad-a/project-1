@@ -35,10 +35,11 @@ nav(class="customNavbar")
             a(href='/sms' alt="sms")
                 i.fa.fa-comments
                 | Messages
-        li
-            a(href='/weather' alt="weather")
-                i.fa.fa-cloud
-                | Weather
+        //(POST-BC) Removing weather feature
+            li
+                a(href='/weather' alt="weather")
+                    i.fa.fa-cloud
+                    | Weather
         li.hide-for-large
             a(href='/home/#searchForm' alt="search")
                 i.fa.fa-search
