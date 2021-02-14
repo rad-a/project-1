@@ -106,3 +106,6 @@ server/config/config.json
 
 #PugJS rendered HTML
 server/views/html/
+
+#archived files
+archive
