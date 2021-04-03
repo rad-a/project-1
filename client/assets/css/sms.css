@@ -119,6 +119,10 @@ a {
     width: auto;
     margin-bottom: 4px;
 }
+
+#toggler img {
+  width:75%;
+}
 #online{
     position: fixed;;
     overflow: scroll;
