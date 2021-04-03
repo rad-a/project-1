@@ -212,7 +212,7 @@ app.get("/sms", async (req, res) => {
 });
 
 // planner route
-app.get('/calendar', async (req, res) => {
+/*app.get('/calendar', async (req, res) => {
 	if(!req.user){
 		res.redirect('/');
 	} else {
@@ -221,6 +221,8 @@ app.get('/calendar', async (req, res) => {
 	}
 	
 });
+*/
+
 
 // Server Init
 db.sequelize.sync().then(() => {
